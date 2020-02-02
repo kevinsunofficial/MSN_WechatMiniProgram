@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/frontPage/frontPage",
+    "pages/recentActivities/one/one",
+    "pages/recentActivities/two/two",
+    "pages/recentActivities/three/three",
+    "pages/eventSignup/event",
+    "pages/files/files",
+    "pages/webs/webs",
+    "pages/pub/pub",
+    "pages/personal/personal"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "Mainland Student Network",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

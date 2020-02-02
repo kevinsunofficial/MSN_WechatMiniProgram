@@ -1,0 +1,138 @@
+<!--miniprogram/pages/frontPage/frontPage.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2019 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+
+<!--
+  This page is the frontPage
+  Location: pages/frontPage/frontPage
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < 10}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+
+
+<view class="mainPage">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    Recent Activities Block
+    A Swiper of buttons here, each is:
+    Link to a recent activity
+  -->
+  <view class="RA">
+    <swiper circular="true" indicator-dots="true" style="height: 550rpx">
+      <block wx:for="{{recentActivities}}" wx:key="index">
+        <swiper-item>
+          <view id="items" bindtap="toAct{{index+1}}">
+            <image src="{{activityPhoto[index]}}"
+            mode="aspectFill" style="width: 750rpx; filter: brightness(60%)" bindload="imgLoad"></image>
+            <view id="activityName"><text>{{item.name}}</text></view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!--
+    Event Signup Block:
+    Link to all recent events available for signup
+  -->
+  <view class="ES">
+    <view style="margin-top: 30rpx; margin-bottom: 30rpx;">
+      <text class="subtitle">近期活动</text>
+    </view>
+    <button id="signup" style="width: 700rpx" bindtap="toSignup">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/signup.png"
+       mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
+      <text>\n</text>
+      EVENT SIGNUP 活动报名
+    </button>
+  </view>
+
+
+  <!--
+    Resources Block
+    Several buttons here:
+    Link to MSN public wechat
+    Link to file pages
+    Link to useful website pages
+  -->
+  <view class="R">
+    <view style="margin-top: 30rpx; margin-bottom: 30rpx;">
+      <text class="subtitle">资源分享</text>
+    </view>
+    <view>
+      <view id="rest">
+        <view id="file" bindtap="toFile">
+          <button id="smllink" style="width: 340rpx">
+            <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/file.png" 
+            mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
+            <text>\n</text>
+            文件资源</button>
+        </view>
+        <view id="web" bindtap="toWeb">
+          <button id="smllink" style="width: 340rpx">
+            <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/web.png" 
+            mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
+            <text>\n</text>
+            网站资源</button>
+        </view>
+      </view>
+      <view id="pub" bindtap="toPub">
+        <button id="lrglink" style="width: 700rpx">
+          <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/wechat.png"
+           mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
+          <text>\n</text>
+          MSN 微信公众号</button>
+      </view>
+    </view>
+  </view>
+
+
+  <!--
+    Entertainment Block:
+    Link to personal page
+  -->
+  <view class="E">
+    <view style="margin-top: 30rpx; margin-bottom: 30rpx;">
+      <text class="subtitle">打卡小助手</text>
+    </view>
+    <button id="attend" style="width: 700rpx" bindtap="toPersonal">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/attend.png"
+       mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
+      <text>\n</text>
+      个人主页</button>
+  </view>
+
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+
+</view>

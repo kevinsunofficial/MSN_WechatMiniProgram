@@ -1,0 +1,65 @@
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2019 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/three/three
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < 3}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>Shanghai Send-off</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/eventPhoto/shSendoff.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text>
+        本页尚未搭建完成！
+        所展示页面仅为效果页面。
+
+        7月13日，由 UVA Club 举办的上海新生欢送会在弗吉尼亚大学中国办事处落下了帷幕。数位家长、校友、新生、老生共聚一堂，共同庆祝2023届新生们加入UVA这个大家庭。Send-off后，新生们还与老生们一起玩了密室逃脱，共同享用了晚餐。
+        未来的路似乎还很长，但没有关系，MSN将一直在这里陪伴着你，为你排忧解难。希望每一次MSN与你们的接触，都能给你们带来更多的安心感和对未来UVA生活的期待。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

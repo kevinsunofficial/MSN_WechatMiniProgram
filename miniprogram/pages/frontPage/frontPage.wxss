@@ -1,0 +1,134 @@
+/* miniprogram/pages/frontPage/frontPage.wxss */
+/**
+ * This is the prototype of MSN's miniprogram
+ * The miniprogram is still under development
+ * It is not recommanded to be put into any form of commercial use
+ * @2019 Mainland Student Network. All rights reserved
+ * Author:
+ * Yuchen Sun
+ */
+/**
+ * This page is the first page
+ */
+
+Page {
+  text-align: center;
+}
+
+.mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(25, 31, 38);
+  font-size: 40rpx;
+  font-weight: 600;
+  color: rgb(245, 245, 245);
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 1;
+  z-index: 1;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(245, 245, 245);
+}
+
+.TT {
+  margin-top: 0rpx;
+}
+
+.subtitle {
+  font-size: 40rpx;
+  line-height: 50rpx;
+  color: rgb(41, 41, 41);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.RA {
+  margin-top: 50rpx;
+  border-top-style: solid;
+  border-width: 5rpx;
+  border-color: darkgrey;
+}
+
+#activityName {
+  height: 550rpx;
+  font-size: 50rpx;
+  font-weight: 600;
+  color: white;
+  line-height: 80rpx;
+  position: relative;
+  bottom: 300rpx;
+}
+
+#title {
+  font-size: 50rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-shadow: 1rpx 1rpx 2rpx gray;
+  line-height: 100rpx;
+  color: rgb(0, 86, 99);
+}
+
+#signup {
+  margin-top: 30rpx;
+  height: 200rpx;
+  background-color: lightcyan;
+  border-radius: 25rpx;
+}
+
+.R {
+  margin-top: 50rpx;
+  display: flex;
+  height: 450rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#rest {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+#pub {
+  margin-top: 30rpx;
+}
+
+#lrglink {
+  height: 200rpx;
+  background-color: lightgoldenrodyellow;
+  border-radius: 25rpx;
+}
+
+#smllink {
+  height: 200rpx;
+  background-color: lightgoldenrodyellow;
+  border-radius: 25rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.E {
+  margin-top: 50rpx;
+}
+
+#attend {
+  height: 200rpx;
+  background-color: lightpink;
+  border-radius: 25rpx;
+}
+
+.TE {
+  margin-top: 50rpx;
+  height: 400rpx;
+  background-color: rgb(43, 43, 43);
+  font-size: 20rpx;
+  color: white;
+}

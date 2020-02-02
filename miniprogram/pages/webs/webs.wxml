@@ -1,0 +1,89 @@
+<!--miniprogram/pages/webs/webs.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2019 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Webs
+  Location: pages/webs/webs
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < 7}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 150rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>网页资源</text>
+    </view>
+    <view id="allFiles">
+      <button style="width: 700rpx" bindtap="link" data-id="0">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         C'Ville美食攻略-Corner篇</button>
+      <view class="info">
+        <text>还在为去哪里聚餐hang out绞尽脑汁吗？你知道作为美国人均餐厅密度最高的城市之一，夏村到底有多少美食值得发掘吗？</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="1">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         C'Ville美食攻略-商圈儿篇</button>
+      <view class="info">
+        <text>UVa附近住宅区JPA，Ivy Road及距校最近的Barracks Shopping Center餐厅汇总！分分钟带你起飞！</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="2">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         C'Ville美食攻略-No.29 Rd篇</button>
+      <view class="info">
+        <text>夏村美食——来自UVa附近的公路No.29 Road！</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="3">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         C'Ville地标大全</button>
+      <view class="info">
+        <text>还在为买不到合适的食材闹心吗？还在为找不到周末的去处无奈吗？这里是Charlottesville地标大全，带你迅速成为一方地霸！</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="4">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         C'Ville Bus全汇总</button>
+      <view class="info">
+        <text>有了乘车攻略，变成夏村地霸指日可待！</text>
+      </view>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>
