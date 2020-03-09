@@ -1,2 +1,94 @@
-<!--pages/miscell/miscPages/m2.wxml-->
-<text>pages/miscell/miscPages/m2.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n牛肉丼与溏心蛋</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/nrg.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">牛肉丼（Oatmeal Raisin）</text>
+      <text decode="true">
+
+        食材：米饭、淀粉、肥牛、洋葱、黄油、油、生抽、老抽、蚝油、味淋（或料酒和糖）
+        
+        步骤：
+        1. 切掉洋葱两头，再将洋葱切片。
+        2. 在锅中倒入一大碗清水，煮沸。
+        3. 放入肥牛，煮到断生，捞出来清洗备用。
+        3. 在热锅中放入黄油，放入洋葱，翻炒。
+        4. 同时，在一个小杯子里倒入两勺生抽、半勺老抽、一勺蚝油、一勺料酒和一勺糖，加入适量的水，并搅拌均匀。
+        &emsp;*料酒加白糖是味淋替代。
+        5. 炒至洋葱变软，放入步骤4的酱料，翻炒至变色。
+        6. 放入肥牛，根据情况加水。
+        7. 加入淀粉收汁。
+      </text>
+      <text>\n\n</text>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">溏心蛋（Oatmeal Raisin）</text>
+      <text decode="true">
+
+        食材：鸡蛋、生抽、老抽、料酒、白砂糖、水调
+        
+        步骤：
+        1. 将温水倒入碗中，放入生鸡蛋，让生鸡蛋达到室温。
+        &emsp;*如果是室温的生鸡蛋，可以跳过步骤1。
+        2. 在锅中倒入一大碗清水，煮沸。
+        3. 轻放鸡蛋在沸水中。
+        &emsp;*水的高度没过鸡蛋。
+        &emsp;*液体蛋黄：小于等于六分三十秒。半熟不熟的固体蛋黄：六分半到七分钟。
+        4. 捞出鸡蛋，泡在冰水里，或放在水龙头底下冲。
+        5. 轻轻剥去蛋壳。
+        6. 在一个小杯子里倒入生抽、老抽、料酒、白砂糖和水调少许，做成酱汁。
+        7. 把鸡蛋浸泡在酱汁里面，冷藏三四个小时以上。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

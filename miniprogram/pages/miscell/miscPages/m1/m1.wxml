@@ -14,7 +14,7 @@
 -->
 
 <!--This is the mask page-->
-<view wx:if="{{load < 3}}" class="mask">
+<view wx:if="{{load < imgNum}}" class="mask">
   <text>小程序加载中…{{complete}}%</text>
 </view>
 
@@ -37,20 +37,22 @@
       <text>\n五花肉泡菜炒饭</text>
     </view>
     <view id="img">
-      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/placeHolder.jpg"
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/whrpccf.jpg"
         mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
     </view>
     <view id="txt">
-      <text>
-        五花肉泡菜炒饭（玥大厨）
-        
+      <text style="font-weight: 600">五花肉泡菜炒饭（玥大厨）</text>
+      <text decode="true">
+
         食材：米饭、五花肉、培根、蒜末、泡菜、韩国辣椒酱、油、酱油、盐
+        
+        步骤：
         1. 将五花肉和培根切段，放在热油中煎至两面熟。
         2. 放入蒜末和泡菜与少许泡菜汁爆炒2-3分钟。
         3. 放入白米饭，再加两小勺酱油和一撮盐翻炒至着色均匀。
         4. 同时，在另一个锅里倒一小碗水，加入适量韩国辣椒酱，并搅拌均匀。
         5. 把调好的辣椒酱倒在炒饭上，再次搅拌。
-        *盛出前可以根据个人喜好加入芝士，盖上锅盖焖两分钟以便融化。
+        &emsp;*盛出前可以根据个人喜好加入芝士，盖上锅盖焖两分钟以便融化。
       </text>
     </view>
   </view>

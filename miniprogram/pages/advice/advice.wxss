@@ -81,7 +81,7 @@ textarea {
   font-size: 40rpx;
   font-weight: 800;
   height: 100rpx;
-  background-color: lightgoldenrodyellow;
+  background-color: #C0FFB3;
   border-radius: 25rpx;
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@ textarea {
   font-size: 40rpx;
   font-weight: 800;
   height: 100rpx;
-  background-color: lightskyblue;
+  background-color: #FF6666;
   border-radius: 25rpx;
   display: flex;
   align-items: center;

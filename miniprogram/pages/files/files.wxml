@@ -14,7 +14,7 @@
 -->
 
 <!--This is the mask page-->
-<view wx:if="{{load < 8}}" class="mask">
+<view wx:if="{{load < imgNum}}" class="mask">
   <text>小程序加载中…{{complete}}%</text>
 </view>
 
@@ -37,42 +37,42 @@
       <text>文件资源</text>
     </view>
     <view id="allFiles">
-      <button style="width: 700rpx" bindtap="download" data-id="0">
+      <button style="width: 700rpx; background-color: #E1F2FB" bindtap="download" data-id="0">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-学术篇</button>
       <view class="info">
         <text>介绍UVA各大学院，Comm School的申请流程以及Honor Program和J-Term信息。</text>
       </view>
-      <button style="width: 700rpx" bindtap="download" data-id="1">
+      <button style="width: 700rpx; background-color: #DEDDFA" bindtap="download" data-id="1">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-选课篇</button>
       <view class="info">
         <text>提供全套细致的选课流程，选课方向，好课推荐等一系列与选课有关的经验分享与指导。</text>
       </view>
-      <button style="width: 700rpx" bindtap="download" data-id="2">
+      <button style="width: 700rpx; background-color: #F6E5F5" bindtap="download" data-id="2">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-宿舍篇</button>
       <view class="info">
         <text>全面收集UVA在校学长学姐们的住宿体验，为大家提供不一样的视角，供大家横向比较，选出适合自己的宿舍。</text>
       </view>
-      <button style="width: 700rpx" bindtap="download" data-id="3">
+      <button style="width: 700rpx; background-color: #FBF4F9" bindtap="download" data-id="3">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-生活篇</button>
       <view class="info">
         <text>整合UVA所在的小镇上的美食攻略，交通线路大全；如何在美国办理银行卡，电话卡等等。</text>
       </view>
-      <button style="width: 700rpx" bindtap="download" data-id="4">
+      <button style="width: 700rpx; background-color: #F6E7E6" bindtap="download" data-id="4">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-活动篇</button>
       <view class="info">
         <text>收录了具有代表性的学校社团组织。大家可以积极参加Activities Fair，自由探索！</text>
       </view>
-      <button style="width: 700rpx" bindtap="download" data-id="5">
+      <button style="width: 700rpx; background-color: #B9CCED" bindtap="download" data-id="5">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-行前手册</button>

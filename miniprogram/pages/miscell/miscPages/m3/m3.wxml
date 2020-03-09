@@ -1,2 +1,94 @@
-<!--pages/miscell/miscPages/m3.wxml-->
-<text>pages/miscell/miscPages/m3.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n卤肉饭与土豆鸡块</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/lrf.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">卤肉饭（尾花夏樹）</text>
+      <text decode="true">
+
+        食材：米饭、五花肉、青菜、葱油、料酒、酱油、糖
+
+        步骤：
+        1. 将五花肉切丝，加入适量的糖、酱油和料酒，抓匀腌制隔夜。
+        2. 在锅内倒入少量油，爆炒腌好的五花肉，炒至金黄色出油。
+        3. 倒入料酒、酱油和糖，过一小会儿，倒入开水没过所有的肉，小火炖大概一个半小时。
+        5. 开水烫青菜断生，放一边备用。
+        6. 将鸡蛋放入沸水中煮熟剥壳，在肉炖煮大约半小时时加入。
+        7. 继续炖煮约一个小时，将鸡蛋捞出，然后开大火收汁，直至汤汁浓稠可以包裹在肉上，关火盛出。
+        8. 将卤肉浇到米饭上，配上青菜和卤蛋摆盘。
+      </text>
+      <text>\n\n</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/tdjk.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">土豆鸡块（尾花夏樹）</text>
+      <text decode="true">
+
+        食材：鸡腿肉，土豆，一个鸡蛋，油，耗油，淀粉，葱，姜，酱油，盐，糖，料酒。
+        
+        步骤：
+        1. 将鸡腿肉剔骨，用刀背横竖方向敲打鸡肉，斩断筋膜让肉质更软。
+        2. 将鸡腿肉切三角小块。
+        &emsp;*可以先切成条，然后左斜45度切一刀，右斜45度切一刀。这样切出来炒过之后鸡肉会收缩成圆球状。
+        3. 放入葱姜，少量酱油，盐，料酒，腌制鸡肉。放入一个鸡蛋清和淀粉，用手抓一抓。让调料汁都包裹在鸡肉上。腌制大概5-10分钟。
+        4. 土豆切成小块。葱切段，姜切片。
+        5. 在锅内倒入油烧热，将腌过的鸡肉煎一煎。加入葱姜小米辣煸炒。
+        6. 倒入料酒，蚝油，少许酱油，糖，以及水。
+        7. 加入土豆，炖至土豆变软，用大火收汁。可以加盐调咸度。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

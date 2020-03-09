@@ -34,12 +34,13 @@ Page({
     complete: 0,
     downloading: false,
     progress: 0,
+    imgNum: 8,
   },
 
   imgLoad: function (e) {
     this.setData({
       load: this.data.load+1,
-      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
+      complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
     })
   },
 

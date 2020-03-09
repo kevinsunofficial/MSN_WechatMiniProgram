@@ -81,7 +81,6 @@ Page {
 button {
   margin-top: 50rpx;
   height: 250rpx;
-  background-color: lightsalmon;
   font-size: 40rpx;
   border-radius: 25rpx;
   margin-bottom: 20rpx;

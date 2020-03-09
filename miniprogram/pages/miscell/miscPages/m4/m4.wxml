@@ -1,2 +1,79 @@
-<!--pages/miscell/miscPages/m4.wxml-->
-<text>pages/miscell/miscPages/m4.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n芝士夹心蛋糕</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/zsjxdg.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">芝士夹心蛋糕（啾啾）</text>
+      <text decode="true">
+
+        食材：鸡蛋3个/6个（70克以上5个）玉米油35/60克，纯牛奶 40/75克，低筋粉 50/100克，细砂糖55/95克，玉米淀粉5克/10克（份量分别对应6寸与8寸）
+        
+        步骤：
+        1. 将蛋白蛋黄分离， 蛋盆确保无油无水。
+        2. 在蛋黄盆里倒入牛奶和玉米油。
+        3. 打发蛋白（可加几滴柠檬汁）用一档打散蛋白，然后用中档打到蛋清发白，提起打蛋器有一个小尖勾。
+        4. 将白糖分成三份，往打发的蛋白中加入一份白糖，开中速打发到提起打蛋器能形成尖沟的的发泡状态。
+        5. 加入第二份白糖，高速打发到再次出现尖沟（蛋白盆边上的蛋白霜也要打进去，一边转动盆一边打）。
+        6. 加入第三份白糖和玉米淀粉搅拌几下再低档打发，直到搅拌均匀，用搅拌器打发至提起打蛋器蛋白能行成直立的尖角。
+        7. 预热烤箱上下火125度。
+        8. 低筋粉过筛到蛋黄盆中，用手动打蛋器搅拌均匀，直到面粉和其它混合均匀。
+        9. 检查蛋白霜，拨开看看里外气泡是否均匀，如汽泡变粗，需要用手动搅拌几圈，小气泡就会变得均匀细致（此步必做）。
+        10. 分一些蛋白霜到蛋黄糊里，用翻拌手法，把面糊混合均匀，防止蛋白消泡。
+        11. 将混合均匀的面糊全部倒入蛋白霜里，用翻拌手法拌匀，直到面糊拌匀看不见白色的蛋白霜。
+        12. 拌匀后倒入模具，震动两下模具，把大气泡震出，用牙签把表面的小气泡戳破。
+        13. 面糊送入烤箱，中下层烤大概50分钟。可以用牙签检查蛋糕是否烤熟。
+        14. 戚风烤好后离桌子15厘米摔两下，把多余的热气震出，然后倒扣至放凉脱模。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

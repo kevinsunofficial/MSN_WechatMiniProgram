@@ -92,7 +92,7 @@ Page {
 
 .diningHalls {
     margin-top: 30rpx;
-    background-color: rgb(238, 238, 238);
+    background-color: #FAEEE7;
     border-radius: 25rpx;
     display: flex;
     flex-direction: row;
@@ -110,7 +110,7 @@ Page {
     font-size: 45rpx;
     font-weight: 600;
     color: black;
-    background-color: lightgoldenrodyellow;
+    background-color: #C3F0CA;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,7 +118,7 @@ Page {
 }
 
 #score {
-    background-color: antiquewhite;
+    background-color: #FFEECC;
     border-radius: 15rpx;
     font-size: 35rpx;
     font-weight: 600;
@@ -129,34 +129,15 @@ Page {
     justify-content: center;
 }
 
-.rateSection1 {
+.rateSection {
     margin-top: 30rpx;
     border-radius: 25rpx;
-    background-color: lemonchiffon;
+    background-color: #F6EEC9;
     display: flex;
+    font-weight: 600;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.rateSection2 {
-  margin-top: 30rpx;
-  border-radius: 25rpx;
-  background-color: lemonchiffon;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.rateSection3 {
-  margin-top: 30rpx;
-  border-radius: 25rpx;
-  background-color: lemonchiffon;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 radio {
@@ -167,9 +148,9 @@ radio {
 .submitForm {
     margin-top: 30rpx;
     border-radius: 20rpx;
-    background-color: aquamarine;
+    background-color: #BEEBE9;
     font-size: 35rpx;
-    font-weight: 500;
+    font-weight: 600;
     color: black;
     display: flex;
     flex-direction: column;
@@ -178,7 +159,7 @@ radio {
 }
 
 .rateThis {
-    background-color: rgb(255, 206, 214);
+    background-color: #FFCCCC;
     font-size: 40rpx;
     font-weight: 600;
     border-radius: 200rpx;

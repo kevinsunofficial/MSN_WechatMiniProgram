@@ -14,7 +14,7 @@
 -->
 
 <!--This is the mask page-->
-<view wx:if="{{load < 2}}" class="mask">
+<view wx:if="{{load < imgNum}}" class="mask">
   <text>小程序加载中…{{complete}}%</text>
 </view>
 

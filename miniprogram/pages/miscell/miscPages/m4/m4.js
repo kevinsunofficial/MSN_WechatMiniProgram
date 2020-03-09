@@ -1,11 +1,36 @@
-// pages/miscell/miscPages/m4.js
+// miniprogram/pages/recentActivities/one/one.js
+/**
+ * This is the prototype of MSN's miniprogram
+ * The miniprogram is still under development
+ * It is not recommanded to be put into any form of commercial use
+ * @2020 Mainland Student Network. All rights reserved
+ * Author:
+ * Yuchen Sun
+ */
+/**
+ * This page is the Most Recent Activity
+ */
+
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    end: app.getEnd(),
+    flag: "block",
+    load: 0,
+    complete: 0,
+    imgNum: 3,
+  },
 
+  imgLoad: function (e) {
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
+    })
   },
 
   /**

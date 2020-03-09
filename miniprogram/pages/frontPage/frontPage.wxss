@@ -78,7 +78,7 @@ Page {
 #signup {
   margin-top: 30rpx;
   height: 200rpx;
-  background-color: lightcyan;
+  background-color: #A8E6CF;
   border-radius: 25rpx;
 }
 
@@ -103,13 +103,13 @@ Page {
 
 #lrglink {
   height: 200rpx;
-  background-color: lightgoldenrodyellow;
+  background-color: #DCEDC1;
   border-radius: 25rpx;
 }
 
 #smllink {
   height: 200rpx;
-  background-color: lightgoldenrodyellow;
+  background-color: #DCEDC1;
   border-radius: 25rpx;
   margin-left: 10rpx;
   margin-right: 10rpx;
@@ -117,7 +117,7 @@ Page {
 
 #smllink2 {
   height: 200rpx;
-  background-color: lightcyan;
+  background-color: #FFAAA5;
   border-radius: 25rpx;
   margin-left: 10rpx;
   margin-right: 10rpx;
@@ -129,7 +129,7 @@ Page {
 
 #attend {
   height: 200rpx;
-  background-color: lightpink;
+  background-color: #FFD3B6;
   border-radius: 25rpx;
 }
 

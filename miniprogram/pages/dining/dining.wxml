@@ -14,7 +14,7 @@
 -->
 
 <!--This is the mask page-->
-<view wx:if="{{load < 5}}" class="mask">
+<view wx:if="{{load < imgNum}}" class="mask">
   <text>小程序加载中…{{complete}}%</text>
 </view>
 
@@ -60,7 +60,7 @@
                  bindtap="changeShow" data-id="{{item.id}}">我要评价</button>
             </view>
         </view>
-        <view wx:if="{{item.show}}" class="rateSection1" style="display: {{(!showNCRate)? none:flex}}; width: 600rpx; height: 300rpx">
+        <view wx:if="{{item.show}}" class="rateSection" style="display: {{(!showNCRate)? none:flex}}; width: 600rpx; height: 300rpx">
             <form bindsubmit="rate" data-id="{{item.id}}">
                 <radio-group name="score" style="display: block; width: 400rpx; height: 120rpx; margin-top: 10rpx; line-height: 60rpx">
                     <label><radio value="0"/>0分</label>

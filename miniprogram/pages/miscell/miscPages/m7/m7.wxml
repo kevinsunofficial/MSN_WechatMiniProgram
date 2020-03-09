@@ -1,2 +1,92 @@
-<!--pages/miscell/miscPages/m7.wxml-->
-<text>pages/miscell/miscPages/m7.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n味噌炒鸡腿与巧克力慕斯</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/wccjt.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">味噌炒鸡腿（王泽韬）</text>
+      <text decode="true">
+
+        食材：去皮鸡腿肉、圆白菜、胡萝卜、洋葱、盐、黑胡椒粉、酱油、味淋、味噌、清酒、大蒜、姜
+        
+        步骤：
+        1. 将大蒜和洋葱压成泥状。洋葱，青椒，白菜切丝备用。
+        2. 将酱油，味淋，味噌，清酒，蒜泥和姜泥混合，搅拌均匀，放到一边备用。
+        3. 热锅倒入冷油，加入切好的圆白菜，洋葱丝，胡萝卜丝（玉米粒），将食材炒至断生。可以加入适量盐和黑胡椒粉。
+        4. 蔬菜处理完毕后出锅，盛到一边的容器备用。
+        5. 加入适量油，油温升高后加入鸡腿肉，将鸡腿煎至两面稍稍焦黄。
+        6. 鸡肉炒熟后，加入刚才处理好的蔬菜，一起翻炒；加入调好的酱汁，继续翻炒。
+        7. 加入切好的青椒丝，翻炒至青椒熟透，再次加入适量黑胡椒，即可出锅。
+      </text>
+      <text>\n\n</text>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">巧克力慕斯（王泽韬）</text>
+      <text decode="true">
+
+        食材：甜巧克力100g（没有加工过的碎巧克力）、炼乳50g、牛奶250g、重奶油200g、可可粉15克、糖30g、吉利丁8克、模具一个（或者小碗小杯子）
+        
+        步骤：
+        1. 将30克热水和可可粉混合，搅拌到完全融合即可。再准备一盆冰水，备用。
+        2. 将巧克力切碎，越碎越好。
+        3. 将牛奶，奶油，炼乳，糖和调好的可可糊加入锅中，中火加热，加热时需要在沸腾前不停搅拌。
+        4. 沸腾后转小火，倒入刚才切好的巧克力碎，不停搅拌，直到巧克力融化。
+        5. 将吉利丁与40g热水混和，搅拌均匀，加入至锅中，再次搅拌。
+        6. 巧克力浆变粘稠后，关火，用滤网将煮好的巧克力浆过滤倒入搅拌容器中。
+        7. 将容器放入冰水，在冷却过程中需要轻轻搅拌。
+        8. 待巧克力浆冷却，倒入模具中，然后保鲜膜封好，放入冰箱隔夜冷藏。
+        9. 第二天取出凝结的巧克力慕斯。
+        &emsp;*可以在上面撒上薄薄一层可可粉，一点点奶油，草莓，树莓等水果，风味更佳。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

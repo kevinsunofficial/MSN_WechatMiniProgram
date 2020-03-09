@@ -1,2 +1,96 @@
-<!--pages/miscell/miscPages/m6.wxml-->
-<text>pages/miscell/miscPages/m6.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n猪肉角煮与虾仁滑蛋</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/zrjz.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">猪肉角煮（王泽韬）</text>
+      <text decode="true">
+
+        食材：去皮五花肉、鸡蛋、白萝卜、清酒、日式酱油（甜酱油）、味淋、蚝油、盐、红糖、白胡椒粉、花椒、小葱、姜、红辣椒
+        
+        步骤：
+        1. 准备一个“落盖”。将吸油纸剪成锅口大小的圆形，在上面开几个小洞。炖煮时将落盖放在食材上防止汤汁蒸发太快和让食材更加入味。葱，姜，红辣椒切成小段备用。
+        2. 将去皮五花肉切成10厘米左右长的大块， 上下两面撒上抹盐和白胡椒粉，静置腌制15分钟，在腌制的时候可以处理一下白萝卜。
+        3. 白萝卜切成滚刀块，然后放入盛好凉水的锅中开大火煮沸，煮沸后转中火。白萝卜煮到用筷子可以戳穿的程度，关火，捞出后洗净。
+        4. 在热锅中倒入油，将腌制好的五花肉煎至两面金黄。
+        5. 将五花肉放入炖锅或者汤锅中，倒入清水，水量没过肉即可。加入花椒，葱段，姜片，适量盐和白胡椒粉，清酒，开大火煮沸。 煮沸后转小火，盖上落盖，炖煮20分钟。
+        6. 水煮鸡蛋，鸡蛋煮熟后泡凉水，剥壳备用。
+        7. 20分钟后，捞出五花肉，过凉水，切成适当大小。将切好的五花肉放入炖锅，加入葱段，两片姜片，红辣椒，适量白胡椒粉，红糖，加入水，清酒，盖上落盖，大火煮沸，转小火再炖煮20分钟。
+        8. 20分钟后，加入味淋，日式酱油，蚝油适量，用筷子稍稍搅拌，炖煮5分钟后，放入之前准备好的鸡蛋，白萝卜，让他们充分吸收汤汁。
+        9. 再次炖煮10~15分钟，关火，静置1小时，然后放入冰箱隔夜。
+        10. 隔天在上菜之前用小火加热煮沸即可上菜，隔夜后煮的越久，味道就越浓厚。
+      </text>
+      <text>\n\n</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/xrhd.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">虾仁滑蛋（王泽韬）</text>
+      <text decode="true">
+
+        食材：虾仁、鸡蛋、玉米淀粉、盐、料酒、白胡椒、葱
+
+        步骤：
+        1. 将虾仁用少许盐混合均匀放置5分钟，然后将盐洗去。
+        2. 用厨房纸将水份吸干，加盐、料酒、蛋清和虾仁搅拌均匀后，再下玉米淀粉拌匀腌制片刻。
+        3. 鸡蛋打散加入盐1/2小勺、白胡椒粉少许混合均匀。
+        4. 葱切成葱花，水淀粉搅拌均匀备用。
+        5. 将水烧开，将腌拌好的虾仁入锅，烫至七分熟（约30秒），沥出备用。
+        6. 将烫过的虾仁放入蛋液中，加入葱花、水淀粉混合均匀。
+        7. 起油锅，放入2大勺油，油烧热后，将混合虾仁的蛋汁倒入，感觉蛋液周围开始凝固就用锅铲迅速划圈圈将蛋炒散，等大部份的蛋液一凝固马上关火盛盘。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

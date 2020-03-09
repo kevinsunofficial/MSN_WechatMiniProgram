@@ -1,2 +1,74 @@
-<!--pages/miscell/miscPages/m5.wxml-->
-<text>pages/miscell/miscPages/m5.wxml</text>
+<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Most Recent Activity
+  Location: pages/recentActivities/one/one
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>\n红烧肉</text>
+    </view>
+    <view id="img">
+      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/cookingContest/hsr.jpg"
+        mode="aspectFit" style="width: 700rpx;" bindload="imgLoad"></image>
+    </view>
+    <view id="txt">
+      <text style="font-weight: 600">红烧肉（朱英奕）</text>
+      <text decode="true">
+
+        食材：五花肉、鸡蛋、冰糖、生抽、老抽、黄酒、八角、香叶、花椒、葱段、姜、盐
+        
+        步骤：
+        1. 将五花肉洗净，切大块。
+        2. 在锅中倒入一大碗清水，立即放入处理好的五花肉，焯水，煮出血沫。
+        3. 将五花肉用清水洗净，控干水分之后切成小块。
+        3. 在锅中倒入油和冰糖，炒呈红褐色。
+        4. 放入焯好的五花肉，翻炒上色。
+        5. 加入适量的葱、姜、八角、香叶、花椒粒和2勺生抽。
+        6. 倒入开水（有条件可以使用啤酒）漫过五花肉，大火煮开，再加一勺盐以及之前炒制的糖色。
+        7. 撇沫，放入葱结，小火慢炖至锅内水位低于肉三分之一的高度。
+        8. 大火收汁。
+      </text>
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>

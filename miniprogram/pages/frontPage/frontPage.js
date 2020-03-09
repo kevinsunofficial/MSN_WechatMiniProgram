@@ -33,6 +33,7 @@ Page({
     flag: "block",
     load: 0,
     complete: 0,
+    imgNum: 12,
   },
 
   getInfo: function() {
@@ -52,7 +53,7 @@ Page({
   imgLoad: function (e) {
     this.setData({
       load: this.data.load+1,
-      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
+      complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
     })
   },
 

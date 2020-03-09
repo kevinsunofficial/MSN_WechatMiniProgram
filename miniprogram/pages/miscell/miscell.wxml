@@ -14,7 +14,7 @@
 -->
 
 <!--This is the mask page-->
-<view wx:if="{{load < 7}}" class="mask">
+<view wx:if="{{load < imgNum}}" class="mask">
   <text>小程序加载中…{{complete}}%</text>
 </view>
 
@@ -68,9 +68,23 @@
       <button style="width: 700rpx" bindtap="link" data-id="4">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
-         C'Ville Bus全汇总</button>
+         红烧肉</button>
       <view class="info">
-        <text>有了乘车攻略，变成夏村地霸指日可待！</text>
+        <text>首创厨神——朱英奕</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="5">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         猪肉角煮与虾仁滑蛋</button>
+      <view class="info">
+        <text>首创厨神——王泽韬</text>
+      </view>
+      <button style="width: 700rpx" bindtap="link" data-id="6">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         味噌炒鸡腿与巧克力慕斯</button>
+      <view class="info">
+        <text>首创厨神——王泽韬</text>
       </view>
     </view>
   </view>
