@@ -3,7 +3,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -30,6 +30,12 @@ Page {
   font-family: Arial, Helvetica, sans-serif;
   opacity: 1;
   z-index: 1;
+}
+
+.downloadBar {
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
 }
 
 .main {

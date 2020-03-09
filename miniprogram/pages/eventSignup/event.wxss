@@ -2,7 +2,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -64,59 +64,20 @@ Page {
     align-items: center;
 }
 
-input {
-    height: 75rpx;
-    width: 500rpx;
-    border-radius: 10rpx;
-    border-width: 3rpx;
-    border-color: rgb(43, 43, 43);
-    border-style: groove;
-    font-size: 30rpx;
-    font-weight: 400;
-}
-
-#picker {
-    background-color: rgb(236, 236, 236);
-    font-size: 35rpx;
-    line-height: 100rpx;
-    height: 100rpx;
-    border-radius: 10rpx;
-    width: 500rpx;
-    font-weight: 400;
-}
-
-.wechat {
+button {
+    margin-top: 75rpx;
     font-size: 40rpx;
     font-weight: 800;
-    height: 100rpx;
-    background-color: #91ed61;
+    height: 150rpx;
+    background-color: lightblue;
     border-radius: 25rpx;
-}
-
-.submit {
-    font-size: 40rpx;
-    font-weight: 800;
-    height: 100rpx;
-    background-color: lightgoldenrodyellow;
-    border-radius: 25rpx;
-}
-
-.reset {
-    font-size: 40rpx;
-    font-weight: 800;
-    height: 100rpx;
-    background-color: lightskyblue;
-    border-radius: 25rpx;
-}
-
-.info {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .TE {
-    margin-top: 50rpx;
+    margin-top: 100rpx;
     height: 400rpx;
     background-color: rgb(43, 43, 43);
     font-size: 20rpx;

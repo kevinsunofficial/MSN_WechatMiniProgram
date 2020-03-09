@@ -1,4 +1,4 @@
-// miniprogram/pages/pub/pub.js
+// pages/miscell/miscPages/m7.js
 Page({
 
   /**

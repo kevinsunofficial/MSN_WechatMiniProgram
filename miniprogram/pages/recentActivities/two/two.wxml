@@ -1,16 +1,16 @@
-<!--miniprogram/pages/recentActivities/one/one.wxml-->
+<!--miniprogram/pages/recentActivities/two/two.wxml-->
 <!--
   This is the prototype of MSN's miniprogram
   The miniprogram is still under development
   It is not recommanded to be put into any form of commercial use
-  @2019 Mainland Student Network. All rights reserved
+  @2020 Mainland Student Network. All rights reserved
 
   Author:
     Yuchen Sun
 -->
 <!--
   This page is the Most Recent Activity
-  Location: pages/two/two
+  Location: pages/recentActivities/two/two
 -->
 
 <!--This is the mask page-->
@@ -42,9 +42,6 @@
     </view>
     <view id="txt">
       <text>
-        本页尚未搭建完成！
-        所展示页面仅为效果页面。
-
         2019年8月31日，MSN举办了年度活动UVA Rush，吸引了近80名大一新生和转学生参加。我们选取了5个学校地标作为比赛地点，包括Rotunda，Language Commons，AFC，MAE Building，以及Drama Building。参与者也被分为五个小组，赶赴每个比赛地点进行UVA或文化相关的小游戏，并与此同时完成一些类似寻宝游戏的小任务，以此来认识UVA的校园环境。大家都收获满满，乐在其中，并通过这次活动渐渐熟悉了这个将会陪伴大家未来几年的大家庭。最后，感谢Kungfu Tea为本次活动提供的大力支持。
       </text>
     </view>

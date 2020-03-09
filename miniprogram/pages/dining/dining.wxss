@@ -1,0 +1,197 @@
+/* miniprogram/pages/dining/dining.wxss */
+/**
+ * This is the prototype of MSN's miniprogram
+ * The miniprogram is still under development
+ * It is not recommanded to be put into any form of commercial use
+ * @2020 Mainland Student Network. All rights reserved
+ * Author:
+ * Yuchen Sun
+ */
+/**
+ * This page is the Dining Evaluation
+ */
+
+Page {
+  text-align: center;
+}
+
+.mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(25, 31, 38);
+  font-size: 40rpx;
+  font-weight: 600;
+  color: rgb(245, 245, 245);
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 1;
+  z-index: 1;
+}
+
+.downloadBar {
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TT {
+  margin-top: 0rpx;
+}
+
+#title {
+  font-size: 50rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-shadow: 1rpx 1rpx 2rpx gray;
+  line-height: 100rpx;
+  color: rgb(0, 86, 99);
+}
+
+.Content {
+  margin-top: 50rpx;
+  border-top-style: solid;
+  border-width: 5rpx;
+  border-color: darkgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ctitle {
+  margin-top: 50rpx;
+  margin-bottom: 30rpx;
+  font-size: 60rpx;
+  font-weight: 700;
+}
+
+#time {
+    background-color: lightgray;
+    border-radius: 10rpx;
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+    background-color: 25rpx;
+    color: rgb(25, 31, 38);
+    font-size: 30rpx;
+    font-weight: 600;
+    line-height: 50rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.diningHalls {
+    margin-top: 30rpx;
+    background-color: rgb(238, 238, 238);
+    border-radius: 25rpx;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#name {
+    border-radius: 15rpx;
+    font-size: 45rpx;
+    font-weight: 600;
+    color: black;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#score {
+    background-color: antiquewhite;
+    border-radius: 15rpx;
+    font-size: 35rpx;
+    font-weight: 600;
+    color: darkblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.rateSection1 {
+    margin-top: 30rpx;
+    border-radius: 25rpx;
+    background-color: lemonchiffon;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rateSection2 {
+  margin-top: 30rpx;
+  border-radius: 25rpx;
+  background-color: lemonchiffon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rateSection3 {
+  margin-top: 30rpx;
+  border-radius: 25rpx;
+  background-color: lemonchiffon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+radio {
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+
+.submitForm {
+    margin-top: 30rpx;
+    border-radius: 20rpx;
+    background-color: aquamarine;
+    font-size: 35rpx;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rateThis {
+    background-color: rgb(255, 206, 214);
+    font-size: 40rpx;
+    font-weight: 600;
+    border-radius: 200rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.TE {
+  margin-top: 30rpx;
+  height: 400rpx;
+  background-color: rgb(43, 43, 43);
+  font-size: 20rpx;
+  color: white;
+}

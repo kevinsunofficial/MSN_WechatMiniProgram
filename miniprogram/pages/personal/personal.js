@@ -1,17 +1,18 @@
-// miniprogram/pages/frontPage/frontPage.js
 /**
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
 /**
- * This page is the attendance page
+ * This page is the personal page
  */
 
 var app = getApp();
+
+var info = {};
 
 Page({
 
@@ -20,17 +21,25 @@ Page({
    */
   data: {
     end: app.getEnd(),
-    userInfo: {},
-    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    hide: false,
     flag: "block",
     load: 0,
     complete: 0,
-    curTime: '',
-    timeData: '',
-    userScore: 0,
-    userStartDate: '',
-    userHistory: 0
+    userSensitiveData: {},
+    userRegularData: {},
+    userInfoOnScreen: {
+      registerDate: '加载中...',
+      history: '加载中...',
+      score: '加载中...'
+    },
+  },
+
+  imgLoad: function (e) {
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
+    })
   },
 
   getTime: function(e) {
@@ -39,110 +48,159 @@ Page({
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()
-    this.setData({
-      timeData: year+'-'+month+'-'+day,
-      curTime: year+'年'+month+'月'+day+'日'
-    })
+    var time = year+'-'+month+'-'+day
+    return time
   },
 
-  imgLoad: function (e) {
-    var that = this;
-    that.setData({
-      load: that.data.load+1,
-      complete: ((that.data.load+1)/2).toFixed(2) * 100
-    })
-  },
-
-  checkTimeHistory: function(start, end) {
-    if (start == null) {
-      var startDate = new Date(end)
+  getHistory: function(start, end) {
+    if (start == "" || start == end) {
+      return 1
     }
-    else {
-      var startDate = new Date(start)
-    }
+    var startDate = new Date(start)
     var endDate = new Date(end)
-    var dif = parseInt((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24))
-    this.setData({
-      userHistory: dif+1
-    })
+    var dif = parseInt((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24))+1
+    return dif
   },
 
-  register: function(e) {
-    this.getTime()
-    this.checkTimeHistory(this.data.userInfo.registerDate, this.data.timeData)
-    console.log(this.data.userInfo)
+  onGetUserInfo: function(e) {
     const db = wx.cloud.database()
     const _ = db.command
+    console.log(e.detail.userInfo)
+    if (e.detail.userInfo) {
+      app.globalData.userRegularData = e.detail.userInfo
+      this.setData({
+        hide: false,
+        userRegularData: app.globalData.userRegularData
+      })
 
-    db.collection('attendance').where({
-      nickName: this.data.userInfo.nickName
-    }).get().then(res => {
-      if (res.data.length != 0) {
-        // user in database
-        console.log(res.data)
-        db.collection('attendance').doc(res.data[0]._id).update({
-          data: {
-            history: this.data.userHistory,
-            score: this.data.userHistory * 2 + res.data[0].eventList.length * 3
+      // add or update
+      db.collection('testUserData').where({
+        _openid: this.data.userSensitiveData.openid
+      }).get().then(
+        res => {
+          console.log(res.data)
+          if (res.data.length==0) {
+            db.collection('testUserData').add({
+              data: {
+                _openid: this.data.userSensitiveData.openid,
+                generalData: this.data.userRegularData,
+                eventList: [],
+                registerDate: this.getTime(),
+                history: 1,
+                score: 1
+              }
+            })
           }
-        })
-      }
-      else {
-        // user not in database
-        db.collection('attendance').add({
-          data: {
-            nickName: this.data.userInfo.nickName,
-            score: 2,
-            history: 1,
-            registerDate: this.data.timeData,
-            eventList: []
-          }, success: res => {
-            console.log('ADDED')
-            this.onShow()
+          else {
+            var userRegDate = res.data[0].registerDate
+            var userEvents = res.data[0].eventList
+            db.collection('testUserData').doc(res.data[0]._id).update({
+              data: {
+                history: this.getHistory(userRegDate, this.getTime()),
+                score: this.getHistory(userRegDate, this.getTime())+userEvents.length*3
+              }
+            })
           }
-        })
-      }
-    })
+
+          // update userInfoOnScreen
+          db.collection('testUserData').where({
+            _openid: this.data.userSensitiveData.openid
+          }).get().then(
+            res => {
+              if (res.data.length!=0) {
+                this.setData({
+                  userInfoOnScreen: {
+                    registerDate: res.data[0].registerDate,
+                    history: res.data[0].history,
+                    score: res.data[0].score
+                  }
+                })
+              }
+            }
+          )
+        }
+      )
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-      })
-    }
-    else if (this.data.canIUse) {
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true,
-        })
-      }
-    }
-    else {
-      wx.getUserInfo({
-        success: (res) => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true,
-          })
-        },
-      })
-    }
-  },
-
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
+      userSensitiveData: app.globalData.userSensitiveData
     })
-    this.register()
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: res => {
+              console.log(res.userInfo)
+              app.globalData.userRegularData = res.userInfo
+              this.setData({
+                userRegularData: app.globalData.userRegularData
+              })
+
+              const db = wx.cloud.database()
+              const _ = db.command
+              
+              // add or update
+              db.collection('testUserData').where({
+                _openid: this.data.userSensitiveData.openid
+              }).get().then(
+                res => {
+                  console.log(res.data)
+                  if (res.data.length==0) {
+                    db.collection('testUserData').add({
+                      data: {
+                        _openid: this.data.userSensitiveData.openid,
+                        generalData: this.data.userRegularData,
+                        eventList: [],
+                        registerDate: this.getTime(),
+                        history: 1,
+                        score: 1
+                      }
+                    })
+                  }
+                  else {
+                    var userRegDate = res.data[0].registerDate
+                    var userEvents = res.data[0].eventList
+                    db.collection('testUserData').doc(res.data[0]._id).update({
+                      data: {
+                        history: this.getHistory(userRegDate, this.getTime()),
+                        score: this.getHistory(userRegDate, this.getTime())+userEvents.length*3
+                      }
+                    })
+                  }
+
+                  // update userInfoOnScreen
+                  db.collection('testUserData').where({
+                    _openid: this.data.userSensitiveData.openid
+                  }).get().then(
+                    res => {
+                      if (res.data.length!=0) {
+                        this.setData({
+                          userInfoOnScreen: {
+                            registerDate: res.data[0].registerDate,
+                            history: res.data[0].history,
+                            score: res.data[0].score
+                          }
+                        })
+                      }
+                    }
+                  )
+                }
+              )
+            },
+          })
+        }
+        else {
+          this.setData({
+            hide: true
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -156,18 +214,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const db = wx.cloud.database()
-    db.collection('attendance').where({
-      nickName: this.data.userInfo.nickName
-    }).get({
-      success: res => {
-        this.setData({
-          userScore: res.data[0].score,
-          userStartDate: res.data[0].registerDate,
-          userHistory: res.data[0].history
-        })
-      }
-    })
+
   },
 
   /**

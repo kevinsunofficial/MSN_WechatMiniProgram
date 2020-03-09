@@ -3,7 +3,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -31,35 +31,63 @@ Page({
     ],
     flag: "block",
     load: 0,
-    complete: 0
+    complete: 0,
+    downloading: false,
+    progress: 0,
   },
 
   imgLoad: function (e) {
-    var that = this;
-    that.setData({
-      load: that.data.load+1,
-      complete: ((that.data.load+1)/8).toFixed(2) * 100
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
     })
   },
 
-  download: function(e) {
-    var id = e.currentTarget.dataset.id
-    wx.cloud.downloadFile({
-      fileID: this.data.files[id],
+  download: function (e) {
+    this.setData({
+      downloading: true
+    })
+    wx.getSavedFileList({
       success: res => {
-        if (res.statusCode == 200) {
-          wx.saveFile({
-            tempFilePath: res.tempFilePath,
-            success: res => {
-              wx.openDocument({
-                filePath: res.savedFilePath,
-                success: res => {
-                  console.log('SUCCESS')
-                },
-              })
-            },
+        for (const obj of res.fileList) {
+          console.log(obj)
+          wx.removeSavedFile({
+            filePath: obj.filePath,
           })
         }
+      }
+    })
+    var id = e.currentTarget.dataset.id
+    const downloadTask = wx.cloud.downloadFile({
+      fileID: this.data.files[id],
+      success: res => {
+        wx.saveFile({
+          tempFilePath: res.tempFilePath,
+          success: res => {
+            wx.openDocument({
+              filePath: res.savedFilePath,
+            })
+          },
+          fail: res => {
+            console.log(res)
+            wx.showModal({
+              title: 'Oops！',
+              content: '该文件大小超过10M\n应微信官方要求无法下载\n我们对给您带来的不便表示歉意\n请您谅解！',
+              showCancel: false
+            })
+          }
+        })
+      }
+    })
+    downloadTask.onProgressUpdate(res => {
+      this.setData({
+        progress: res.progress
+      })
+      if (res.progress == 100) {
+        this.setData({
+          downloading: false,
+          progress: 0
+        })
       }
     })
   },

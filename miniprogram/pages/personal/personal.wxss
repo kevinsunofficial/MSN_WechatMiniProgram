@@ -1,15 +1,15 @@
-/* miniprogram/pages/attendance/attendance.wxss *//**
+/**
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
 
 
 /**
- * This page is the attendance page
+ * This page is the personal page
  */
 
  Page {
@@ -52,7 +52,6 @@
 }
 
 .TE {
-    position: fixed;
     bottom: 0;
     height: 400rpx;
     background-color: rgb(43, 43, 43);
@@ -66,6 +65,7 @@
 
 #authorize {
     margin-top: 200rpx;
+    margin-bottom: 500rpx;
     display: flex;
     flex-direction: column;
     justify-content: center;

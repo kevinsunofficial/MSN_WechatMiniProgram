@@ -3,7 +3,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -32,14 +32,27 @@ Page({
     end: app.getEnd(),
     flag: "block",
     load: 0,
-    complete: 0
+    complete: 0,
+  },
+
+  getInfo: function() {
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        app.globalData.userSensitiveData = res.result
+        console.log(res.result, "success")
+      },
+      fail: res => {
+        console.log("Fail", res)
+      }
+    })
   },
 
   imgLoad: function (e) {
-    var that = this;
-    that.setData({
-      load: that.data.load+1,
-      complete: ((that.data.load+1)/10).toFixed(2) * 100
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
     })
   },
 
@@ -102,7 +115,7 @@ Page({
    */
   toPub: function() {
     wx.navigateTo({
-      url: '/pages/pub/pub'
+      url: '/pages/dining/dining'
     })
   },
 
@@ -116,10 +129,37 @@ Page({
   },
 
   /**
+   * to bug report
+   */
+  toBugReport: function() {
+    wx.navigateTo({
+      url: '/pages/bugs/bugs',
+    })
+  },
+
+  /**
+   * to advice collection
+   */
+  toAdvice: function() {
+    wx.navigateTo({
+      url: '/pages/advice/advice',
+    })
+  },
+
+  /**
+   * to miscellaneous
+   */
+  toMiscell: function() {
+    wx.navigateTo({
+      url: '/pages/miscell/miscell',
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getInfo()
   },
 
   /**
