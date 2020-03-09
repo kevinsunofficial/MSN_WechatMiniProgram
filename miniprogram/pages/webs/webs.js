@@ -3,7 +3,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -34,10 +34,9 @@ Page({
   },
 
   imgLoad: function (e) {
-    var that = this;
-    that.setData({
-      load: that.data.load+1,
-      complete: ((that.data.load+1)/7).toFixed(2) * 100
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/12).toFixed(2)*100)
     })
   },
 

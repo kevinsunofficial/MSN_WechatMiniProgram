@@ -3,7 +3,7 @@
  * This is the prototype of MSN's miniprogram
  * The miniprogram is still under development
  * It is not recommanded to be put into any form of commercial use
- * @2019 Mainland Student Network. All rights reserved
+ * @2020 Mainland Student Network. All rights reserved
  * Author:
  * Yuchen Sun
  */
@@ -115,6 +115,14 @@ Page {
   margin-right: 10rpx;
 }
 
+#smllink2 {
+  height: 200rpx;
+  background-color: lightcyan;
+  border-radius: 25rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
 .E {
   margin-top: 50rpx;
 }
@@ -123,6 +131,14 @@ Page {
   height: 200rpx;
   background-color: lightpink;
   border-radius: 25rpx;
+}
+
+.FB {
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .TE {

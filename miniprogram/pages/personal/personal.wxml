@@ -1,17 +1,16 @@
-<!--miniprogram/pages/frontPage/frontPage.wxml-->
 <!--
   This is the prototype of MSN's miniprogram
   The miniprogram is still under development
   It is not recommanded to be put into any form of commercial use
-  @2019 Mainland Student Network. All rights reserved
+  @2020 Mainland Student Network. All rights reserved
 
   Author:
     Yuchen Sun
 -->
 
 <!--
-  This page is the attendance page
-  Location: pages/attendance/attendance
+  This page is the personal page
+  Location: pages/personal/personal
 -->
 
 <!--This is the mask page-->
@@ -36,12 +35,16 @@
     The Login Block
   -->
   <view class="LG">
-    <button id="authorize" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-    登录授权</button>
+    <block wx:if="{{hide}}">
+      <button id="authorize" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
+      登录授权</button>
+    </block>
     <block wx:else>
-      <image id="userimg" src="{{userInfo.avatarUrl}}" mode="aspectFit" style="height: 250rpx; width: 250rpx"></image>
-      <text style="margin-top: 30rpx; font-size: 40rpx">\n{{userInfo.nickName}}\n</text>
-      <text id="attendanceInfo">\n注册日期：{{userStartDate}}\n已注册天数：{{userHistory}}\n积分：{{userScore}}</text>
+      <image id="userimg" src="{{userRegularData.avatarUrl}}" mode="aspectFit" style="height: 250rpx; width: 250rpx"></image>
+      <text style="margin-top: 30rpx; font-size: 40rpx">\n{{userRegularData.nickName}}\n</text>
+      <text id="attendanceInfo">
+        \n注册日期：{{userInfoOnScreen.registerDate}}\n已注册天数：{{userInfoOnScreen.history}}\n积分：{{userInfoOnScreen.score}}\n
+      </text>
     </block>
   </view>
 
