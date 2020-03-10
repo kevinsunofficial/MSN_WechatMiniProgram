@@ -127,7 +127,7 @@
     Link to feedback pages
   -->
   <view class="FB">
-    <view style="margin-top: 30rpx; margin-bottom: 30rpx;">
+    <view style="margin-bottom: 30rpx;">
       <text class="subtitle">反馈专区</text>
     </view>
     <view>

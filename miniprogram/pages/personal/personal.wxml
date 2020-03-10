@@ -47,11 +47,11 @@
          style="margin-top: 30rpx; margin-bottom: 15rpx; border-radius: 20rpx; height: 150rpx; width: 600rpx; background-color: #6E5773">
           <text class="txt">注册日期</text><text class="txt">{{userInfoOnScreen.registerDate}}</text>
         </view>
-        <view class="box"
+        <view class="box" hidden="true"
           style="margin-top: 15rpx; margin-bottom: 15rpx; border-radius: 20rpx; height: 150rpx; width: 600rpx; background-color: #D45079">
           <text class="txt">已注册天数</text><text class="txt">{{userInfoOnScreen.history}}</text>
         </view>
-        <view class="box"
+        <view class="box" hidden="true"
           style="margin-top: 15rpx; margin-bottom: 30rpx; border-radius: 20rpx; height: 150rpx; width: 600rpx; background-color: #EA9085">
           <text class="txt">积分</text><text class="txt">{{userInfoOnScreen.score}}</text>
         </view>
