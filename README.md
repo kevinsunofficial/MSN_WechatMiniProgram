@@ -1,12 +1,30 @@
-# 云开发 quickstart
+# MSN at UVA - Wechat Mini-program
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+The official Wechat Mini-program of Mainland Student Network at University of Virginia.
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+Visit [MSN Website](https://www.msnatuva.org/)
 
-## 参考文档
+## Getting Started
 
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+### Prerequisites
 
+Wechat Developer Tool - Official IDE provided by Wechat
+[Download Wechat Developer Tool](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+
+Visual Studio Code
+[Download Wechat Developer Tool](https://code.visualstudio.com/Download)
+
+## Versions
+
+The versioning of this Wechat Mini-program follows [SemVer](http://semver.org/).
+
+## Authors
+
+- **Yuchen Sun** - *Initial work* - [kevinsunofficial](https://github.com/kevinsunofficial)
+
+## Acknowledgments
+
+- [CSDN](https://www.csdn.net/)
+- [juejin.im](https://juejin.im/)
+- [Wechat Official Mini-program Document](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+- etc
