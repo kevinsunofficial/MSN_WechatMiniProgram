@@ -12,7 +12,7 @@ Wechat Developer Tool - Official IDE provided by Wechat
 [Download Wechat Developer Tool](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 
 Visual Studio Code
-[Download Wechat Developer Tool](https://code.visualstudio.com/Download)
+[Download Visual Studio Code](https://code.visualstudio.com/Download)
 
 ## Versions
 
