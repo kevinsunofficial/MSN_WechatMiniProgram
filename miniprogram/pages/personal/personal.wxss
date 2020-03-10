@@ -84,11 +84,28 @@
     border-style: solid;
 }
 
-#attendanceInfo {
+.stat {
     margin-top: 50rpx;
+    margin-bottom: 50rpx;
+    border-radius: 50rpx;
     line-height: 70rpx;
     font-size: 35rpx;
-    color: rgb(43, 43, 43);
+    color: #FFFDF9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.txt {
+    font-weight: 600;
 }
 
 #attendClick {
