@@ -114,7 +114,7 @@ Page({
             db.collection('testUserData').doc(res.data[0]._id).update({
               data: {
                 history: this.getHistory(userRegDate, this.curTime()),
-                score: this.getHistory(userRegDate, this.curTime())+userEvents.length*3
+                score: this.getHistory(userRegDate, this.curTime())
               }
             })
             // update userInfoOnScreen
@@ -209,7 +209,7 @@ Page({
                     db.collection('testUserData').doc(res.data[0]._id).update({
                       data: {
                         history: this.getHistory(userRegDate, this.curTime()),
-                        score: this.getHistory(userRegDate, this.curTime())+userEvents.length*3
+                        score: this.getHistory(userRegDate, this.curTime())
                       }
                     })
                     // update userInfoOnScreen
