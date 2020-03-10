@@ -43,7 +43,7 @@ Page({
     })
   },
 
-  getTime: function(e) {
+  curTime: function(e) {
     var timeStamp = Date.parse(new Date())
     var date = new Date(timeStamp)
     var year = date.getFullYear()
@@ -86,41 +86,65 @@ Page({
                 _openid: this.data.userSensitiveData.openid,
                 generalData: this.data.userRegularData,
                 eventList: [],
-                registerDate: this.getTime(),
+                registerDate: this.curTime(),
                 history: 1,
                 score: 1
               }
             })
+            // update userInfoOnScreen
+            db.collection('testUserData').where({
+              _openid: this.data.userSensitiveData.openid
+            }).get().then(
+              res => {
+                if (res.data.length!=0) {
+                  this.setData({
+                    userInfoOnScreen: {
+                      registerDate: res.data[0].registerDate,
+                      history: res.data[0].history,
+                      score: res.data[0].score
+                    }
+                  })
+                }
+              }
+            )
           }
           else {
             var userRegDate = res.data[0].registerDate
             var userEvents = res.data[0].eventList
             db.collection('testUserData').doc(res.data[0]._id).update({
               data: {
-                history: this.getHistory(userRegDate, this.getTime()),
-                score: this.getHistory(userRegDate, this.getTime())+userEvents.length*3
+                history: this.getHistory(userRegDate, this.curTime()),
+                score: this.getHistory(userRegDate, this.curTime())+userEvents.length*3
               }
             })
-          }
-
-          // update userInfoOnScreen
-          db.collection('testUserData').where({
-            _openid: this.data.userSensitiveData.openid
-          }).get().then(
-            res => {
-              if (res.data.length!=0) {
-                this.setData({
-                  userInfoOnScreen: {
-                    registerDate: res.data[0].registerDate,
-                    history: res.data[0].history,
-                    score: res.data[0].score
-                  }
-                })
+            // update userInfoOnScreen
+            db.collection('testUserData').where({
+              _openid: this.data.userSensitiveData.openid
+            }).get().then(
+              res => {
+                if (res.data.length!=0) {
+                  this.setData({
+                    userInfoOnScreen: {
+                      registerDate: res.data[0].registerDate,
+                      history: res.data[0].history,
+                      score: res.data[0].score
+                    }
+                  })
+                }
               }
-            }
-          )
+            )
+          }
         }
       )
+    }
+    if (this.data.userInfoOnScreen.history == null && this.data.userInfoOnScreen.score == null) {
+      this.setData({
+        userInfoOnScreen: {
+          registerDate: this.data.userInfoOnScreen.registerDate,
+          history: "暂不可用",
+          score: "暂不可用"
+        }
+      })
     }
   },
 
@@ -157,39 +181,54 @@ Page({
                         _openid: this.data.userSensitiveData.openid,
                         generalData: this.data.userRegularData,
                         eventList: [],
-                        registerDate: this.getTime(),
+                        registerDate: this.curTime(),
                         history: 1,
                         score: 1
                       }
                     })
+                    // update userInfoOnScreen
+                    db.collection('testUserData').where({
+                      _openid: this.data.userSensitiveData.openid
+                    }).get().then(
+                      res => {
+                        if (res.data.length!=0) {
+                          this.setData({
+                            userInfoOnScreen: {
+                              registerDate: res.data[0].registerDate,
+                              history: res.data[0].history,
+                              score: res.data[0].score
+                            }
+                          })
+                        }
+                      }
+                    )
                   }
                   else {
                     var userRegDate = res.data[0].registerDate
                     var userEvents = res.data[0].eventList
                     db.collection('testUserData').doc(res.data[0]._id).update({
                       data: {
-                        history: this.getHistory(userRegDate, this.getTime()),
-                        score: this.getHistory(userRegDate, this.getTime())+userEvents.length*3
+                        history: this.getHistory(userRegDate, this.curTime()),
+                        score: this.getHistory(userRegDate, this.curTime())+userEvents.length*3
                       }
                     })
-                  }
-
-                  // update userInfoOnScreen
-                  db.collection('testUserData').where({
-                    _openid: this.data.userSensitiveData.openid
-                  }).get().then(
-                    res => {
-                      if (res.data.length!=0) {
-                        this.setData({
-                          userInfoOnScreen: {
-                            registerDate: res.data[0].registerDate,
-                            history: res.data[0].history,
-                            score: res.data[0].score
-                          }
-                        })
+                    // update userInfoOnScreen
+                    db.collection('testUserData').where({
+                      _openid: this.data.userSensitiveData.openid
+                    }).get().then(
+                      res => {
+                        if (res.data.length!=0) {
+                          this.setData({
+                            userInfoOnScreen: {
+                              registerDate: res.data[0].registerDate,
+                              history: res.data[0].history,
+                              score: res.data[0].score
+                            }
+                          })
+                        }
                       }
-                    }
-                  )
+                    )
+                  }
                 }
               )
             },
@@ -202,6 +241,15 @@ Page({
         }
       }
     })
+    if (this.data.userInfoOnScreen.history == null && this.data.userInfoOnScreen.score == null) {
+      this.setData({
+        userInfoOnScreen: {
+          registerDate: this.data.userInfoOnScreen.registerDate,
+          history: "暂不可用",
+          score: "暂不可用"
+        }
+      })
+    }
   },
 
   /**

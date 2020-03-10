@@ -58,7 +58,7 @@
       <view class="info">
         <text>全面收集UVA在校学长学姐们的住宿体验，为大家提供不一样的视角，供大家横向比较，选出适合自己的宿舍。</text>
       </view>
-      <button style="width: 700rpx; background-color: #FBF4F9" bindtap="download" data-id="3">
+      <button style="width: 700rpx; background-color: #FFE2FF" bindtap="download" data-id="3">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>
          2023新生指南-生活篇</button>
