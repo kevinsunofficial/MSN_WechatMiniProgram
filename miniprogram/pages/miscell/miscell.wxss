@@ -74,7 +74,7 @@
 
 button {
   margin-top: 50rpx;
-  height: 250rpx;
+  height: 225rpx;
   background-color: #fcfad9;
   font-size: 40rpx;
   border-radius: 25rpx;
