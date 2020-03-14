@@ -22,7 +22,8 @@
     "pages/miscell/miscPages/m5/m5",
     "pages/miscell/miscPages/m6/m6",
     "pages/miscell/miscPages/m7/m7",
-    "pages/miscell/miscPages/m8/m8"
+    "pages/miscell/miscPages/m8/m8",
+    "components/chat/chat"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

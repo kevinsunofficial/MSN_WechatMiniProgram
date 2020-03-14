@@ -127,6 +127,10 @@ Page {
   margin-top: 50rpx;
 }
 
+.M {
+  margin-top: 50rpx;
+}
+
 #attend {
   height: 200rpx;
   background-color: lightpink;
