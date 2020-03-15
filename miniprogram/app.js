@@ -81,37 +81,50 @@ App({
   },
 
   onShow: function() {
-    const updateManager = wx.getUpdateManager()
+    if (wx.canIUse('getUpdateManager')) {
+      const updateManager = wx.getUpdateManager()
 
-    updateManager.onCheckForUpdate(function (res) {
-      // 请求完新版本信息的回调
-      console.log(res.hasUpdate)
-    })
-
-    updateManager.onUpdateReady(function () {
-      wx.showModal({
-        title: '更新提示',
-        content: '新版本已经准备好，是否重启应用？',
-        success(res) {
-          if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-            updateManager.applyUpdate()
-          }
-        }
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+        console.log(res.hasUpdate)
       })
-    })
 
-    updateManager.onUpdateFailed(function () {
-      // 新版本下载失败
+      updateManager.onUpdateReady(function () {
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本已经准备好，是否重启应用？',
+          success(res) {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate()
+            }
+          }
+        })
+      })
+
+      updateManager.onUpdateFailed(function () {
+        // 新版本下载失败
+        wx.showModal({
+          title: '更新失败',
+          content: '请删除小程序并重新搜索进入以更新。',
+          showCancel: false,
+          success(res) {
+            console.log(res)
+          }
+        })
+      })
+    }
+    else {
+      // 微信版本过低
       wx.showModal({
         title: '更新失败',
-        content: '请删除小程序并重新进入以更新。',
+        content: '当前微信版本过低，无法正常更新。\n请升级到最新微信版本。',
         showCancel: false,
         success(res) {
           console.log(res)
         }
       })
-    })
+    }
   },
 
   getEnd: function() {
