@@ -152,22 +152,6 @@
 
 
   <!--
-    Market Block:
-    Link to personal page
-  -->
-  <view class="M">
-    <view style="margin-top: 30rpx; margin-bottom: 30rpx;">
-      <text class="subtitle">二手市场</text>
-    </view>
-    <button id="attend" style="width: 700rpx" bindtap="toChat">
-      <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/attend.png"
-       mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
-      <text>\n</text>
-      聊天室</button>
-  </view>
-
-
-  <!--
     The End Block:
   -->
   <view class="TE">
