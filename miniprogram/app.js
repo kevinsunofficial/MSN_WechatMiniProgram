@@ -23,7 +23,9 @@ App({
         traceUser: true,
       })
     }
+  },
 
+  onShow: function() {
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {
@@ -46,6 +48,14 @@ App({
 
     updateManager.onUpdateFailed(function () {
       // 新版本下载失败
+      wx.showModal({
+        title: '更新失败',
+        content: '请删除小程序并重新进入以更新。',
+        showCancel: false,
+        success(res) {
+          console.log(res)
+        }
+      })
     })
   },
 
