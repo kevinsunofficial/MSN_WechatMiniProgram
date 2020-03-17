@@ -82,8 +82,9 @@ Page {
   border-radius: 25rpx;
 }
 
-.R {
+.typeA {
   margin-top: 50rpx;
+  margin-bottom: 50rpx;
   display: flex;
   height: 450rpx;
   flex-direction: column;
@@ -123,18 +124,14 @@ Page {
   margin-right: 10rpx;
 }
 
-.E {
-  margin-top: 50rpx;
-}
-
 #attend {
   height: 200rpx;
   background-color: #FFD3B6;
   border-radius: 25rpx;
 }
 
-.FB {
-  margin-top: 50rpx;
+.typeB {
+  margin-top: 10rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;

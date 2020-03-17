@@ -1,0 +1,94 @@
+<!--miniprogram/pages/dining/dining.wxml-->
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Yuchen Sun
+-->
+<!--
+  This page is the Dining Evaluation page
+  Location: pages/dining/dining
+-->
+
+<!--This is the mask page-->
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>小程序加载中…{{complete}}%</text>
+</view>
+
+<view class="main">
+  <!--
+    The Title Block
+    The title of the miniprogram
+  -->
+  <view class="TT">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
+     mode="aspectFit" style="height: 150rpx; margin-top: 30rpx" bindload="imgLoad"></image>
+    <text id="title">Mainland Student Network</text>
+  </view>
+
+  <!--
+    The Content Block
+  -->
+  <view class="Content">
+    <view id="ctitle">
+      <text>今日食堂</text>
+    </view>
+    <view id="time" style="width: 200rpx; height: 60rpx">
+        <text>{{status}}</text>
+    </view>
+    <text style="font-size: 30rpx; color: darkgray; font-style: italic; margin-botom: 30rpx">
+    * 时段信息仅供参考，可能不适用于全部食堂。</text>
+    
+    <view style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+      <block wx:for="{{dataCollection}}" wx:key="k" wx:for-item="item">
+        <view class="diningHalls" style="width: 700rpx; height: 250rpx">
+            <view id="info" style="width: 400rpx; height: 200rpx; margin-top: 25rpx; margin-left: 25rpx">
+                <view id="name" style="width: 400rpx; height: 100rpx;">
+                    <text>{{item.name}}</text>
+                </view>
+                <view id="score" style="width: 400rpx; height: 80rpx; margin-top: 20rpx">
+                    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/star.png"
+                     mode="aspectFill" style="height: 50rpx; width: 50rpx" bindload="imgLoad"></image>
+                    <text>{{item.score}}</text>
+                </view>
+            </view>
+            <view id="rate" style="width: 200rpx; height: 200rpx; margin-top: 25rpx; margin-left: 50rpx;">
+                <button class="rateThis" style="width: 200rpx; height: 200rpx"
+                 bindtap="changeShow" data-id="{{item.id}}">我要评价</button>
+            </view>
+        </view>
+        <view wx:if="{{item.show}}" class="rateSection" style="display: {{(!showNCRate)? none:flex}}; width: 600rpx; height: 300rpx">
+            <form bindsubmit="rate" data-id="{{item.id}}">
+                <radio-group name="score" style="display: block; width: 400rpx; height: 120rpx; margin-top: 10rpx; line-height: 60rpx">
+                    <label><radio value="0"/>0分</label>
+                    <label><radio value="1"/>1分</label>
+                    <label><radio value="2"/>2分</label>
+                    <label><radio value="3"/>3分</label>
+                    <label><radio value="4"/>4分</label>
+                    <label><radio value="5" checked="true"/>5分</label>
+                </radio-group>
+                <button class="submitForm" form-type="submit" style="width: 300rpx; height: 80rpx" data-id="{{item.id}}">
+                提交评价</button>
+            </form>
+        </view>
+      </block>
+
+        
+    </view>
+  </view>
+
+  <!--
+    The End Block:
+  -->
+  <view class="TE">
+    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
+     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
+    <text id="end">
+      {{end}}
+    </text>
+  </view>
+
+</view>
