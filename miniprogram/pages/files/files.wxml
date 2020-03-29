@@ -37,6 +37,13 @@
       <text>文件资源</text>
     </view>
     <view id="allFiles">
+      <button style="width: 700rpx; background-color: #B9CCED" bindtap="download" data-id="6">
+        <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
+         <text>\n</text>
+         2024新生指南-前瞻篇</button>
+      <view class="info">
+        <text>简要介绍UVA的学术，宿舍生活和课余活动等。更多E-Book敬请期待！</text>
+      </view>
       <button style="width: 700rpx; background-color: #E1F2FB" bindtap="download" data-id="0">
         <image src="{{fileimg}}" mode="widthFix" style="opacity: 0.8; width: 125rpx" bindload="imgLoad"></image>
          <text>\n</text>

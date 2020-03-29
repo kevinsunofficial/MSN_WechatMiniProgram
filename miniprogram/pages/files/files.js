@@ -22,12 +22,13 @@ Page({
     end: app.getEnd(),
     fileimg: "cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/file.png",
     files: [
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－学术篇.pdf',
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－选课篇(网站版).pdf',
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－宿舍篇(网站版).pdf',
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－生活篇(网站版).pdf',
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－活动篇(网站版).pdf',
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023新生指南－行前手册 (网站版).pdf'
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－学术篇-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－选课篇(网站版)-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－宿舍篇(网站版)-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－生活篇(网站版)-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－活动篇(网站版)-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2023EBook/2023新生指南－行前手册 (网站版)-min.pdf',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/files/2024EBook/MSN2024Ebook前瞻篇-min.pdf'
     ],
     flag: "block",
     load: 0,
