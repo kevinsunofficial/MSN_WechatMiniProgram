@@ -9,7 +9,9 @@
 /**
  * This page is the personal page
  */
-
+const db = wx.cloud.database();
+const items = db.collection('items');
+const ids = db.collection('idMatch');
 var app = getApp();
 
 var info = {};
@@ -34,6 +36,13 @@ Page({
       score: '加载中...'
     },
     imgNum: 2,
+    slideButtons: [{
+      text: '编辑',
+    },{
+      type: 'warn',
+      text: '删除',
+    }],
+    itemList: []
   },
 
   imgLoad: function (e) {
@@ -155,6 +164,21 @@ Page({
     this.setData({
       userSensitiveData: app.globalData.userSensitiveData
     })
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    var that = this;
+    items.where({
+      _openid: this.data.userSensitiveData.openid
+    }).get({
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          itemList: res.data
+        },res => {
+          wx.hideLoading();
+        })
+      }})
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -166,7 +190,6 @@ Page({
                 userRegularData: app.globalData.userRegularData
               })
 
-              const db = wx.cloud.database()
               const _ = db.command
               
               // add or update
@@ -174,7 +197,6 @@ Page({
                 _openid: this.data.userSensitiveData.openid
               }).get().then(
                 res => {
-                  console.log(res.data)
                   if (res.data.length==0) {
                     db.collection('testUserData').add({
                       data: {
@@ -252,52 +274,7 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  slideButtonTap(e) {
+      console.log('slide button tap', e.detail)
   }
 })

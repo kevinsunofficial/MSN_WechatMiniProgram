@@ -5,7 +5,7 @@
  * It is not recommanded to be put into any form of commercial use
  * @2020 Mainland Student Network. All rights reserved
  * Author:
- * Yuchen Sun
+ * Yuchen Sun 
  */
 /**
  * This page is the first page

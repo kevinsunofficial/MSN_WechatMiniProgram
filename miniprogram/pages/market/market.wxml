@@ -1,0 +1,64 @@
+<!--pages/market/market.wxml-->
+
+<!-- make a listing -->
+  <view hover-class='icon_hover' bindtap='toUpload'>
+      <image class="add_icon" src="/images/add.png"></image>
+  </view>
+
+<view>
+     <view>
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" value="{{currentKey}}" bindinput="wxSearchInput" placeholder="搜索"/>
+                </view>
+            </view>
+            <!-- 取消搜索 -->
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+    </view>
+</view>
+<!-- 原显示 -->
+<view class='container' wx:if="{{!inputShowed}}">
+  <block class="" wx:for="{{items}}" wx:key="id">
+    <navigator url='../item/item?id={{item._id}}'>
+      <view hover-class='hover-class' id="{{item.name}}" style='display:flex; height:100px; width: 750rpx; align-content: flex-start; border-bottom: 1px solid #DBDBDB'>
+        <!--左边图片-->
+        <view style='width:128rpx; height:128rpx; margin:20rpx; border:10rpx;'>
+          <image style='width:128rpx; height:128rpx; border: 5rpx solid #ddd; border-radius: 5rpx;' src="{{item.image[0]}}" mode="aspectFill"></image>
+        </view>
+          <!-- 上下结构 -->
+            <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
+              <label class='item_title'>{{item.name}}</label>
+              <label class='item_content'>{{item.content}}</label>
+              <label class='item_from'>Sold by: {{item.seller}}</label>
+            </view>
+          <label class='item_price'>$ {{item.price}}</label>
+      </view>
+    </navigator>
+  </block>
+  <div class="add" bindtap="toUpload"></div>
+</view>
+<!-- 搜索显示 -->
+<view class='container' wx:else>
+  <block class="" wx:for="{{results}}" wx:key="id">
+    <navigator url='../item/item?id={{item._id}}'>
+      <view hover-class='hover-class' id="{{item.name}}" style='display:flex; height:100px; width: 750rpx; align-content: flex-start; border-bottom: 1px solid #DBDBDB'>
+        <!--左边图片-->
+        <view style='width:128rpx; height:128rpx; margin:20rpx; border:10rpx;'>
+          <image style='width:128rpx; height:128rpx; border: 5rpx solid #ddd; border-radius: 5rpx;' src="{{item.image[0]}}" mode="aspectFill"></image>
+        </view>
+          <!-- 上下结构 -->
+            <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
+              <label class='item_title'>{{item.name}}</label>
+              <label class='item_content'>{{item.content}}</label>
+              <label class='item_from'>Sold by: {{item.seller}}</label>
+            </view>
+          <label class='item_price'>$ {{item.price}}</label>
+      </view>
+    </navigator>
+  </block>
+
+</view>

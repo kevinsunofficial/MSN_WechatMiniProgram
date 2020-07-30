@@ -14,6 +14,9 @@
     "pages/dining/dining",
     "pages/advice/advice",
     "pages/bugs/bugs",
+    "pages/market/market",
+    "pages/upload/upload",
+    "pages/item/item",
     "pages/miscell/miscell",
     "pages/miscell/miscPages/m1/m1",
     "pages/miscell/miscPages/m2/m2",
@@ -31,6 +34,35 @@
     "navigationBarTitleText": "Mainland Student Network",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#005663",
+    "borderStyle":"white",
+    "list": [{
+      "selectedIconPath": "images/home1.png",
+      "iconPath": "images/home.png",
+      "pagePath": "pages/frontPage/frontPage",
+      "text": "首页"
+    }, {
+      "selectedIconPath": "images/market1.png",
+      "iconPath": "images/market.png",
+      "pagePath": "pages/market/market",
+      "text": "Market"
+    }, {
+      "selectedIconPath": "images/file1.png",
+      "iconPath": "images/file.png",
+      "pagePath": "pages/files/files",
+      "text": "资源"
+    }, {
+      "selectedIconPath": "images/mine1.png",
+      "iconPath": "images/mine.png",
+      "pagePath": "pages/personal/personal",
+      "text": "我的"
+    }]
+  },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  }
 }

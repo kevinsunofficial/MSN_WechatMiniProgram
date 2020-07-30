@@ -1,0 +1,29 @@
+/* pages/item/item.wxss */
+
+swiper{
+  height:500rpx;
+}
+
+.shuffing-item{
+  position: absolute;
+  height:500rpx;
+}
+
+.item_title{
+  font-size: 14pt;
+  color: rgb(65, 65, 65);
+}
+.item_content{
+  font-size: 11pt;
+  color: #888;
+}
+.item_from{
+  font-size: 10pt;
+  color: #999;
+}
+.item_price{
+  width: 100%;
+  font-size: 14pt;
+  color: rgb(65, 65, 65);
+  align-self: center;
+}
