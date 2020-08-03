@@ -13,6 +13,9 @@
               <label class='item_title'>{{item.name}}</label>
               <label class='item_content'>{{item.content}}</label>
               <label class='item_from'>Sold by: {{item.seller}}</label>
+              <label class='item_from'>Views: {{item.views}}</label>
+              <label class='item_from'>Listed on: {{item.time}}</label>
               <label class='item_from'>Contact: {{wxid}}</label>
+              <view bindtap="copyID">点击复制</view>
 </view>
         

@@ -157,28 +157,17 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     this.setData({
       userSensitiveData: app.globalData.userSensitiveData
-    })
-    wx.showLoading({
-      title: '数据加载中',
-    })
-    var that = this;
-    items.where({
-      _openid: this.data.userSensitiveData.openid
-    }).get({
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          itemList: res.data
-        },res => {
-          wx.hideLoading();
+    },()=>{
+      this.getData().then(res=>{
+        this.setData({
+          itemList: res
         })
-      }})
+      })
+    })
+    
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -274,7 +263,115 @@ Page({
     }
   },
 
+  getListCount: function(openid) {
+    return new Promise((resolve, reject) => {
+      items.where({
+        _openid: openid
+      }).count().then(res => {
+        resolve(res.total);
+      }).catch(e => {
+        console.log(e)
+        reject("查询失败")
+      })
+    })
+  },
+
+  getListIndexSkip: function(openid, skip) {
+    return new Promise((resolve, reject) => {
+      let selectPromise;	
+      console.log(openid)
+      // if (skip > 0) {
+        selectPromise = items.where({
+          _openid: openid
+        }).skip(skip).get()
+      // } else {
+      //   selectPromise = items.where({
+      //     _openid: openid
+      //   }).get()
+      // }
+      selectPromise.then(res => {
+        resolve(res.data);
+      }).catch(e => {
+        console.error(e)
+        reject("查询失败!")
+      })
+    })
+  },
+
+  getData:function(){
+    var that = this;
+    var opid = that.data.userSensitiveData.openid;
+    // wx.showLoading({
+    //   title: '数据加载中',
+    // })
+    var prom = new Promise(function(resolve, reject){
+      that.getListCount(opid).then(res => {
+        let count = res
+        let list = []
+        for (let i = 0; i < count ; i += 20) {
+          that.getListIndexSkip(opid, i).then(res => {
+              list = list.concat(res);
+              if (list.length == count ) {
+                resolve(list)
+              }
+            })
+            .catch(e => {
+              console.error(e)
+              reject("查询失败")
+            })
+        }
+      })
+    })
+
+    return prom
+    
+    // items.where({
+    //   _openid: this.data.userSensitiveData.openid
+    // }).skip(this.pageData.skip).get({
+    //   success: function(res) {
+    //     let dt = that.data.itemList;
+    //     that.setData({
+    //       itemList: dt.concat(res.data),
+    //     },res => {
+    //       that.pageData.skip += 20;
+    //       wx.hideLoading();
+    //       callback();
+    //     })
+    //   }})
+  },
+
   slideButtonTap(e) {
-      console.log('slide button tap', e.detail)
-  }
+    let idx = e.currentTarget.dataset.index
+    let dlt = e.detail.index
+    if(dlt){
+      var list = this.data.itemList
+      var id = list[idx]._id
+      var imageList = list[idx].image
+      wx.cloud.deleteFile({
+        fileList: imageList,
+      })
+      items.doc(id).remove()
+      this.arrRemoveObj(list, idx)
+      this.setData({
+        itemList: list
+      })
+    // wx.setStorageSync('sinfo', sinfo);
+    // console.log(this.data.itemList)
+    }
+  },
+
+  //shamelessly stolen from Internet
+  arrRemoveObj(array, i) {
+    let length = array.length;
+    if (i == 0) {
+      array.shift();
+      return array;
+    } else if (i == length - 1) {
+      array.pop();
+      return array;
+    } else {
+      array.splice(i, 1);
+      return array;
+    }
+  },
 })

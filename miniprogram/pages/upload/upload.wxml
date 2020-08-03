@@ -19,23 +19,52 @@
 
     <!-- 描述  -->
       <view class="weui-cell">
-          <textarea class="weui-textarea" placeholder="细节描述 (Optional)" maxlength="200" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 7rem;border-left: 10rpx;" bindinput="handleContentInput" />
+          <textarea class="weui-textarea" placeholder="细节描述 (Optional, 描述中的内容也可以被搜索到哦)" maxlength="200" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 7rem;border-left: 10rpx;" bindinput="handleContentInput" />
           <view class="weui-textarea-counter">{{contentCount}}/200</view>
       </view>
-
-
-
   </view>
+<!-- <mp-gallery show="{{showPreview}}" bindchange="change" binddelete="removeImage"  img-urls="{{images}}"  hide-on-click="{{true}}" current="{{current}}"></mp-gallery> -->
 
-  <view class="question-images-area">
+<view class="weui-cells">
+<view class="weui-cell">
+<view class="weui-cell__bd">
+<view class="weui-uploader">
+<view class="weui-uploader__hd">
+<view class="weui-uploader__title">图片上传</view>
+<view class="weui-uploader__info">{{images.length}}/3</view>
+</view>
+<view style="padding-top:20rpx" class="weui-uploader__bd">
+<view class="weui-uploader__files" id="uploaderFiles">
+<block wx:for="{{images}}" wx:key="*this">
+<view class="weui-uploader__file" id="{{item}}">
+<image class="weui-uploader__img"  bindtap="previewImage" src="{{item}}" mode="aspectFill" />
+            <view bindtap="removeImage" data-index="{{index}}">
+              <icon class = "rm-icon" type="clear" size="20" />
+            </view>
+</view>
+</block>
+
+</view>
+<view wx:if="{{images.length < 3}}" class="weui-uploader__input-box" >
+<view class="weui-uploader__input" bindtap="chooseImage"></view>
+</view>
+</view>
+</view>
+</view>
+</view>
+</view>
+
+
+
+  <!-- <view class="question-images-area"> -->
 
     <!-- 添加图片按钮  -->
-    <view class="question-images-tool">
+    <!-- <view class="question-images-tool">
       <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 3}}">添加图片(上传一张图平均要3-4秒哟)</button>
-    </view>
+    </view> -->
 
     <!-- 图片缩略图  -->
-    <view class="question-images">
+    <!-- <view class="question-images">
       <block wx:for="{{images}}" wx:key="*this">
         <view class="q-image-wrap">
           <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtsap="handleImagePreview"></image>
@@ -44,7 +73,7 @@
       </block>
     </view>
 
-  </view>
+  </view> -->
 
   <!-- 提交表单按钮  -->
   <view hover-class="wsui-hover">

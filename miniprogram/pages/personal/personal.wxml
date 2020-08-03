@@ -41,9 +41,9 @@
     </block>
     <block wx:else>
       <image id="userimg" src="{{userRegularData.avatarUrl}}" mode="aspectFit" style="height: 100rpx; width: 100rpx"></image>
-      <text style="margin-top: 10rpx; font-size: 40rpx; font-weight: 600">\n\n{{userRegularData.nickName}}\n</text>
+      <text style="margin-top: 10rpx; font-size: 40rpx; font-weight: 600">\n{{userRegularData.nickName}}</text>
       <view class="stat">
-        <view class="box"
+        <view class="box" hidden="true"
          style="margin-top: 30rpx; margin-bottom: 15rpx; border-radius: 20rpx; height: 150rpx; width: 600rpx; background-color: #6E5773">
           <text class="txt">注册日期</text><text class="txt">{{userInfoOnScreen.registerDate}}</text>
         </view>
@@ -55,15 +55,11 @@
           style="margin-top: 15rpx; margin-bottom: 30rpx; border-radius: 20rpx; height: 150rpx; width: 600rpx; background-color: #EA9085">
           <text class="txt">积分</text><text class="txt">{{userInfoOnScreen.score}}</text>
         </view>
-      </view>
-    </block>
-  </view>
-
-
+      </view>  
   <block class="" wx:for="{{itemList}}" wx:key="_id">
     <navigator url='../item/item?id={{item._id}}'>
       <view class="weui-cells">
-          <mp-slideview show="{{false}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+          <mp-slideview show="{{false}}" buttons="{{slideButtons}}" data-index="{{index}}" bindbuttontap="slideButtonTap">
               <mp-cell value="{{item.name}}" footer="${{item.price}}">
                 <image slot="icon" src="{{item.image[0]}}" style="margin-right: 6px;vertical-align: middle;width:50px; height: 50px;" mode="aspectFill"></image>
               </mp-cell>
@@ -71,6 +67,11 @@
       </view>
     </navigator>
   </block>    
+    </block>
+  </view>
+
+
+
   <!--
     The End Block:
   -->

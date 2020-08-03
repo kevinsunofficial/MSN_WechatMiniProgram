@@ -1,4 +1,6 @@
 /* pages/upload/upload.wxss */
+
+@import "./uploader.wxss";
 page {
   background: #f6f7f8;
 }
@@ -44,6 +46,9 @@ page {
   padding: 20rpx 0;
 }
 
+.weui-btn{position:relative;display:block;width:184px;margin-left:auto;margin-right:auto;margin-top:16px;padding:8px 24px;box-sizing:border-box;font-weight:700;font-size:17px;text-align:center;text-decoration:none;color:#fff;line-height:1.41176471;border-radius:4px;overflow:hidden;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+
+
 .question-images-area {
   padding: 40rpx 0;
 }
@@ -72,4 +77,12 @@ page {
 
 .q-image-remover {
   text-align: center;
+}
+
+.rm-icon{
+  position: relative;
+  width: 46rpx;
+  height: 46rpx;
+  bottom: 201rpx;
+  left: 154rpx;
 }

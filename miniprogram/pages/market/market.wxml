@@ -11,7 +11,7 @@
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <icon style="position: absolute; left: 14rpx; top: 10rpx;" type="search" size="18"></icon>
                     <input type="text" class="weui-search-bar__input" value="{{currentKey}}" bindinput="wxSearchInput" placeholder="搜索"/>
                 </view>
             </view>
@@ -20,14 +20,16 @@
         </view>
     </view>
 </view>
-<!-- 原显示 -->
+<button bindtap="sortByPrice"> 排序</button>
+
+<!-- list -->
 <view class='container' wx:if="{{!inputShowed}}">
   <block class="" wx:for="{{items}}" wx:key="id">
     <navigator url='../item/item?id={{item._id}}'>
       <view hover-class='hover-class' id="{{item.name}}" style='display:flex; height:100px; width: 750rpx; align-content: flex-start; border-bottom: 1px solid #DBDBDB'>
         <!--左边图片-->
-        <view style='width:128rpx; height:128rpx; margin:20rpx; border:10rpx;'>
-          <image style='width:128rpx; height:128rpx; border: 5rpx solid #ddd; border-radius: 5rpx;' src="{{item.image[0]}}" mode="aspectFill"></image>
+        <view style='width:150rpx; height:150rpx; margin:20rpx; border:10rpx;'>
+          <image style='width:150rpx; height:150rpx; border: 5rpx solid #ddd; border-radius: 5rpx;' src="{{item.image[0]}}" mode="aspectFill"></image>
         </view>
           <!-- 上下结构 -->
             <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
@@ -39,7 +41,6 @@
       </view>
     </navigator>
   </block>
-  <div class="add" bindtap="toUpload"></div>
 </view>
 <!-- 搜索显示 -->
 <view class='container' wx:else>

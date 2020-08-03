@@ -14,6 +14,10 @@ Page({
     results: [],
     inputShowed: false,  //初始文本框不显示内容
     currentKey: null,
+    byPrice: 0, //0 不排序， 1 升序， 2 降序
+    byDate: 0,
+    term: '',
+    order: '',
   },
 
   /**
@@ -51,6 +55,7 @@ Page({
       inputShowed: true,
     });
   },
+  
   // 取消搜索
   hideInput: function () {
     this.setData({
@@ -64,6 +69,33 @@ Page({
       currentKey: e.detail.value,
     })
     this.search();
+  },
+
+  sortByPrice: function(){
+    var idx = (this.data.byPrice + 1) % 3 
+    if(idx == 1){
+      this.setData({
+        term: 'price',
+        order: 'asc',
+        byPrice: idx,
+        byDate: 0
+      })
+    }else if(idx == 2){
+      this.setData({
+        term: 'price',
+        order: 'desc',
+        byPrice: idx,
+        byDate: 0
+      })
+    }else{      
+      this.setData({
+        term: '',
+        order: '',
+        byPrice: idx,
+        byDate: 0
+      })
+    }
+    this.onPullDownRefresh()
   },
 
   search: function () {
@@ -97,23 +129,39 @@ Page({
       url: '/pages/upload/upload'
     })
   },
-  getData:function(callback){
+  getData:function(callback, term, order){
     if(!callback){
         callback = res=> {}
       }
     wx.showLoading({
       title: '数据加载中',
     })
-    items.skip(this.pageData.skip).get().then(res=> {
-      let dt = this.data.items;
-      this.setData({
-        items: dt.concat(res.data),
-      },res => {
-        this.pageData.skip = this.pageData.skip + 20;
-        wx.hideLoading();
-        callback();
+    if(this.data.byPrice + this.data.byDate > 0)
+      items.skip(this.pageData.skip)
+      .orderBy(this.data.term, this.data.order)
+      .get().then(res=> {
+        let dt = this.data.items;
+        this.setData({
+          items: dt.concat(res.data),
+        },res => {
+          this.pageData.skip = this.pageData.skip + 20;
+          wx.hideLoading();
+          callback();
+        })
       })
-    })
+    else{
+      items.skip(this.pageData.skip)
+      .get().then(res=> {
+        let dt = this.data.items;
+        this.setData({
+          items: dt.concat(res.data),
+        },res => {
+          this.pageData.skip = this.pageData.skip + 20;
+          wx.hideLoading();
+          callback();
+        })
+      })
+    }
   },
   pageData:{
     skip:0,

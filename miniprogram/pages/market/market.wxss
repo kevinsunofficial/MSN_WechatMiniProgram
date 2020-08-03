@@ -16,8 +16,8 @@
 }
 .weui-icon-search_in-box {
   position: absolute;
-  left: 10px;
-  top: 7px;
+  left: 8px;
+  top: 12px;
 }
 .weui-search-bar__text {
   display: inline-block;

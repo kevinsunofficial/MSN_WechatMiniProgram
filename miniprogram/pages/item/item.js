@@ -3,6 +3,8 @@ import regeneratorRuntime from '../../utils/runtime.js'
 const db = wx.cloud.database();
 const items = db.collection('items');
 const ids = db.collection('idMatch');
+const _ = db.command
+
 var app = getApp();
 Page({
 
@@ -25,6 +27,11 @@ Page({
       }, () => {
         this.matchContact();
       })
+    })
+    items.doc(this.pageData.id).update({
+      data: {
+        views: _.inc(1)
+      }
     })
   },
   matchContact: function(){
@@ -52,9 +59,21 @@ Page({
 
   clickImg: function(e){
     var currentUrl = e.currentTarget.dataset.src;
+    console.log(currentUrl)
     wx.previewImage({
       urls: this.data.item.image,
       current: currentUrl,
+    })
+  },
+
+  copyID: function(){
+    wx.setClipboardData({
+      data: this.data.wxid,
+      success: function(res){
+        wx.showToast({
+          title: '复制成功',
+        })
+      }
     })
   }
   

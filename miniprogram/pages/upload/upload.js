@@ -1,4 +1,5 @@
-import { $init, $digest } from '../../utils/common.util'
+//import { $init, $digest } from '../../utils/common.util'
+var util = require('../../utils/common.util.js')
 
 const db = wx.cloud.database();
 const items = db.collection('items');
@@ -18,11 +19,13 @@ Page({
     wxid: '',
     images: [],
     userRegularData: {},
+    // showPreview: false,
+    // current: 0,
   },
 
   onLoad(options) {
     var that = this;
-    console.log("in onload", app.globalData.userSensitiveData.openid)
+
     ids.where({
       _openid: app.globalData.userSensitiveData.openid
     }).get({
@@ -38,21 +41,21 @@ Page({
         console.log("failed", res)
       }
     });
-    $init(this);
+    util.$init(this);
   },
 
   handleTitleInput(e) {
     const value = e.detail.value
     this.data.title = value
     this.data.titleCount = value.length
-    $digest(this)
+    util.$digest(this)
   },
 
   handleContentInput(e) {
     const value = e.detail.value
     this.data.content = value
     this.data.contentCount = value.length
-    $digest(this)
+    util.$digest(this)
   },  
   
   handlePriceInput(e) {
@@ -64,34 +67,53 @@ Page({
     this.data.wxid = value
   },
 
-  chooseImage(e) {
+  chooseImage: function(e) {
+    var that = this;
     wx.chooseImage({
       count: maximg,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
-        const images = this.data.images.concat(res.tempFilePaths)
-        this.data.images = images.length <= maximg ? images : images.slice(0, maximg)
-        $digest(this)
+        const images = that.data.images.concat(res.tempFilePaths)
+        that.data.images = images.length <= maximg ? images : images.slice(0, maximg)
+        util.$digest(this)
       }
     })
   },
-
-  removeImage(e) {
-    const idx = e.target.dataset.idx
-    this.data.images.splice(idx, 1)
-    $digest(this)
-  },
-
-  handleImagePreview(e) {
-    const idx = e.target.dataset.idx
-    const images = this.data.images
-
+  previewImage: function(e){
+    // this.setData({
+    //   showPreview: true,
+    //   current: Math.floor(e.currentTarget.offsetLeft/100)
+    // })
     wx.previewImage({
-      current: images[idx],
-      urls: images,
+        current: e.currentTarget.id, // 当前显示图片的http链接
+        urls: this.data.images // 需要预览的图片http链接列表
     })
   },
+//   change(e) {
+//     console.log('current index has changed', e.detail)
+// },
+
+  removeImage(e) {
+    const idx = e.currentTarget.dataset.index
+    var list = this.data.images
+    list.splice(idx, 1)
+      this.setData({
+        images: list
+      })
+    util.$digest(this)
+    console.log(this.data.images)
+  },
+
+  // handleImagePreview(e) {
+  //   const idx = e.target.dataset.idx
+  //   const images = this.data.images
+
+  //   wx.previewImage({
+  //     current: images[idx],
+  //     urls: images,
+  //   })
+  // },
 
   submitForm(e) {
     const title = this.data.title
@@ -100,7 +122,7 @@ Page({
     const price = this.data.price
     const wxid = this.data.wxid
  
-    if (title && img.length && price && wxid) {
+    if (title && img.length && price && wxid && img.length < 4) {
       wx.showLoading({
         title: '正在上传...',
         mask: true
@@ -124,8 +146,9 @@ Page({
           sellerNickname = res.userInfo.nickName
       }})        
       Promise.all(arr).then(res => {
+        //update wxid
         ids.where({
-          opid: app.globalData.userSensitiveData.openid
+          _openid: app.globalData.userSensitiveData.openid
         }).get({
           success: function(ress) {
             if(ress.data.length == 0){
@@ -144,6 +167,7 @@ Page({
             }
           },   
         })
+        var time = util.formatTime(new Date());
         items.add({
           data:{
             name: title,
@@ -151,6 +175,8 @@ Page({
             content: content,
             price: parseFloat(price),
             seller: sellerNickname,
+            time: time,
+            views: 0,
           }
         }).then(res => {
           console.log(res._id)
@@ -216,13 +242,19 @@ Page({
         icon: 'none',
         duration: 1500
       })
-      else
+      else if(!img.length)
       wx.showToast({
         title: '请添加至少一张图片',
         icon: 'none',
         duration: 1500
       })
+      else
+      wx.showToast({
+        title: '请保证最多只有三张图片',
+        icon: 'none',
+        duration: 1500
+      })
     }
-  }
+  },
 
 })
