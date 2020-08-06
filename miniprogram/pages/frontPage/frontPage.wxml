@@ -38,7 +38,7 @@
     Link to a recent activity
   -->
   <view class="RA">
-    <swiper circular="true" indicator-dots="true" style="height: 550rpx">
+    <swiper circular="true" indicator-dots="true" autoplay="true" interval="5000" style="height: 550rpx">
       <block wx:for="{{recentActivities}}" wx:key="index">
         <swiper-item>
           <view id="items" bindtap="toAct{{index+1}}">

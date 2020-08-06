@@ -1,0 +1,35 @@
+<!--miniprogram/pages/emojiTest/emoji.wxml-->
+<text>miniprogram/pages/emojiTest/emoji.wxml</text>
+\n\n
+
+  <view class="LG">
+    <block wx:if="{{hide}}">
+      <button id="authorize" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">
+      登录授权</button>
+    </block>
+    <block wx:else>
+      <image id="userimg" src="{{userRegularData.avatarUrl}}" mode="aspectFit" style="height: 100rpx; width: 100rpx"></image>
+      <text style="margin-top: 10rpx; font-size: 40rpx; font-weight: 600">\n\n{{userRegularData.nickName}}\n</text>
+    </block>
+  </view>
+
+
+
+<!-- <view class="TEST">
+  <form bindsubmit="submitEmoji" bindreset="resetEmoji">
+    <view><textarea name="emojis"></textarea></view>
+    <view>
+      <button class="submit" form-type="submit">提交</button>
+    </view>
+    <view style="margin-top: 50rpx;">
+      <button class="reset" form-type="reset">重填</button>
+    </view>
+  </form>
+</view>
+
+\n\n
+
+<view class="SHOW">{{show}}</view>
+<view style="margin-top: 50rpx;">
+  <button class="show" bindtap="showEmoji">展示</button>
+</view> -->

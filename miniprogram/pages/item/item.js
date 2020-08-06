@@ -3,6 +3,7 @@ import regeneratorRuntime from '../../utils/runtime.js'
 const db = wx.cloud.database();
 const items = db.collection('items');
 const ids = db.collection('idMatch');
+const user = db.collection('testUserData')
 const _ = db.command
 
 var app = getApp();
@@ -14,6 +15,7 @@ Page({
   data: {
     item:{},
     wxid: '',
+    profile: ''
   },
 
   pageData: {
@@ -47,6 +49,21 @@ Page({
           }
         }
       })
+    that.getProfilePic()
+  },
+  getProfilePic: function() {
+    var that = this
+    user.where({
+      _openid: that.data.item._openid
+    }).get({
+      success: res => {
+        if (res.data) {
+          that.setData({
+            profile: res.data[0].generalData.avatarUrl
+          })
+        }
+      }
+    })
   },
   onLoad: function (options) {
     this.pageData.id = options.id;
@@ -54,6 +71,7 @@ Page({
       this.loadData();
     // })};
     // pro().then((res) => {this.matchContact()});
+    // this.getProfilePic()
 
   },
 

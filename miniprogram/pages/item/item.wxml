@@ -1,21 +1,48 @@
 <!--pages/item/item.wxml-->
-  <swiper indicator-dots="{{false}}" previous-margin='80rpx' next-margin='80rpx'>
+<view class="pics">
+  <swiper circular="true" indicator-dots="true" autoplay="true" interval="5000">
     <block wx:for="{{item.image}}" wx:key='index'>
       <swiper-item>
         <view class="shuffing-item">
-         <image src="{{item}}" mode="aspectFill" bindtap='clickImg'></image>
+         <image src="{{item}}" mode="aspectFill" style="height: 750rpx; width: 750rpx" bindtap='clickImg'></image>
         </view>
       </swiper-item>
     </block>
  </swiper>
+</view>
+
+<view class="detail">
+  <view class="stock">
+    <view style="display: flex; flex-direction: column; align-content: flex-start">
+      <view id="name"><text>{{item.name}}</text></view>
+      <view id="view"><text>浏览量: {{item.views}}</text></view>
+      <view style="height: 25rpx"></view>
+    </view>
+    <view id="price"><text decode="true" id="dollar">$&nbsp;</text><text>{{item.price}}</text></view>
+  </view>
+  <view class="contact">
+    <view id="dscrpt"><text>商品描述: {{item.content}}</text></view>
+    <view id="merchant">
+      <text>卖家昵称: {{item.seller}}</text>
+    </view>
+  </view>
+  <view class="wxid">
+    <text style="font-weight: 600">联系方式</text>
+    <view id="info">
+      <view id="pic">
+        <image id="userimg" src="{{profile}}" mode="aspectFit" style="height: 100rpx; width: 100rpx"></image>
+      </view>
+      <view id="id"><text>微信号: {{wxid}}</text></view>      
+    </view>
+  </view>
+  <view class="touch">
+    <button id="copy" bindtap="copyID">复制微信号</button>
+  </view>
+</view>
+
+
 
 <view style=' display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
-              <label class='item_title'>{{item.name}}</label>
-              <label class='item_content'>{{item.content}}</label>
-              <label class='item_from'>Sold by: {{item.seller}}</label>
-              <label class='item_from'>Views: {{item.views}}</label>
               <label class='item_from'>Listed on: {{item.time}}</label>
-              <label class='item_from'>Contact: {{wxid}}</label>
-              <view bindtap="copyID">点击复制</view>
 </view>
         

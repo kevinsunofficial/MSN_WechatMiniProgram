@@ -25,7 +25,8 @@
     "pages/miscell/miscPages/m5/m5",
     "pages/miscell/miscPages/m6/m6",
     "pages/miscell/miscPages/m7/m7",
-    "pages/miscell/miscPages/m8/m8"
+    "pages/miscell/miscPages/m8/m8",
+    "pages/emojiTest/emoji"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -37,28 +38,33 @@
   "tabBar": {
     "color": "#707070",
     "selectedColor": "#005663",
-    "borderStyle":"white",
-    "list": [{
-      "selectedIconPath": "images/home1.png",
-      "iconPath": "images/home.png",
-      "pagePath": "pages/frontPage/frontPage",
-      "text": "首页"
-    }, {
-      "selectedIconPath": "images/market1.png",
-      "iconPath": "images/market.png",
-      "pagePath": "pages/market/market",
-      "text": "Market"
-    }, {
-      "selectedIconPath": "images/file1.png",
-      "iconPath": "images/file.png",
-      "pagePath": "pages/files/files",
-      "text": "资源"
-    }, {
-      "selectedIconPath": "images/mine1.png",
-      "iconPath": "images/mine.png",
-      "pagePath": "pages/personal/personal",
-      "text": "我的"
-    }]
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/home1.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/frontPage/frontPage",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/market1.png",
+        "iconPath": "images/market.png",
+        "pagePath": "pages/market/market",
+        "text": "Market"
+      },
+      {
+        "selectedIconPath": "images/file1.png",
+        "iconPath": "images/file.png",
+        "pagePath": "pages/files/files",
+        "text": "资源"
+      },
+      {
+        "selectedIconPath": "images/mine1.png",
+        "iconPath": "images/mine.png",
+        "pagePath": "pages/personal/personal",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

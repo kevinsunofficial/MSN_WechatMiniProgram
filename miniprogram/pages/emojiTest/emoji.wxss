@@ -1,0 +1,139 @@
+/* miniprogram/pages/emojiTest/emoji.wxss */
+
+Page {
+  text-align: center;
+}
+
+.TEST {
+  margin-top: 50rpx;
+  border-top-style: solid;
+  border-width: 5rpx;
+  border-color: darkgrey;
+  line-height: 150rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea {
+  height: 300rpx;
+  width: 600rpx;
+  border-radius: 10rpx;
+  border-width: 3rpx;
+  border-color: rgb(43, 43, 43);
+  border-style: groove;
+  font-size: 30rpx;
+  font-weight: 400;
+  text-align: justify;
+  line-height: 50rpx;
+  margin-bottom: 50rpx;
+}
+
+.submit {
+  font-size: 40rpx;
+  font-weight: 800;
+  height: 100rpx;
+  background-color: #C0FFB3;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset {
+  font-size: 40rpx;
+  font-weight: 800;
+  height: 100rpx;
+  background-color: #FF6666;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SHOW {
+  margin-top: 50rpx;
+  height: 500rpx;
+  font-size: 40rpx;
+  background-color: lightcyan;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.show {
+  font-size: 40rpx;
+  font-weight: 800;
+  height: 100rpx;
+  background-color: #fff8bb;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LG {
+  border-top: solid darkgray 5rpx;
+}
+
+#authorize {
+  margin-top: 200rpx;
+  margin-bottom: 500rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: lightpink;
+  color: white;
+  height: 100rpx;
+  width: 400rpx;
+  border-radius: 25rpx;
+}
+
+#userimg {
+  margin-top: 100rpx;
+  border-radius: 100%;
+  border-width: 5rpx;
+  border-color: darkgray;
+  border-style: solid;
+}
+
+.stat {
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  border-radius: 50rpx;
+  line-height: 70rpx;
+  font-size: 35rpx;
+  color: #FFFDF9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.txt {
+  font-weight: 600;
+}
+
+#attendClick {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50rpx;
+  font-size: 40rpx;
+  color: white;
+  font-weight: 800;
+  height: 100rpx;
+  width: 500rpx;
+  background-color: lightpink;
+  border-radius: 25rpx;
+}
