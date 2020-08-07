@@ -65,6 +65,26 @@
   white-space: nowrap;
 }
 
+.sort-wrap{
+  height:70rpx;
+  background-color:#fff;
+}
+.sort-btn{
+  width:33.333%;
+  float:left;
+  text-align: center;
+  height:70rpx;
+  line-height:70rpx;
+  font-size: 28rpx;
+  color:#333;
+}
+.sort-btn image{
+  width: 13rpx;
+  height: 26rpx;
+  margin-left: 4rpx;
+  margin-top: 10rpx;
+}
+
 .item_content{
   width: 380rpx;
   height: 100rpx;
@@ -81,9 +101,16 @@
   color: rgb(65, 65, 65);
   align-self: center;
 }
+.long_price{
+  width: 100%;
+  font-size: 11pt;
+  color: rgb(65, 65, 65);
+  align-self: center;
+}
 .hover-class{
   background-color: #A4D3EE;
 }
+
 
 
 .add_icon{
@@ -92,6 +119,7 @@
   height: 60px;
   bottom: 30px;
   right: 20px;
+  opacity: 0.9;
 }
 
 .icon_hover{

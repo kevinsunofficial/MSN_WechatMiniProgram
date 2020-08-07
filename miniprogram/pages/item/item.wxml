@@ -16,30 +16,31 @@
     <view style="display: flex; flex-direction: column; align-content: flex-start">
       <view id="name"><text>{{item.name}}</text></view>
       <view id="view"><text>浏览量: {{item.views}}</text></view>
-      <view style="height: 25rpx"></view>
+      <view style="height: 15rpx"></view>
     </view>
     <view id="price"><text decode="true" id="dollar">$&nbsp;</text><text>{{item.price}}</text></view>
   </view>
   <view class="contact">
-    <view id="dscrpt"><text>商品描述: {{item.content}}</text></view>
-    <view id="merchant">
-      <text>卖家昵称: {{item.seller}}</text>
-    </view>
+    <view id="dscrpt"><text>{{item.content}}</text></view>
   </view>
+
   <view class="wxid">
-    <text style="font-weight: 600">联系方式</text>
+    <text style="font-size: 34rpx; padding-top: 10rpx; font-weight: 600;">联系方式</text>
     <view id="info">
+    <view style='display:flex; flex-direction:column; align-items: center; justify-content: flex-start; margin:6rpx; border: 10rpx;'>
       <view id="pic">
-        <image id="userimg" src="{{profile}}" mode="aspectFit" style="height: 100rpx; width: 100rpx"></image>
+        <image src="{{profile}}" mode="aspectFit" style="height: 100rpx; width: 100rpx; border-radius: 25%;"></image>
       </view>
+      <text id="nick">{{item.seller}}</text>
+    </view>
       <view id="id"><text>微信号: {{wxid}}</text></view>      
     </view>
   </view>
+  
   <view class="touch">
     <button id="copy" bindtap="copyID">复制微信号</button>
   </view>
 </view>
-
 
 
 <view style=' display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>

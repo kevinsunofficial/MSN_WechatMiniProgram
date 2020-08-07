@@ -81,8 +81,12 @@ page {
 
 .rm-icon{
   position: relative;
-  width: 46rpx;
-  height: 46rpx;
-  bottom: 201rpx;
-  left: 154rpx;
+  height: 40rpx;
+  width: 40rpx;
+  bottom: 200rpx;
+  left: 153rpx;
+}
+
+.icon_hover{
+  opacity: 0.6;
 }

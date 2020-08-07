@@ -2,6 +2,7 @@
 
 const db = wx.cloud.database();
 const items = db.collection('items');
+const _ = db.command;
 //.orderBy('price', 'desc')
 //or asc
 Page({
@@ -16,8 +17,12 @@ Page({
     currentKey: null,
     byPrice: 0, //0 不排序， 1 升序， 2 降序
     byDate: 0,
+    byView: 0,
     term: '',
     order: '',
+    imageurl1: '/images/neutral.png',
+    imageurl2: '/images/neutral.png',
+    imageurl3: '/images/neutral.png',
   },
 
   /**
@@ -32,15 +37,25 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-    this.pageData.skip = 0;
-    this.setData({
-      items : []
-    })
-    this.getData(res=> {
-      wx.stopPullDownRefresh();
-    });
-    if(this.data.inputShowed)
-      this.search();
+    // if(this.data.inputShowed)
+    //   this.search();
+    if(this.data.inputShowed){
+      this.pageData.searchSkip = 0;
+      this.setData({
+        results : [],
+      },() => {
+          this.search(this.data.currentKey);
+        }
+      )
+    }else{
+      this.pageData.skip = 0;
+      this.setData({
+        items : []
+      })
+      this.getData(res=> {
+        wx.stopPullDownRefresh();
+      });
+    }
   },
 
   /**
@@ -65,10 +80,15 @@ Page({
   },
 
   wxSearchInput: function (e) {
+    var key = e.detail.value
+    this.pageData.searchSkip = 0;
     this.setData({
-      currentKey: e.detail.value,
-    })
-    this.search();
+      results : [],
+      currentKey: key,
+    },() => {
+        this.search(key);
+      }
+    )
   },
 
   sortByPrice: function(){
@@ -78,28 +98,117 @@ Page({
         term: 'price',
         order: 'asc',
         byPrice: idx,
-        byDate: 0
+        byDate: 0,
+        byView: 0,
+        imageurl1: '/images/up.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/neutral.png'
       })
     }else if(idx == 2){
       this.setData({
         term: 'price',
         order: 'desc',
         byPrice: idx,
-        byDate: 0
+        byDate: 0,
+        byView: 0,
+        imageurl1: '/images/down.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/neutral.png'
       })
     }else{      
       this.setData({
         term: '',
         order: '',
         byPrice: idx,
-        byDate: 0
+        byDate: 0,
+        byView: 0,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/neutral.png'
       })
     }
     this.onPullDownRefresh()
   },
 
-  search: function () {
-    var key = this.data.currentKey;
+  sortByDate: function(){
+    var idx = (this.data.byDate + 1) % 3 
+    if(idx == 1){
+      this.setData({
+        term: 'time',
+        order: 'desc',
+        byPrice: 0,
+        byDate: idx,
+        byView: 0,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/down.png',
+        imageurl3: '/images/neutral.png'
+      })
+    }else if(idx == 2){
+      this.setData({
+        term: 'time',
+        order: 'asc',
+        byPrice: 0,
+        byDate: idx,
+        byView: 0,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/up.png',
+        imageurl3: '/images/neutral.png'
+      })
+    }else{      
+      this.setData({
+        term: '',
+        order: '',
+        byPrice: 0,
+        byDate: idx,
+        byView: 0,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/neutral.png'
+      })
+    }
+    this.onPullDownRefresh()
+  },
+  
+  sortByView: function(){
+    var idx = (this.data.byView + 1) % 3 
+    if(idx == 1){
+      this.setData({
+        term: 'views',
+        order: 'desc',
+        byPrice: 0,
+        byDate: 0,
+        byView: idx,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/down.png'
+      })
+    }else if(idx == 2){
+      this.setData({
+        term: 'views',
+        order: 'asc',
+        byPrice: 0,
+        byDate: 0,
+        byView: idx,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/up.png'
+      })
+    }else{      
+      this.setData({
+        term: '',
+        order: '',
+        byPrice: 0,
+        byDate: 0,
+        byView: idx,
+        imageurl1: '/images/neutral.png',
+        imageurl2: '/images/neutral.png',
+        imageurl3: '/images/neutral.png'
+      })
+    }
+    this.onPullDownRefresh()
+  },
+
+  search: function (key) {
     console.log('搜索函数触发');
     if(key == ''){
       this.setData({
@@ -108,16 +217,15 @@ Page({
       });
     }
     else{
-      var arr = []
-      for (let i in this.data.items) {
-        if (this.data.items[i].name.indexOf(key) >= 0) {//查找
-          arr.push(this.data.items[i]);
-        }else if(this.data.items[i].content && this.data.items[i].content.indexOf(key) >= 0){
-          arr.push(this.data.items[i]);
-        }
-      }
+      this.getSearchData(key);
+      // for (let i in this.data.items) {
+      //   if (this.data.items[i].name.indexOf(key) >= 0) {//查找
+      //     arr.push(this.data.items[i]);
+      //   }else if(this.data.items[i].content && this.data.items[i].content.indexOf(key) >= 0){
+      //     arr.push(this.data.items[i]);
+      //   }
+      // }    this.pageData.skip = 0;
       this.setData({
-        results: arr,
         inputShowed: true,
       })
     }
@@ -129,14 +237,15 @@ Page({
       url: '/pages/upload/upload'
     })
   },
-  getData:function(callback, term, order){
+  getData:function(callback){
     if(!callback){
         callback = res=> {}
       }
     wx.showLoading({
       title: '数据加载中',
     })
-    if(this.data.byPrice + this.data.byDate > 0)
+    //if need sorted
+    if(this.data.byPrice + this.data.byDate + this.data.byView > 0)
       items.skip(this.pageData.skip)
       .orderBy(this.data.term, this.data.order)
       .get().then(res=> {
@@ -156,15 +265,69 @@ Page({
         this.setData({
           items: dt.concat(res.data),
         },res => {
-          this.pageData.skip = this.pageData.skip + 20;
+          this.pageData.skip = this.data.items.length;
           wx.hideLoading();
           callback();
+        })
+      })
+    }
+  },  
+  
+  getSearchData:function(key){
+    // wx.showLoading({
+    //   title: '数据加载中',
+    // })
+    //if sorted
+    if(this.data.byPrice + this.data.byDate > 0)
+      items.where(_.or([{
+        name : db.RegExp({
+          regexp: '.*' + key,
+          options: 'i'
+        })
+      },{
+        content: db.RegExp({
+          regexp: '.*' + key,
+          options: 'i'
+        })
+      }
+    ])).skip(this.pageData.searchSkip)
+      .orderBy(this.data.term, this.data.order)
+      .get().then(res=> {
+        let dt = this.data.results;
+        this.setData({
+          results: dt.concat(res.data),
+        },res => {
+          this.pageData.searchSkip = this.pageData.searchSkip + 20;
+          // wx.hideLoading();
+        })
+      })
+    else{
+      items.where(_.or([{
+        name : db.RegExp({
+          regexp: '.*' + key,
+          options: 'i'
+        })
+      },{
+        content: db.RegExp({
+          regexp: '.*' + key,
+          options: 'i'
+        })
+      }
+    ])).skip(this.pageData.searchSkip)
+      .get().then(res=> {
+        let dt = this.data.results;
+        this.setData({
+          results: dt.concat(res.data),
+        },res => {
+          this.pageData.searchSkip = this.pageData.searchSkip + 20;
+          // wx.hideLoading();
         })
       })
     }
   },
   pageData:{
     skip:0,
+    searchSkip:0,
   }
 
 })

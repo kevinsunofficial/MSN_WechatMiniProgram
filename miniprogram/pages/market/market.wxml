@@ -1,6 +1,10 @@
 <!--pages/market/market.wxml-->
-
+<wxs src="../../wxs/util.wxs" module="tools" />
 <!-- make a listing -->
+      <!-- <movable-area>
+        <movable-view x="100" y="100" direction="all">
+        text</movable-view>
+      </movable-area> -->
   <view hover-class='icon_hover' bindtap='toUpload'>
       <image class="add_icon" src="/images/add.png"></image>
   </view>
@@ -20,8 +24,20 @@
         </view>
     </view>
 </view>
-<button bindtap="sortByPrice"> 排序</button>
-
+<view class='sort-wrap'>
+  <view class='sort-btn' bindtap="sortByPrice"> 
+    价格
+    <image src="{{imageurl1}}"></image>
+  </view>  
+  <view class='sort-btn' bindtap="sortByDate"> 
+    日期
+    <image src="{{imageurl2}}"></image>
+  </view>
+  <view class='sort-btn' bindtap="sortByView"> 
+    浏览量
+    <image src="{{imageurl3}}"></image>
+  </view>
+</view>
 <!-- list -->
 <view class='container' wx:if="{{!inputShowed}}">
   <block class="" wx:for="{{items}}" wx:key="id">
@@ -33,11 +49,18 @@
         </view>
           <!-- 上下结构 -->
             <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
-              <label class='item_title'>{{item.name}}</label>
-              <label class='item_content'>{{item.content}}</label>
-              <label class='item_from'>Sold by: {{item.seller}}</label>
+              <label class='item_title'>{{tools.subplus(item.name)}}</label>
+              <label class='item_content'>{{tools.subplus(item.content)}}</label>
+              <label class='item_from'>Sold by: {{tools.subplus(item.seller)}}</label>
+              <label class='item_from'>Posted on: {{tools.sub(item.time)}}</label>
             </view>
-          <label class='item_price'>$ {{item.price}}</label>
+          <view style='display:flex; flex-direction:column; justify-content: space-around;'>
+            <label class='{{item.price>10000?"long_price":"item_price"}}'>$ {{item.price}}</label>
+            <view style='display:flex; flex-direction:row; justify-content: flex-start; align-element: center;'>
+              <image src="/images/views.png" style="height: 30rpx; width: 30rpx; margin-top: 6rpx; margin-left: 5rpx;"/>
+              <text style="color:#999; font-size:10pt; margin-left:10rpx;">{{item.views}}</text>
+            </view>
+          </view>
       </view>
     </navigator>
   </block>
@@ -53,11 +76,12 @@
         </view>
           <!-- 上下结构 -->
             <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
-              <label class='item_title'>{{item.name}}</label>
-              <label class='item_content'>{{item.content}}</label>
-              <label class='item_from'>Sold by: {{item.seller}}</label>
+              <label class='item_title'>{{tools.subplus(item.name)}}</label>
+              <label class='item_content'>{{tools.subplus(item.content)}}</label>
+              <label class='item_from'>Sold by: {{tools.subplus(item.seller)}}</label>
+              <label class='item_from'>Posted on: {{tools.sub(item.time)}}</label>
             </view>
-          <label class='item_price'>$ {{item.price}}</label>
+          <view class='{{item.price==0?"item_price":"long_price"}}'>$ {{item.price}}</view>
       </view>
     </navigator>
   </block>

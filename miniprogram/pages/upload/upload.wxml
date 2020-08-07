@@ -33,19 +33,19 @@
 <view class="weui-uploader__title">图片上传</view>
 <view class="weui-uploader__info">{{images.length}}/3</view>
 </view>
-<view style="padding-top:20rpx" class="weui-uploader__bd">
+<view style="padding-top:30rpx" class="weui-uploader__bd">
 <view class="weui-uploader__files" id="uploaderFiles">
 <block wx:for="{{images}}" wx:key="*this">
 <view class="weui-uploader__file" id="{{item}}">
 <image class="weui-uploader__img"  bindtap="previewImage" src="{{item}}" mode="aspectFill" />
-            <view bindtap="removeImage" data-index="{{index}}">
-              <icon class = "rm-icon" type="clear" size="20" />
+            <view hover-class='icon_hover' bindtap="removeImage" data-index="{{index}}">
+              <image class="rm-icon" src="/images/delete.png" />
             </view>
 </view>
 </block>
 
 </view>
-<view wx:if="{{images.length < 3}}" class="weui-uploader__input-box" >
+<view wx:if="{{images.length < 3}}" style="margin-left:14rpx" class="weui-uploader__input-box" >
 <view class="weui-uploader__input" bindtap="chooseImage"></view>
 </view>
 </view>
