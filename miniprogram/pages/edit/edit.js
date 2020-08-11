@@ -18,6 +18,7 @@ Page({
     content: '',
     price: 0,
     wxid: '',
+    itemid: '',
     images: [],
     userRegularData: {},
   },
@@ -29,6 +30,7 @@ Page({
     var that = this;
     items.doc(options.id).get().then(res => {
       this.setData({
+        itemid: options.id,
         title: res.data.name,
         content: res.data.content,
         price: res.data.price,
@@ -52,6 +54,7 @@ Page({
       }
     });
     util.$init(this);
+    util.$digest(this)
   },
 
   handleTitleInput(e) {
@@ -131,24 +134,27 @@ Page({
     const img = this.data.images
     const price = this.data.price
     const wxid = this.data.wxid
+    var that = this;
  
     if (title && img.length && price && wxid && img.length < 4) {
       wx.showLoading({
-        title: '正在上传...',
+        title: '正在保存...',
         mask: true
       })
       
       const arr = img.map(path => {
-        return wx.cloud.uploadFile({
-            cloudPath: `marketItems/${Math.floor(Math.random()*10000000)}.png`,
-            filePath: path,
-          }).then(res => {
-            for (let i = 0; i < img.length; i++) {
-              if (img[i] == path)
-                img[i] = res.fileID;
-            }
-            console.log(path);
-          })
+        if(path[0]=='h')
+          return wx.cloud.uploadFile({
+              cloudPath: `marketItems/${Math.floor(Math.random()*10000000)}.png`,
+              filePath: path,
+            }).then(res => {
+              for (let i = 0; i < img.length; i++) {
+                if (img[i] == path)
+                  img[i] = res.fileID;
+              }
+              console.log(path);
+            })
+        else return true;
       })
       var sellerNickname = '';
       wx.getUserInfo({
@@ -177,21 +183,17 @@ Page({
             }
           },   
         })
-        var time = util.formatTime(new Date());
-        items.add({
+        items.doc(that.data.itemid).update({
           data:{
             name: title,
             image: img,
             content: content,
             price: parseFloat(price),
-            seller: sellerNickname,
-            time: time,
-            views: 0,
           }
         }).then(res => {
           console.log(res._id)
           wx.showToast({
-            title: '上传成功',
+            title: '保存成功',
             icon:'success',
             success: res2 => {
               console.log('redirecting');

@@ -77,7 +77,7 @@
 
   <!-- 提交表单按钮  -->
   <view hover-class="wsui-hover">
-    <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+    <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
   </view>
 
 </view>
