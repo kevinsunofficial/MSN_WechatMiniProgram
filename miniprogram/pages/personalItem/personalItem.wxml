@@ -8,7 +8,7 @@
     Haoxiang_z
 -->
 
-
+<wxs src="../../wxs/util.wxs" module="tools" />
 
 <view class="mainPage">
   <!--
@@ -17,8 +17,9 @@
   -->
   <view class="TT">
     <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logo.png"
-     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx" bindload="imgLoad"></image>
-    <text id="title">My Listings</text>
+     mode="aspectFit" style="height: 130rpx; margin-top: 30rpx"></image>
+    <text id="title">我的库存</text>
+    <text style="color:#999; margin-bottom: 15rpx;">Tips: 左滑可以编辑/删除</text>
   </view>
 
   
@@ -26,12 +27,11 @@
     The Login Block
   -->
   <view class="LG">
-
   <block class="" wx:for="{{itemList}}" wx:key="_id">
     <navigator url='../item/item?id={{item._id}}'>
       <view class="weui-cells">
           <mp-slideview show="{{false}}" buttons="{{slideButtons}}" data-index="{{index}}" bindbuttontap="slideButtonTap">
-              <mp-cell value="{{item.name}}" footer="${{item.price}}">
+              <mp-cell value="{{tools.subplus(item.name)}}" footer="${{item.price}}">
                 <image slot="icon" src="{{item.image[0]}}" style="margin-right: 6px;vertical-align: middle;width:50px; height: 50px;" mode="aspectFill"></image>
               </mp-cell>
           </mp-slideview>
@@ -39,19 +39,5 @@
     </navigator>
   </block>    
   </view>
-
-
-
-  <!--
-    The End Block:
-  -->
-  <view class="TE">
-    <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/logow.png"
-     mode="aspectFit" style="height: 100rpx; margin-top: 30rpx; margin-bottom: 20rpx" bindload="imgLoad"></image>
-    <text id="end">
-      {{end}}
-    </text>
-  </view>
-
 
 </view>
