@@ -1,0 +1,128 @@
+/**
+ * This is the prototype of MSN's miniprogram
+ * The miniprogram is still under development
+ * It is not recommanded to be put into any form of commercial use
+ * @2020 Mainland Student Network. All rights reserved
+ * Author:
+ * Yuchen Sun
+ * Haoxiang_z
+ */
+
+
+/**
+ * This page is the personal page
+ */
+
+ Page {
+  text-align: center;
+}
+
+.mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(25, 31, 38);
+  font-size: 40rpx;
+  font-weight: 600;
+  color: rgb(245, 245, 245);
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 1;
+  z-index: 1;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(245, 245, 245);
+}
+
+.TT {
+  margin-top: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#title {
+  font-size: 50rpx;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-shadow: 1rpx 1rpx 2rpx gray;
+  line-height: 100rpx;
+  color: rgb(0, 86, 99);
+}
+
+.TE {
+  bottom: 0;
+  height: 400rpx;
+  background-color: rgb(43, 43, 43);
+  font-size: 20rpx;
+  color: white;
+}
+
+.LG {
+  border-top: solid darkgray 5rpx;
+}
+
+#authorize {
+  margin-top: 200rpx;
+  margin-bottom: 500rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: lightpink;
+  color: white;
+  height: 100rpx;
+  width: 400rpx;
+  border-radius: 25rpx;
+}
+
+#userimg {
+  margin-top: 100rpx;
+  border-radius: 100%;
+  border-width: 5rpx;
+  border-color: darkgray;
+  border-style: solid;
+}
+
+.stat {
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  border-radius: 50rpx;
+  line-height: 70rpx;
+  font-size: 35rpx;
+  color: #FFFDF9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.txt {
+  font-weight: 600;
+}
+
+#attendClick {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50rpx;
+  font-size: 40rpx;
+  color: white;
+  font-weight: 800;
+  height: 100rpx;
+  width: 500rpx;
+  background-color: lightpink;
+  border-radius: 25rpx;
+}

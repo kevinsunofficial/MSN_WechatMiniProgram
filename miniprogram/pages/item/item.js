@@ -19,7 +19,6 @@ Page({
   },
 
   pageData: {
-
   },
   
   loadData: function(){

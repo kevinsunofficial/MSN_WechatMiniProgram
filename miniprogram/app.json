@@ -8,6 +8,8 @@
     "pages/files/files",
     "pages/webs/webs",
     "pages/personal/personal",
+    "pages/personalItem/personalItem",
+    "pages/edit/edit",
     "pages/eventSignup/signupPages/event1/eventOne",
     "pages/eventSignup/signupPages/event2/eventTwo",
     "pages/eventSignup/signupPages/event3/eventThree",

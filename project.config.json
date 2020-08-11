@@ -88,6 +88,13 @@
 					"pathName": "pages/personal/personal",
 					"query": "id=15d399db5f1c944c008a4ab63779d78d",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personalItem/personalItem",
+					"pathName": "pages/personalItem/personalItem",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
