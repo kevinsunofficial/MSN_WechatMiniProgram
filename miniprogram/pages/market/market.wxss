@@ -111,8 +111,6 @@
   background-color: #A4D3EE;
 }
 
-
-
 .add_icon{
   position: fixed;
   width: 60px;

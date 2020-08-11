@@ -18,10 +18,10 @@
     </view>
 
     <!-- 描述  -->
-      <view class="weui-cell">
-          <textarea class="weui-textarea" placeholder="细节描述 (Optional, 描述中的内容也可以被搜索到哦)" maxlength="200" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 7rem;border-left: 10rpx;" bindinput="handleContentInput" />
-          <view class="weui-textarea-counter">{{contentCount}}/200</view>
-      </view>
+    <view class="weui-cell">
+      <textarea class="weui-textarea" placeholder="细节描述 (Optional, 描述中的内容也可以被搜索到哦)" maxlength="200" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 7rem;border-left: 10rpx;" bindinput="handleContentInput" />
+      <view class="weui-textarea-counter">{{contentCount}}/200</view>
+    </view>
   </view>
 <!-- <mp-gallery show="{{showPreview}}" bindchange="change" binddelete="removeImage"  img-urls="{{images}}"  hide-on-click="{{true}}" current="{{current}}"></mp-gallery> -->
 
