@@ -98,7 +98,7 @@ button {
 
 .TE {
   margin-top: 30rpx;
-  height: 400rpx;
+  height: 450rpx;
   background-color: rgb(43, 43, 43);
   font-size: 20rpx;
   color: white;

@@ -20,6 +20,7 @@
     </view>
     <view id="price"><text decode="true" id="dollar">$&nbsp;</text><text>{{item.price}}</text></view>
   </view>
+
   <view class="contact">
     <view id="dscrpt"><text>{{item.content}}</text></view>
   </view>
@@ -27,13 +28,13 @@
   <view class="wxid">
     <text style="font-size: 34rpx; padding-top: 10rpx; font-weight: 600;">联系方式</text>
     <view id="info">
-    <view style='display:flex; flex-direction:column; align-items: center; justify-content: flex-start; margin:6rpx; border: 10rpx;'>
-      <view id="pic">
-        <image src="{{profile}}" mode="aspectFit" style="height: 100rpx; width: 100rpx; border-radius: 25%;"></image>
+      <view style="width: 100rpx; margin-right: 50rpx; display: flex; flex-direction: column; align-items: center; justify-content: center">
+        <view id="pic">
+          <image src="{{profile}}" mode="aspectFit" style="height: 100rpx; width: 100rpx; border-radius: 25%;"></image>
+        </view>
+        <view style="margin-bottom: 10rpx;"><text id="nick">{{item.seller}}</text></view>
       </view>
-      <text id="nick">{{item.seller}}</text>
-    </view>
-      <view id="id"><text>微信号: {{wxid}}</text></view>      
+      <view id="id"><text>微信号: {{wxid}}</text></view>
     </view>
   </view>
   

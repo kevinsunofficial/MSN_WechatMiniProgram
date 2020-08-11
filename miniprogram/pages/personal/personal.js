@@ -31,18 +31,36 @@ Page({
     userSensitiveData: {},
     userRegularData: {},
     userInfoOnScreen: {
-      registerDate: '加载中...',
-      history: '加载中...',
-      score: '加载中...'
+      registerDate: '...',
+      history: '...',
+      score: '...'
     },
-    imgNum: 2,
+    imgNum: 1,
     slideButtons: [{
       text: '编辑',
     },{
       type: 'warn',
       text: '删除',
     }],
-    itemList: []
+    itemList: [],
+    showHistory: false
+  },
+
+  toList: function(e) {
+    console.log("It worked surprise mofo")
+  },
+
+  toHistory: function(e) {
+    if (this.data.showHistory) {
+      this.setData({
+        showHistory: false
+      })
+    }
+    else {
+      this.setData({
+        showHistory: true
+      })
+    }
   },
 
   imgLoad: function (e) {

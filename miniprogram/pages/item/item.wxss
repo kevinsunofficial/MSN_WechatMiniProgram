@@ -97,7 +97,7 @@ swiper{
 .wxid {
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
+  align-content: center;
   border-radius: 15rpx;
   background-color: rgb(126, 215, 228);
   margin-left: 50rpx;
@@ -109,6 +109,7 @@ swiper{
   display: flex;
   flex-direction: row;
   align-content: center;
+  justify-content: center;
   border-radius: 15rpx;
   margin-top: 5rpx;
   margin-left: 50rpx;
@@ -122,6 +123,7 @@ swiper{
   line-height: 50rpx;
   background-color: rgb(78, 160, 199);
   margin-right: 50rpx;
+  margin-left: 50rpx;
   border-radius: 25%;
 }
 

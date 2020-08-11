@@ -81,7 +81,7 @@ page {
 
 .uploader-container {
   width: 100%;
-  height: 400rpx;
+  height: 450rpx;
   padding: 20rpx 20rpx 20rpx 0;
   display: flex;
   align-content: center;
