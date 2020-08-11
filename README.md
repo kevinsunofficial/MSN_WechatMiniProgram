@@ -21,6 +21,7 @@ The versioning of this Wechat Mini-program follows [SemVer](http://semver.org/).
 ## Authors
 
 - **Yuchen Sun** - *Initial work* - [kevinsunofficial](https://github.com/kevinsunofficial)
+- **Haoxiang Zhang** - *Initial Work* - [Haoxiangz](https://github.com/Haoxiangz)
 
 ## Acknowledgments
 
