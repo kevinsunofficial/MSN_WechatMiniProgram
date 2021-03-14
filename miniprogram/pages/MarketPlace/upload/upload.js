@@ -1,5 +1,5 @@
 //import { $init, $digest } from '../../utils/common.util'
-var util = require('../../utils/common.util.js')
+var util = require('../../../utils/common.util.js')
 
 const db = wx.cloud.database();
 const items = db.collection('items');

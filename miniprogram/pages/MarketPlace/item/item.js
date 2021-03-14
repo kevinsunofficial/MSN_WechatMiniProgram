@@ -1,5 +1,5 @@
 // pages/item/item.js
-import regeneratorRuntime from '../../utils/runtime.js'
+import regeneratorRuntime from '../../../utils/runtime.js'
 const db = wx.cloud.database();
 const items = db.collection('items');
 const ids = db.collection('idMatch');

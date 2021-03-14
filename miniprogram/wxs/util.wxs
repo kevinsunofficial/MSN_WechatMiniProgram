@@ -1,4 +1,4 @@
-var subplus = function(val) {
+  var subplus = function(val) {
     if (val.length == 0 || val == undefined) {
       return;
     }
@@ -8,8 +8,16 @@ var subplus = function(val) {
       return val;
     }
   }
+
   var sub = function(val) {
-      return val.substring(0, 10);
+    return val.substring(0, 10);
   }
+
+  var randomHalf = function(val) {
+    return val * Math.random() / 4 + val/4;
+  }
+
   module.exports.sub = sub;
   module.exports.subplus = subplus;
+  module.exports.randomHalf = randomHalf;
+  

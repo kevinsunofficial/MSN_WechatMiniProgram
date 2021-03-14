@@ -1,0 +1,26 @@
+{
+  "name": "miniprogram",
+  "version": "1.0.0",
+  "description": "MSN miniprogram",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinsunofficial/MSN_WechatMiniProgram.git"
+  },
+  "keywords": [
+    "miniprogram"
+  ],
+  "author": "Haoxiang_z",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinsunofficial/MSN_WechatMiniProgram/issues"
+  },
+  "homepage": "https://github.com/kevinsunofficial/MSN_WechatMiniProgram#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "html2canvas": "^1.0.0-rc.7"
+  }
+}

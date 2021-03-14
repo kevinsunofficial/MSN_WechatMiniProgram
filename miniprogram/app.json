@@ -15,10 +15,11 @@
     "pages/eventSignup/signupPages/event3/eventThree",
     "pages/dining/dining",
     "pages/advice/advice",
-    "pages/bugs/bugs",
-    "pages/market/market",
-    "pages/upload/upload",
-    "pages/item/item",
+    "pages/GraduationThings/showResult/showResult",
+    "pages/GraduationThings/select/select",
+    "pages/MarketPlace/market/market",
+    "pages/MarketPlace/upload/upload",
+    "pages/MarketPlace/item/item",
     "pages/miscell/miscell",
     "pages/miscell/miscPages/m1/m1",
     "pages/miscell/miscPages/m2/m2",
@@ -51,7 +52,7 @@
       {
         "selectedIconPath": "images/market1.png",
         "iconPath": "images/market.png",
-        "pagePath": "pages/market/market",
+        "pagePath": "pages/MarketPlace/market/market",
         "text": "Market"
       },
       {

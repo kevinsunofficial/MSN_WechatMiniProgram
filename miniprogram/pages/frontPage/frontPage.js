@@ -134,7 +134,7 @@ Page({
    */
   toBugReport: function() {
     wx.navigateTo({
-      url: '/pages/bugs/bugs',
+      url: '/pages/GraduationThings/select/select',
     })
   },
 

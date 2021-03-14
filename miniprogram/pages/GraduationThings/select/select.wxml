@@ -1,0 +1,33 @@
+<!--
+  This is the prototype of MSN's miniprogram
+  The miniprogram is still under development
+  It is not recommanded to be put into any form of commercial use
+  @2020 Mainland Student Network. All rights reserved
+
+  Author:
+    Haoxiang_z
+-->
+
+<wxs src="../../../wxs/util.wxs" module="tools" />
+
+<scroll-view id="scroller" scroll-y style='--height--:{{windowHeight}}px;' 
+ bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' bindscroll="onScroll"
+scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
+  <view  class="icon_flex">
+    <view wx:for="{{icons}}" wx:for-item="item" wx:key="index">
+      <view class="icon_wrap {{item.selected ? 'active':'' }}" 
+      style='--margintop--:{{tools.randomHalf(windowHeight)}}px; --marginleft--:{{tools.randomHalf(windowWidth)}}px;'>
+        <view class="icon" id='the{{index}}' catchtouchstart='onTouch'>
+          <view  wx:if="{{!item.selected}}" style='padding:20px'>第{{index}}个</view>
+          <view wx:else>
+            <image class="icon" mode="aspectFill" src="{{item.img}}"></image>
+          </view>
+        </view>  
+      </view>
+    </view>
+  </view>
+  <view class="touch">
+    <button id="generate" bindtap="toResult">生成我的图片</button>
+  </view>
+  
+</scroll-view>

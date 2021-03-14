@@ -1,102 +1,101 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"appid": "wx1ccd37a65f2d2665",
-	"projectname": "msnprototype",
-	"libVersion": "2.8.1",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "pages/item/item",
-					"pathName": "pages/item/item",
-					"query": "id=043ba0325f2c8a0600270f0246ceee5c",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "pages/upload/upload",
-					"pathName": "pages/upload/upload",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/market/market",
-					"pathName": "pages/market/market",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/personal",
-					"pathName": "pages/personal/personal",
-					"query": "id=15d399db5f1c944c008a4ab63779d78d",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personalItem/personalItem",
-					"pathName": "pages/personalItem/personalItem",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "nodeModules": true
+  },
+  "appid": "wx1ccd37a65f2d2665",
+  "projectname": "msnprototype",
+  "libVersion": "2.16.0",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "compileType": "miniprogram",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/GraduationThings/select/select",
+          "pathName": "pages/GraduationThings/select/select",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "pages/item/item",
+          "pathName": "pages/item/item",
+          "query": "id=043ba0325f2c8a0600270f0246ceee5c",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "pages/upload/upload",
+          "pathName": "pages/upload/upload",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/market/market",
+          "pathName": "pages/market/market",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "id=15d399db5f1c944c008a4ab63779d78d",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/personalItem/personalItem",
+          "pathName": "pages/personalItem/personalItem",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

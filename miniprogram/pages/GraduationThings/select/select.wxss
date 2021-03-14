@@ -1,0 +1,66 @@
+scroll-view {
+  height: var(--height--);
+}
+
+view {
+  display: flex;/*flex弹性布局*/
+  align-items: center;/*item在交叉轴上的对齐方式*/
+  justify-content: center;/*item在主轴上的对齐方式*/
+}
+
+.icon_flex{
+  display: flex;
+  flex-direction: horizontal;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.icon_wrap{
+  width: 100px; 
+  height: 100px;
+  margin: 15px;
+  margin-left: var(--marginleft--);
+  margin-top: var(--margintop--);
+  border: 4px solid rgba(82, 82, 82, 0);
+  border-radius: 40%;
+  display: block;
+}
+.icon{
+  width: 100px; 
+  height: 100px;
+  border-radius: 40%;
+  display: block;
+  background-color: #f7e9f4;
+  z-index: 10;
+}
+
+#generate {
+  margin-top: 20rpx;
+  background-color: #5f2e55;
+  color:white;
+  font-size: 35rpx;
+  font-weight: 600;
+  height: 100rpx;
+  width: 300rpx;
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.list {
+  background-color: white;
+  margin-top: 5px;
+  height: 500px;
+}
+
+::-webkit-scrollbar {
+  display:none;
+  width:0;
+  height:0;
+  color:transparent;
+}

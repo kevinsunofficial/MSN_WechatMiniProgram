@@ -1,5 +1,5 @@
 <!--pages/market/market.wxml-->
-<wxs src="../../wxs/util.wxs" module="tools" />
+<wxs src="../../../wxs/util.wxs" module="tools" />
 <!-- make a listing -->
       <!-- <movable-area>
         <movable-view x="100" y="100" direction="all">

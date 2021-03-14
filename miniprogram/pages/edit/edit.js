@@ -156,11 +156,6 @@ Page({
             })
         else return true;
       })
-      var sellerNickname = '';
-      wx.getUserInfo({
-        success: res => {
-          sellerNickname = res.userInfo.nickName
-      }})        
       Promise.all(arr).then(res => {
         //update wxid
         ids.where({

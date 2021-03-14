@@ -1,0 +1,10 @@
+<canvas style="width:{{windowWidth}}px;height:{{windowHeight}}px;position:fixed;top:-10000px;" canvas-id="myCanvas" ></canvas>
+
+<image class="image" show-menu-by-longpress mode='aspectFit' src='{{canvasTempFile}}'></image>
+
+<view>
+  ----------------分割线--------------
+</view>
+<view  wx:for="{{show}}" wx:for-item="item" wx:key="index">
+  <image class="icon" id='{{index}}' mode="aspectFill" src="{{item}}"></image>
+</view>
