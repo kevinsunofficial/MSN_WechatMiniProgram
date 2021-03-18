@@ -28,6 +28,13 @@ Page({
      {img:'/images/100Things/005.png',selected:false},
      {img:'/images/100Things/006.png',selected:false},
      {img:'/images/100Things/007.png',selected:false},
+     {img:'/images/100Things/008.png',selected:false},{img:'/images/100Things/001.png',selected:false},
+     {img:'/images/100Things/002.png',selected:false},
+     {img:'/images/100Things/003.png',selected:false},
+     {img:'/images/100Things/004.png',selected:false},
+     {img:'/images/100Things/005.png',selected:false},
+     {img:'/images/100Things/006.png',selected:false},
+     {img:'/images/100Things/007.png',selected:false},
      {img:'/images/100Things/008.png',selected:false}],
  },
 /**
@@ -83,20 +90,11 @@ Page({
   startAutoScroll: function(){
     var that = this
     if(!this.data.autoScrollOn){
-      console.log("starting")
       that.data.autoScroll = setInterval(function() {
-        if(/(^-?[0,2]$)/.test(that.data.lastScroll))
           that.setData({        
             autoScrollOn:true,
-            scrollTop: that.data.scrollTop + 2,
+            scrollTop: that.data.scrollTop + 3,
           })
-        else{
-          setTimeout(()=>{
-            that.setData({
-              lastScroll: 0
-            })
-          },100)
-        }
       }, 40)
     }
   },
@@ -119,14 +117,18 @@ Page({
     //   this.setData({
     //     scrollTop: pos,
     //   })
-        this.startAutoScroll()
+    console.log(this.data.lastScroll)
+    var tmp = Math.abs(this.data.lastScroll)
+    setTimeout(()=>{
+      this.startAutoScroll()
+    },tmp*20)
     // });
     // this.setData({
     //   scrollEnd: true
     // })
   },
   onScroll:function(e){
-    if(!/(^-?[0,2]$)/.test(e.detail.deltaY))
+    if(!this.data.autoScrollOn)
       this.setData({
         scrollTop: e.detail.scrollTop,
         lastScroll: e.detail.deltaY
