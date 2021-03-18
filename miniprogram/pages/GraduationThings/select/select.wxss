@@ -57,10 +57,3 @@ view {
   margin-top: 5px;
   height: 500px;
 }
-
-::-webkit-scrollbar {
-  display:none;
-  width:0;
-  height:0;
-  color:transparent;
-}

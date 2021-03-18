@@ -11,6 +11,7 @@
 <wxs src="../../../wxs/util.wxs" module="tools" />
 
 <scroll-view id="scroller" scroll-y style='--height--:{{windowHeight}}px;' 
+enhanced="{{true}}" show-scrollbar="{{false}}" scroll-anchoring="{{true}}"
  bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' bindscroll="onScroll"
 scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
   <view  class="icon_flex">

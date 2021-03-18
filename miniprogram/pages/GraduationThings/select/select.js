@@ -20,14 +20,8 @@ Page({
      scrollTop: 0,
      autoScroll: null, //ID of the autoScroll timer
      autoScrollOn: false,
+     lastScroll: 0,
      icons: [{img:'/images/100Things/001.png',selected:false},
-     {img:'/images/100Things/002.png',selected:false},
-     {img:'/images/100Things/003.png',selected:false},
-     {img:'/images/100Things/004.png',selected:false},
-     {img:'/images/100Things/005.png',selected:false},
-     {img:'/images/100Things/006.png',selected:false},
-     {img:'/images/100Things/007.png',selected:false},
-     {img:'/images/100Things/008.png',selected:false},{img:'/images/100Things/001.png',selected:false},
      {img:'/images/100Things/002.png',selected:false},
      {img:'/images/100Things/003.png',selected:false},
      {img:'/images/100Things/004.png',selected:false},
@@ -72,7 +66,7 @@ Page({
           transform: 'translateY(0px)',
           offset: 0,
         }, {
-          transform: 'translateY(-' + Math.random()*1500 +'px)',
+          // transform: 'translateY(-' + Math.random()*1500 +'px)',
           offset: 1,
         }], 2000, {
           scrollSource: '#scroller',
@@ -89,14 +83,20 @@ Page({
   startAutoScroll: function(){
     var that = this
     if(!this.data.autoScrollOn){
-      this.setData({
-        autoScrollOn:true
-      })
       console.log("starting")
       that.data.autoScroll = setInterval(function() {
-        that.setData({
-          scrollTop: that.data.scrollTop + 2,
-        })
+        if(/(^-?[0,2]$)/.test(that.data.lastScroll))
+          that.setData({        
+            autoScrollOn:true,
+            scrollTop: that.data.scrollTop + 2,
+          })
+        else{
+          setTimeout(()=>{
+            that.setData({
+              lastScroll: 0
+            })
+          },100)
+        }
       }, 40)
     }
   },
@@ -119,28 +119,23 @@ Page({
     //   this.setData({
     //     scrollTop: pos,
     //   })
-    setTimeout(()=>{
-      this.startAutoScroll()
-    },200)
+        this.startAutoScroll()
     // });
     // this.setData({
     //   scrollEnd: true
     // })
   },
   onScroll:function(e){
-    // console.log(e.timeStamp-this.data.lastTimeStamp)
-    if(Math.abs(e.detail.scrollTop - this.data.scrollTop) >= 2){
+    if(!/(^-?[0,2]$)/.test(e.detail.deltaY))
       this.setData({
-        scrollTop:e.detail.scrollTop,
-        lastTimeStamp: e.timeStamp
+        scrollTop: e.detail.scrollTop,
+        lastScroll: e.detail.deltaY
       })
-    }
-    // else if (!this.data.autoScrollOn) {
+    // if (!this.data.autoScrollOn) {
     //   setTimeout(()=>{
-    //     if(e.timeStamp-this.data.lastTimeStamp>100){
-    //       this.startAutoScroll()
-    //     }
-    //   },100)
+    //     console.log("setting")
+    //     this.setData({lastScroll: 2})
+    //   },1000)
     // } 
   },
 
