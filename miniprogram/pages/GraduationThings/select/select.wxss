@@ -1,16 +1,34 @@
-scroll-view {
-  height: var(--height--);
+::-webkit-scrollbar {
+  display:none;
+  width:0;
+  height:0;
+  color:transparent;
 }
 
-view {
-  display: flex;/*flex弹性布局*/
-  align-items: center;/*item在交叉轴上的对齐方式*/
-  justify-content: center;/*item在主轴上的对齐方式*/
+scroll-view {
+  height: var(--height--);
+  overflow-x:hidden;
+}
+
+.status_bar{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  z-index:11;
+}
+
+.status_box{
+  height: 40px;
+  width: 80px;
+  padding: 16px 0px 0px 0px;
+  background-color: #5f2e55;
+  text-align:center;
+  color: #ffffff
 }
 
 .icon_flex{
   display: flex;
-  flex-direction: horizontal;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
@@ -18,25 +36,44 @@ view {
   align-items: center;
 }
 
+.filler{
+  width: 100 vw;
+  height: var(--margintop--);
+  display:block;
+}
+
 .icon_wrap{
-  width: 100px; 
-  height: 100px;
-  margin: 15px;
+  width: var(--iconWidth--); 
+  height: var(--iconWidth--);
   margin-left: var(--marginleft--);
-  margin-top: var(--margintop--);
+  margin-right: var(--marginright--);
   border: 4px solid rgba(82, 82, 82, 0);
-  border-radius: 40%;
+  border-radius: 50%;
   display: block;
 }
 .icon{
-  width: 100px; 
-  height: 100px;
-  border-radius: 40%;
-  display: block;
+  position: relative;
+  width: var(--iconWidth--); 
+  height: var(--iconWidth--);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #f7e9f4;
   z-index: 10;
+  box-shadow: 3px 4px 4px gray;
+}
+.icon_text{
+  font-family: FZ, Georgia, 'Times New Roman';
+  padding: 15px;
+  text-align: center;
 }
 
+.touch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #generate {
   margin-top: 20rpx;
   background-color: #5f2e55;
@@ -46,14 +83,12 @@ view {
   height: 100rpx;
   width: 300rpx;
   border-radius: 50rpx;
+  margin: 50rpx;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
 }
 
-.list {
-  background-color: white;
-  margin-top: 5px;
-  height: 500px;
-}
+
+

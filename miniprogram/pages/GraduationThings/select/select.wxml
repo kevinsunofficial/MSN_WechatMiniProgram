@@ -9,17 +9,23 @@
 -->
 
 <wxs src="../../../wxs/util.wxs" module="tools" />
+<view class="status_bar">
+  <view class="status_box">{{count}}/100</view>
+</view>
 
-<scroll-view id="scroller" scroll-y style='--height--:{{windowHeight}}px;' 
- show-scrollbar="{{false}}" 
- bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' bindscroll="onScroll"
+<scroll-view id="scroller" scroll-y="{{scrollY}}" style='--height--:{{windowHeight}}px;' 
+ show-scrollbar="{{false}}" bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' 
 scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
-  <view  class="icon_flex">
+<image style="position:fixed; z-index:-1; height:100%;width:{{(windowHeight/3300)*2550}}px;" src="{{background}}"></image>
+      
+  <view class="icon_flex">
+    <view class="filler" style="--margintop--:400rpx;"></view>
     <view wx:for="{{icons}}" wx:for-item="item" wx:key="index">
+      <view class="filler" style="--margintop--:{{tools.randomTop(windowHeight,index)}}px;"></view>
       <view class="icon_wrap {{item.selected ? 'active':'' }}" 
-      style='--margintop--:{{tools.randomHalf(windowHeight)}}px; --marginleft--:{{tools.randomHalf(windowWidth)}}px;'>
-        <view class="icon" id='the{{index}}' catchtouchstart='onTouch'>
-          <view  wx:if="{{!item.selected}}" style='padding:20px'>第{{index}}个</view>
+      style='--marginleft--:{{tools.randomLeft(windowWidth,index)}}px;--marginright--:{{tools.randomRight(windowWidth,index)}}px; --iconWidth--:{{iconWidth}}px;'>
+      <view class="icon animated {{item.animation}}" style="--iconWidth--:{{iconWidth}}px" id='the{{index}}' catchtouchstart='onTouch'>
+          <view wx:if="{{!item.selected}}" class="icon_text">{{item.phrase}}</view>
           <view wx:else>
             <image class="icon" mode="aspectFill" src="{{item.img}}"></image>
           </view>
@@ -27,7 +33,7 @@ scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
       </view>
     </view>
   </view>
-  <view class="touch">
+  <view class="touch" >
     <button id="generate" bindtap="toResult">生成我的图片</button>
   </view>
   

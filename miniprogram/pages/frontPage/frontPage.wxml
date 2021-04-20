@@ -137,7 +137,7 @@
             <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/bugs.png" 
             mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
             <text>\n</text>
-            BUG反馈</button>
+            100件事</button>
         </view>
         <view id="web" bindtap="toAdvice">
           <button id="smllink2" style="width: 340rpx">

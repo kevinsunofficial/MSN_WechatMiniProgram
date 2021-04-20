@@ -76,9 +76,9 @@
         </view>
           <!-- 上下结构 -->
             <view style='display:flex; flex-direction:column; justify-content: space-evenly; margin:16rpx; border: 10rpx;'>
-              <label class='item_title'>{{tools.subplus(item.name)}}</label>
-              <label class='item_content'>{{tools.subplus(item.content)}}</label>
-              <label class='item_from'>Sold by: {{tools.subplus(item.seller)}}</label>
+              <label class='item_title'>{{item.name}}</label>
+              <label class='item_content'>{{item.content}}</label>
+              <label class='item_from'>Sold by: {{item.seller}}</label>
               <label class='item_from'>Posted on: {{tools.sub(item.time)}}</label>
             </view>
           <view class='{{item.price==0?"item_price":"long_price"}}'>$ {{item.price}}</view>

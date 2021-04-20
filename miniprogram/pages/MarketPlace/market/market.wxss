@@ -85,15 +85,20 @@
   margin-top: 10rpx;
 }
 
+.item_title{
+  text-overflow: ellipsis;
+}
 .item_content{
   width: 380rpx;
   height: 100rpx;
   font-size: 11pt;
   color: #888;
+  text-overflow: ellipsis;
 }
 .item_from{
   font-size: 10pt;
   color: #999;
+  text-overflow: ellipsis;
 }
 .item_price{
   width: 100%;

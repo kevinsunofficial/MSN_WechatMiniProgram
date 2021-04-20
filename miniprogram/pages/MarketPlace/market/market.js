@@ -234,7 +234,7 @@ Page({
 
   toUpload: function() {
     wx.navigateTo({
-      url: '/pages/upload/upload'
+      url: '/pages/MarketPlace/upload/upload'
     })
   },
   getData:function(callback){

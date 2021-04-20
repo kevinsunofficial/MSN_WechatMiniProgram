@@ -1,4 +1,14 @@
-  var subplus = function(val) {
+  Math.imul = function(a, b) {
+    var aHi = (a >>> 16) & 65535;
+    var aLo = a & 65535;
+    var bHi = (b >>> 16) & 65535;
+    var bLo = b & 65535;
+    // the shift by 0 fixes the sign on the high part
+    // the final |0 converts the unsigned value into a signed value
+    return ((aLo * bLo) + (((aHi * bLo + aLo * bHi) << 16) >>> 0) | 0);
+  };
+
+var subplus = function(val) {
     if (val.length == 0 || val == undefined) {
       return;
     }
@@ -13,11 +23,29 @@
     return val.substring(0, 10);
   }
 
-  var randomHalf = function(val) {
-    return val * Math.random() / 4 + val/4;
+  var randomTop = function(val,seed) {
+    seed = seed * 200/7 + 105;
+    var r = '0.'+Math.sin(seed).toString().substring(6);
+    var margin = val * (0.1 + 0.15 * r);
+    return margin;
+  }
+
+  var randomLeft = function(val,seed) {
+    var r = '0.'+Math.sin(seed).toString().substring(6);
+    var col = seed%3 == 0 ? 1 : seed%3 == 1 ? 0 : 2;
+    var margin = val * (0.15 * r + 0.4*(col/2) + 0.15);
+    return margin;
+  }
+
+  var randomRight = function(val,seed) {
+    var r = '0.'+Math.sin(seed).toString().substring(6);
+    var col = seed%3 == 0 ? 1 : seed%3 == 1 ? 0 : 2;
+    var margin = val * (0.15 * (1 - r) + 0.4*(1-col/2) + 0.05);
+    return margin;
   }
 
   module.exports.sub = sub;
   module.exports.subplus = subplus;
-  module.exports.randomHalf = randomHalf;
-  
+  module.exports.randomTop = randomTop;
+  module.exports.randomLeft = randomLeft;
+  module.exports.randomRight = randomRight;
