@@ -22,7 +22,8 @@ Page({
      qrCode:
        '/images/msnQRcode.jpg', //小程序码https图片路径
      canvasTempFile: '', //canvas临时图片
-     show: []
+     show: [],
+     userName: '',
  },
 /**
    * 生命周期函数--监听页面加载
@@ -40,7 +41,8 @@ Page({
         tmp.push(prevPage.data.icons[i].img)
     }
     this.setData({
-      show: tmp
+      show: tmp,
+      userName: prevPage.data.userName,
     }, ()=>{  
       this.generate()
     })
@@ -65,7 +67,7 @@ Page({
 
     ctx.setFillStyle('#3F4FEE')//文字颜色：默认黑色
     ctx.setFontSize(20)//设置字体大小，默认10
-    ctx.fillText("我大学都干过啥事", 20, 30)//绘制文本
+    ctx.fillText(that.data.userName+"大学都干过啥事", 20, 30)//绘制文本
     console.log(that.data.show)
     //画图片
     for(var i=0;i<that.data.show.length;i++){

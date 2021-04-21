@@ -192,36 +192,6 @@ Page({
           })
         })
       })
-    
-      /*new Promise((resolve, reject) => {
-        for (let i = 0; i < img.length; i++) {
-          wx.cloud.uploadFile({
-            cloudPath: `marketItems/${Math.floor(Date.now/1000)}.png`,
-            filePath: img[i],
-          }).then(res => {
-            img[i] = res.fileID;
-            console.log(img[i])
-          });
-        }resolve();
-      }).then(() => {
-        items.add({
-        data:{
-          name: title,
-          image: img,
-        }
-      }).then(res => {
-        console.log(res._id)
-        wx.showToast({
-          title: '上传成功',
-          icon:'success',
-          success: res2 => {
-            wx.redirectTo({
-              url: `../frontPage/frontPage`,
-            })
-          }
-        })
-      })      
-    })*/
     }
     else{
       if(!title)

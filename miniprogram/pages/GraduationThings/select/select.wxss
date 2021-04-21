@@ -5,11 +5,60 @@
   color:transparent;
 }
 
-scroll-view {
-  height: var(--height--);
-  overflow-x:hidden;
+.mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(25, 31, 38);
+  font-size: 40rpx;
+  font-weight: 600;
+  color: rgb(245, 245, 245);
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 1;
+  z-index: 20;
 }
 
+.mainPage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+}
+.mainPageImg{
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.inputUnit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50rpx;
+  margin-top: 48vh;
+}
+.nameInput{  
+  outline-style: none;
+  border: 2rpx solid #ccc; 
+  background: white;
+  padding: 14rpx 14rpx;
+  width: 400rpx;
+  font-family: "Microsoft soft";
+}
+.beginButton{
+  background: #66ccff;
+  font-family: FZ;
+  font-size: 40rpx;
+}
+
+scroll-view {
+  height: 100vh;
+  overflow-x:hidden;
+}
 .status_bar{
   width: 100%;
   display: flex;
@@ -17,7 +66,6 @@ scroll-view {
   position: fixed;
   z-index:11;
 }
-
 .status_box{
   height: 40px;
   width: 80px;
@@ -35,13 +83,11 @@ scroll-view {
   justify-items: center;
   align-items: center;
 }
-
 .filler{
   width: 100 vw;
   height: var(--margintop--);
   display:block;
 }
-
 .icon_wrap{
   width: var(--iconWidth--); 
   height: var(--iconWidth--);
@@ -74,6 +120,7 @@ scroll-view {
   align-items: center;
   justify-content: center;
 }
+
 #generate {
   margin-top: 20rpx;
   background-color: #5f2e55;
@@ -89,6 +136,8 @@ scroll-view {
   align-content: center;
   justify-content: center;
 }
-
+#generate:hover{
+  opacity: 0.7;
+}
 
 

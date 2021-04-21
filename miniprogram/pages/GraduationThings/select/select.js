@@ -23,21 +23,23 @@ Page({
      autoScrollOn: false,
      scrollY: true,
      count: 0,
+     load: 0,    
+     complete: 0,
+     imgNum: 1,
+     userName: "",
+     mainPage: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ThingsHomescreen.jpg',
      background: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/background.jpg',
      icons: [{img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐8-lime.png',selected:false,phrase:"骑过一次lime滑板车"},
      {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活1-二手交易.png',selected:false,phrase:"达成一次二手交易"},
      {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活11-桑拿.png',selected:false,phrase:"在AFC蒸一次桑拿"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食堂自习_画板 1.png',selected:false},
-     {img:'/images/100Things/005.png',selected:false},
-     {img:'/images/100Things/006.png',selected:false},
-     {img:'/images/100Things/007.png',selected:false},
-     {img:'/images/100Things/008.png',selected:false},     
-     {img:'/images/100Things/003.png',selected:false},
-     {img:'/images/100Things/004.png',selected:false},
-     {img:'/images/100Things/005.png',selected:false},
-     {img:'/images/100Things/006.png',selected:false},
-     {img:'/images/100Things/007.png',selected:false},
-     {img:'/images/100Things/008.png',selected:false}],
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活12-Kathy阿姨.png',selected:false,phrase:"Kathy阿姨"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活13-看病.png',selected:false,phrase:"看病"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活14-超市会员.png',selected:false,phrase:"超市会员"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活15-CHO.png',selected:false,phrase:"CHO"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活16-plus dollar.png',selected:false,phrase:"plus dollar"},     
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活17-忘记ID.png',selected:false,phrase:"忘记ID"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活18-nickel.png',selected:false,phrase:"nickel"},
+    ],
  },
 /**
    * 生命周期函数--监听页面加载
@@ -55,6 +57,7 @@ Page({
       }
     })
     console.log(that.data.windowHeight,that.data.windowWidth)
+    //preload images and font
     wx.cloud.downloadFile({
       fileID: "cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/FZDaBiaoSong-B06S.ttf",
       success: res =>{
@@ -71,15 +74,55 @@ Page({
           that.setData({
             ['icons[' + i + '].img']: res.tempFilePath,
           })
-          console.log(that.data.icons)
         }
       })
     }
   },
 
-  onReady() {
+  imgLoad: function (e) {
+    this.setData({
+      load: this.data.load+1,
+      complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
+    })
+    console.log(this.data.complete)
+  },
+
+  handleNameInput: function(e){
+    this.data.userName = e.detail.value
+  },
+  handleDoubleTap: function(e) {
     var that = this
-    that._animate()
+    if(e.timeStamp - that.lastTap < 350){
+      this.setData({
+        mainPageAnimation1: 'slideOutLeft',
+      })
+      setTimeout(()=>{
+        this.setData({
+          hidden1: true,
+        })
+      },600)
+    }
+    that.lastTap = e.timeStamp
+  },
+
+  beginSelect: function() {
+    if(this.data.userName){
+      this.setData({
+        mainPageAnimation2: 'slideOutLeft',
+      })
+      setTimeout(()=>{
+        this.setData({
+          hidden2: true,
+        })
+        this._animate()
+      },600)
+    }else{
+      wx.showToast({
+        title: '请输入姓名啦（生成图片用~）',
+        icon: 'none',
+        duration: 1500
+      }) 
+    }
   },
 
   _animate: function() {
@@ -115,10 +158,10 @@ Page({
     var that = this
     if(!this.data.autoScrollOn){
       that.data.autoScroll = setInterval(function() {
-          if(that.data.scrollTop < 3000)
+          if(that.data.scrollTop < that.data.maxScrollTop)
             that.setData({        
               autoScrollOn:true,
-              scrollTop: that.data.scrollTop + 0,
+              scrollTop: that.data.scrollTop + 1,
             })
       }, 10)
     }

@@ -9,32 +9,50 @@
 -->
 
 <wxs src="../../../wxs/util.wxs" module="tools" />
+
+<view wx:if="{{load < imgNum}}" class="mask">
+  <text>You know what's up {{complete}}%</text>
+</view>
+
+<view hidden="{{hidden1}}" class="mainPage animated {{mainPageAnimation1}}" style="z-index:22;">
+  <image class="mainPageImg" mode="aspectFill" src="{{mainPage}}" bindtap="handleDoubleTap"></image>
+</view>
+
+<view hidden="{{hidden2}}" class="mainPage animated {{mainPageAnimation2}}">
+  <image class="mainPageImg" mode="aspectFill" src="{{background}}"></image>
+  <view class="inputUnit">
+    <input class="nameInput" placeholder="输入你的名字" placeholder-style="color:#b3b3b3;font-family: FZ;font-size: 40rpx;" bindinput="handleNameInput"></input>
+    <button class="beginButton" bindtap="beginSelect">开始</button>
+  </view>
+</view>
+
 <view class="status_bar">
   <view class="status_box">{{count}}/100</view>
 </view>
 
-<scroll-view id="scroller" scroll-y="{{scrollY}}" style='--height--:{{windowHeight}}px;' 
- show-scrollbar="{{false}}" bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' 
+<scroll-view id="scroller" scroll-y="{{scrollY}}" show-scrollbar="{{false}}" 
+bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' 
 scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
-<image style="position:fixed; z-index:-1; height:100%;width:{{(windowHeight/3300)*2550}}px;" src="{{background}}"></image>
+<image style="position:fixed; z-index:-1; height:100%;width:{{(windowHeight/3300)*2550}}px;" src="{{background}}" bindload="imgLoad"></image>
       
   <view class="icon_flex">
-    <view class="filler" style="--margintop--:400rpx;"></view>
+    <view style="height:80vh;display:block;"></view>
     <view wx:for="{{icons}}" wx:for-item="item" wx:key="index">
-      <view class="filler" style="--margintop--:{{tools.randomTop(windowHeight,index)}}px;"></view>
       <view class="icon_wrap {{item.selected ? 'active':'' }}" 
       style='--marginleft--:{{tools.randomLeft(windowWidth,index)}}px;--marginright--:{{tools.randomRight(windowWidth,index)}}px; --iconWidth--:{{iconWidth}}px;'>
-      <view class="icon animated {{item.animation}}" style="--iconWidth--:{{iconWidth}}px" id='the{{index}}' catchtouchstart='onTouch'>
+        <view class="icon animated {{item.animation}}" style="--iconWidth--:{{iconWidth}}px" id='the{{index}}' catchtouchstart='onTouch'>
           <view wx:if="{{!item.selected}}" class="icon_text">{{item.phrase}}</view>
           <view wx:else>
             <image class="icon" mode="aspectFill" src="{{item.img}}"></image>
           </view>
         </view>  
       </view>
+      <view class="filler" style="--margintop--:{{tools.randomTop(windowHeight,index)}}px;"></view>
+      
     </view>
   </view>
-  <view class="touch" >
+  <view class="touch">
     <button id="generate" bindtap="toResult">生成我的图片</button>
   </view>
-  
+
 </scroll-view>
