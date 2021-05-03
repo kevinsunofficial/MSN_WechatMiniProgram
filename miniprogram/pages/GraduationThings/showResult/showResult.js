@@ -16,11 +16,10 @@ Page({
 
   data: {
     // canvas
-     windowWidth: 0, //屏幕宽度
-     windowHeight: 0, //屏幕高度
+     vw: 0, //屏幕宽度
+     vh: 0, //屏幕高度
      canvasUrl: '', //canvas
-     qrCode:
-       '/images/msnQRcode.jpg', //小程序码https图片路径
+     qrCode:'/images/msnQRcode.jpg', //小程序码https图片路径
      canvasTempFile: '', //canvas临时图片
      show: [],
      userName: '',
@@ -30,87 +29,103 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    that.setData({
-      insideWidth: '100%'
+    wx.loadFontFace({
+      family: 'FZ',
+      source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
+      complete(res){
+        console.log(res)
+        that.generate()
+      },
     })
     var pages = getCurrentPages();
     var prevPage = pages[pages.length-2];
     var tmp = [];
     for(var i = 0; i < prevPage.data.icons.length; i++){
       if (prevPage.data.icons[i].selected)
-        tmp.push(prevPage.data.icons[i].img)
+        tmp.push(prevPage.data.icons[i])
     }
     this.setData({
       show: tmp,
       userName: prevPage.data.userName,
-    }, ()=>{  
-      this.generate()
+      mainLogo: prevPage.data.mainLogo,
+      avatar: prevPage.data.avatar,
+      count: prevPage.data.count,
+      resultTop: prevPage.data.resultTop,
+      resultBot: prevPage.data.resultBot,
     })
     //获取设备信息高度。计算出其他的高度等
     wx.getSystemInfo({
       success: function(res) {
+        let cal_height = Math.max(res.windowHeight, res.windowWidth*(1.2 + Math.floor(that.data.count/4)*0.35) || 0)
         that.setData({
-          windowWidth: res.windowWidth,
-          windowHeight: res.windowHeight,
-          iconSide: res.windowWidth*.3,
-          qrSide: res.windowWidth*.4,
-          halfScreen: res.windowWidth*.5
+          vw: res.windowWidth,
+          vh: res.windowHeight,
+          iconSide: res.windowWidth*.21,
+          qrSide: res.windowWidth*.3,
+          halfvw: res.windowWidth*.5,
+          leftMargin: res.windowWidth*.05,
+          imgHeight: cal_height,
         })
       }
     })
-    // this.getData()
   },
 
   generate: function(){        
     var that=this
     let ctx = wx.createCanvasContext('myCanvas') 
 
-    ctx.setFillStyle('#3F4FEE')//文字颜色：默认黑色
-    ctx.setFontSize(20)//设置字体大小，默认10
-    ctx.fillText(that.data.userName+"大学都干过啥事", 20, 30)//绘制文本
-    console.log(that.data.show)
-    //画图片
+    //background
+    // ctx.drawImage(that.data.background, 0, 0, 
+    //   (that.data.vh/3300)*2550, that.data.vh);
+    ctx.drawImage(that.data.resultTop,0,0,that.data.vw,that.data.vw/1079*715)
+    let tmp_height = that.data.vw/1080*242
+    ctx.drawImage(that.data.resultBot,0,that.data.imgHeight-tmp_height,that.data.vw,tmp_height)
+
+    //name + avatar
+    ctx.save()
+    ctx.beginPath()
+    ctx.arc(that.data.vw*0.16,that.data.vw*0.27,that.data.vw*0.11,0,2*Math.PI)
+    ctx.clip()
+    ctx.drawImage(that.data.avatar, that.data.vw*0.05, that.data.vw*0.16, 
+      that.data.vw*0.22, that.data.vw*0.22)
+    ctx.closePath(); 
+    ctx.restore()
+    // ctx.drawImage(that.data.mainLogo, that.data.vw*0.57, that.data.vw*0.05, 
+    //   that.data.vw*0.55, that.data.vw*0.5);
+      
+    //texts
+    ctx.setFillStyle('#222222')//文字颜色：默认黑色
+    ctx.font = 'bold 24px FZ'
+    ctx.setTextAlign('left')
+    ctx.fillText("你在UVA完成了"+that.data.count+"件事", 
+      that.data.vw*0.35, that.data.vw*0.6)
+    ctx.font = '20px FZ'
+    ctx.setTextAlign('center')
+    ctx.fillText(that.data.userName,that.data.vw*0.16, that.data.vw*0.45)
+
+    //画logos
     for(var i=0;i<that.data.show.length;i++){
-      var x_offset = (that.data.iconSide*1.1)*(i%3)+that.data.iconSide*.05,
-        y_offset = that.data.iconSide*1.1*Math.floor(i/3)+70;
+      var x_offset = (that.data.iconSide*1.1)*(i%4) + that.data.leftMargin,
+        y_offset = that.data.vw*0.35*Math.floor(i/4) + that.data.vw*0.7;
       ctx.save();
-      ctx.beginPath()
-      ctx.drawImage(that.data.show[i], x_offset, y_offset, 
+      ctx.beginPath();
+      ctx.drawImage(that.data.show[i].img, x_offset, y_offset, 
         that.data.iconSide, that.data.iconSide);
+      that.drawText(ctx,that.data.show[i].phrase,x_offset+that.data.iconSide/2,
+        y_offset + that.data.vw*0.25, 0, that.data.iconSide);
       ctx.closePath();
       ctx.restore();
     }
-    that.drawText(ctx,"再打个广告啥的关注微信号/小程序",
-    that.data.halfScreen, that.data.windowHeight*.65,20,that.data.halfScreen-20)
-    //画二维码
-    ctx.save();
-    ctx.beginPath()/
-    ctx.drawImage(that.data.qrCode, that.data.halfScreen, that.data.windowHeight*.7, 
-      that.data.qrSide, that.data.qrSide);
-    ctx.closePath();
-    ctx.restore();
+
 
     ctx.draw() //绘制到canvas
     that.generateCanvasImg()
   },
 
-  getData() {
-    let that = this
-    wx.getImageInfo({
-      src: that.data.goodsInfoImg,
-      success(res) {
-        var imgsize = that.getimageSize(
-          { width: res.width, height: res.height },
-          that.data.shadowWidth,
-          95
-        )
-        that.setData({
-          imgWidth: imgsize.width,
-          imgHeight: imgsize.height
-        })
-        that.createNewImg()
-      }
-    })
+  drawText(text){
+    ctx.fillText(text, x_offset+that.data.iconSide/2,
+      y_offset + that.data.vw*0.3,that.data.iconSide)
+    console.log(ctx.measureText(text))
   },
 
   // 图片适配（aspectFill）
@@ -165,7 +180,7 @@ Page({
     // 绘制大长方矩形
     ctx.setFillStyle(color)
     ctx.fillRect(
-      (that.data.windowWidth - that.data.boxWidth) / 2,
+      (that.data.vw - that.data.boxWidth) / 2,
       that.data.boxPageY,
       that.data.boxWidth,
       height
@@ -229,7 +244,7 @@ Page({
     // 绘制圆角矩形
     that.roundRect(
       ctx,
-      (that.data.windowWidth - that.data.boxWidth) / 2,
+      (that.data.vw - that.data.boxWidth) / 2,
       that.data.boxPageY,
       that.data.boxWidth,
       contentHeight - 32,
@@ -245,14 +260,14 @@ Page({
     ctx.save()
     ctx.beginPath()
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 + bg_r,
+      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
       that.data.imgPageY + bg_r,
       bg_r,
       Math.PI,
       Math.PI * 1.5
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 +
+      (that.data.vw - that.data.imgWidth) / 2 +
         that.data.imgWidth -
         bg_r,
       that.data.imgPageY + bg_r,
@@ -261,7 +276,7 @@ Page({
       Math.PI * 2
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 +
+      (that.data.vw - that.data.imgWidth) / 2 +
         that.data.imgWidth -
         bg_r,
       that.data.imgPageY + that.data.imgHeight - bg_r,
@@ -270,7 +285,7 @@ Page({
       Math.PI * 0.5
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 + bg_r,
+      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
       that.data.imgPageY + that.data.imgHeight - bg_r,
       bg_r,
       Math.PI * 0.5,
@@ -279,7 +294,7 @@ Page({
     ctx.clip()
     ctx.drawImage(
       that.data.goodsInfoImg,
-      (that.data.windowWidth - that.data.imgWidth) / 2,
+      (that.data.vw - that.data.imgWidth) / 2,
       that.data.imgPageY,
       that.data.imgWidth,
       that.data.imgHeight
@@ -289,14 +304,14 @@ Page({
     ctx.save()
     ctx.beginPath()
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 + bg_r,
+      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
       that.data.imgPageY + that.data.imgHeight - 60 + bg_r,
       30,
       Math.PI,
       Math.PI * 1.5
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 +
+      (that.data.vw - that.data.imgWidth) / 2 +
         that.data.imgWidth -
         bg_r,
       that.data.imgPageY + that.data.imgHeight - 60 + bg_r,
@@ -305,7 +320,7 @@ Page({
       Math.PI * 2
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 +
+      (that.data.vw - that.data.imgWidth) / 2 +
         that.data.imgWidth -
         bg_r,
       that.data.imgPageY + that.data.imgHeight - 60 + 60 - bg_r,
@@ -314,7 +329,7 @@ Page({
       Math.PI * 0.5
     )
     ctx.arc(
-      (that.data.windowWidth - that.data.imgWidth) / 2 + bg_r,
+      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
       that.data.imgPageY + that.data.imgHeight - 60 + 60 - bg_r,
       bg_r,
       Math.PI * 0.5,
@@ -323,7 +338,7 @@ Page({
     ctx.clip()
     ctx.setFillStyle('rgba(0,0,0,0.5)')
     ctx.fillRect(
-      (that.data.windowWidth - that.data.imgWidth) / 2,
+      (that.data.vw - that.data.imgWidth) / 2,
       that.data.imgPageY + that.data.imgHeight - 60,
       that.data.imgWidth,
       60
@@ -333,21 +348,21 @@ Page({
     ctx.font = 'normal 13px Microsoft YaHei'
     ctx.fillText(
       '标题logo',
-      (that.data.windowWidth - that.data.shadowWidth) / 2,
+      (that.data.vw - that.data.shadowWidth) / 2,
       that.data.imgPageY - 10
     )
     ctx.setFillStyle('#fff')
     // ctx.setTextAlign="center"
     ctx.fillText(
       '填商品名字',
-      (that.data.windowWidth - ctx.measureText('填商品名字').width) * 0.5,
+      (that.data.vw - ctx.measureText('填商品名字').width) * 0.5,
       that.data.imgPageY + that.data.imgHeight - 40
     )
     ctx.font = 'normal 22px Microsoft YaHei'
     ctx.setFillStyle('#ECC781')
     ctx.fillText(
       '填价格',
-      (that.data.windowWidth - ctx.measureText('填价格').width) * 0.5,
+      (that.data.vw - ctx.measureText('填价格').width) * 0.5,
       that.data.imgPageY + that.data.imgHeight - 10
     )
     // 绘制您的好友
@@ -355,14 +370,14 @@ Page({
     ctx.setFillStyle('#fff')
     ctx.fillText(
       '您的好友已为您',
-      (that.data.windowWidth - that.data.shadowWidth) / 2,
+      (that.data.vw - that.data.shadowWidth) / 2,
       that.data.shadowWidth + that.data.imgPageY + 30
     )
     ctx.font = 'normal 16px Microsoft YaHei'
     ctx.setFillStyle('#fff')
     ctx.fillText(
       '这里填所需文字',
-      (that.data.windowWidth - that.data.shadowWidth) / 2,
+      (that.data.vw - that.data.shadowWidth) / 2,
       that.data.shadowWidth + that.data.imgPageY + 52
     )
     // 绘制长按识别小程序
@@ -370,13 +385,13 @@ Page({
     ctx.setFillStyle('#AAAAAA')
     ctx.fillText(
       '长按识别小程序即可参与',
-      (that.data.windowWidth - that.data.shadowWidth) / 2,
+      (that.data.vw - that.data.shadowWidth) / 2,
       that.data.shadowWidth + that.data.imgPageY + 80
     )
     // 填充小程序码
     ctx.drawImage(
       that.data.qrCode,
-      (that.data.windowWidth - that.data.shadowWidth) / 2 +
+      (that.data.vw - that.data.shadowWidth) / 2 +
         that.data.shadowWidth -
         that.data.codeWidth,
       that.data.shadowWidth + that.data.imgPageY + 80 - that.data.codeHeight,
@@ -393,21 +408,23 @@ Page({
   drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth) {
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+    let font_size = 15
+    ctx.font = ''+font_size+'px FZ'
     for (let i = 0; i < str.length; i++) {
       lineWidth += ctx.measureText(str[i]).width;
       if (lineWidth > canvasWidth) {
         ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
-        initHeight += 20; 
+        initHeight += font_size; 
         lineWidth = 0;
         lastSubStrIndex = i;
-        titleHeight += 30;
+        titleHeight += font_size;
       }
       if (i == str.length - 1) { //绘制剩余部分
         ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
       }
     }
     // 标题border-bottom 线距顶部距离
-    titleHeight = titleHeight + 10;
+    titleHeight = titleHeight + 20;
     return titleHeight
   },
 
@@ -423,7 +440,6 @@ Page({
           that.setData({
             canvasTempFile: res.tempFilePath
           })
-          console.log(that.data.canvasTempFile)
         },
         fail: function(res) {
           console.log(res)

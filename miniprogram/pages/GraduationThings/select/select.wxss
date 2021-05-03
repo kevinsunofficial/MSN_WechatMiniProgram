@@ -19,7 +19,7 @@
   color: rgb(245, 245, 245);
   font-family: Arial, Helvetica, sans-serif;
   opacity: 1;
-  z-index: 20;
+  z-index: 100;
 }
 
 .mainPage {
@@ -36,23 +36,36 @@
 }
 .inputUnit{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 50rpx;
-  margin-top: 48vh;
+  margin-top: 45vh;
 }
 .nameInput{  
   outline-style: none;
-  border: 2rpx solid #ccc; 
+  border: 5rpx solid #ccc; 
+  border-style: dotted solid;
   background: white;
-  padding: 14rpx 14rpx;
-  width: 400rpx;
+  padding: 15rpx 15rpx;
+  width: 600rpx;
+  margin: 25rpx;
   font-family: "Microsoft soft";
 }
 .beginButton{
   background: #66ccff;
+  color: #333333;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-family: FZ;
   font-size: 40rpx;
+  padding: 10rpx 10rpx;
+}
+.beginButton:hover{
+  opacity: 0.7;
 }
 
 scroll-view {

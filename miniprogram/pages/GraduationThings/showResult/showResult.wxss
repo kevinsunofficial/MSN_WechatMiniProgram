@@ -6,16 +6,3 @@
  * Author:
  * Yuchen Sun
  */
-
- .image{
-   width: 100vw;
-   height: 100vh;
- }
- 
- .icon{
-  width: 100px; 
-  height: 100px;
-  border-radius: 40%;
-  display: block;
-  background-color: #f7e9f4;
-}

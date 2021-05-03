@@ -16,13 +16,17 @@
 
 <view hidden="{{hidden1}}" class="mainPage animated {{mainPageAnimation1}}" style="z-index:22;">
   <image class="mainPageImg" mode="aspectFill" src="{{mainPage}}" bindtap="handleDoubleTap"></image>
+  <button type="primary" bindtap="getInfo" style="margin-top:83vh;z-index=0;">登录授权头像</button>
 </view>
 
 <view hidden="{{hidden2}}" class="mainPage animated {{mainPageAnimation2}}">
   <image class="mainPageImg" mode="aspectFill" src="{{background}}"></image>
   <view class="inputUnit">
-    <input class="nameInput" placeholder="输入你的名字" placeholder-style="color:#b3b3b3;font-family: FZ;font-size: 40rpx;" bindinput="handleNameInput"></input>
-    <button class="beginButton" bindtap="beginSelect">开始</button>
+    <view style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%;">
+      <input class="nameInput" placeholder="输入你的名字" placeholder-style="color:#b3b3b3;font-family: FZ;font-size: 40rpx;" bindinput="handleNameInput"></input>
+      <button class="beginButton" bindtap="beginSelect">开始</button>
+    </view>
+    <text style="font-family: FZ; font-size: 28rpx; padding: 10rpx 10rpx;">*不填会默认使用微信名</text>
   </view>
 </view>
 
@@ -51,8 +55,9 @@ scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
       
     </view>
   </view>
+
+  <!-- <view class="filler" style="--margintop--:{{tools.randomTop(windowHeight,index)}}px;"></view> -->
   <view class="touch">
     <button id="generate" bindtap="toResult">生成我的图片</button>
   </view>
-
 </scroll-view>

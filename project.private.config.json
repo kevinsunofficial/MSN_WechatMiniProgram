@@ -1,0 +1,57 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/GraduationThings/select/select",
+          "pathName": "pages/GraduationThings/select/select",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/GraduationThings/showResult/showResult",
+          "pathName": "pages/GraduationThings/showResult/showResult",
+          "query": "id=043ba0325f2c8a0600270f0246ceee5c",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "pages/upload/upload",
+          "pathName": "pages/upload/upload",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/MarketPlace/market/market",
+          "pathName": "pages/MarketPlace/market/market",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "id=15d399db5f1c944c008a4ab63779d78d",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/personalItem/personalItem",
+          "pathName": "pages/personalItem/personalItem",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -9,6 +9,7 @@
 
 
 var app = getApp();
+const bgm = wx.getBackgroundAudioManager()
 
 Page({
 
@@ -25,20 +26,39 @@ Page({
      count: 0,
      load: 0,    
      complete: 0,
-     imgNum: 1,
-     userName: "",
-     mainPage: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ThingsHomescreen.jpg',
+     imgNum: 10,
+     userName: 'zhx',
+     mainPage: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/Mainpage.jpg',
      background: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/background.jpg',
+     mainLogo:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ThingsLogo.png',
+     resultTop:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ResultTop.png',
+     resultBot:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ResultBot.png',
      icons: [{img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐8-lime.png',selected:false,phrase:"骑过一次lime滑板车"},
      {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活1-二手交易.png',selected:false,phrase:"达成一次二手交易"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活10-道别.png',selected:false,phrase:"认真道别一次"},
      {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活11-桑拿.png',selected:false,phrase:"在AFC蒸一次桑拿"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活12-Kathy阿姨.png',selected:false,phrase:"Kathy阿姨"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活13-看病.png',selected:false,phrase:"看病"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活14-超市会员.png',selected:false,phrase:"超市会员"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活15-CHO.png',selected:false,phrase:"CHO"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活16-plus dollar.png',selected:false,phrase:"plus dollar"},     
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活17-忘记ID.png',selected:false,phrase:"忘记ID"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活18-nickel.png',selected:false,phrase:"nickel"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活12-Kathy阿姨.png',selected:false,phrase:"在Newcomb和门口刷卡的Kathy阿姨拥抱"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活13-看病.png',selected:false,phrase:"在UVA Hospital看病"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活14-超市会员.png',selected:false,phrase:"办过UVA附近超市的会员卡"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活15-CHO.png',selected:false,phrase:"在CHO坐飞机"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活19-测covid.png',selected:false,phrase:"做过COVID Testing"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活2-看雪.png',selected:false,phrase:"亲眼见过夏村的一场雪"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活20-northground.png',selected:false,phrase:"光顾Northground"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活21-1515.png',selected:false,phrase:"在1515自习"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活22-过年.png',selected:false,phrase:"和朋友一起过年"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活23-bus.png',selected:false,phrase:"坐Bus去Barracks"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活24-火警.png',selected:false,phrase:"被宿舍/食堂/教室的火警轰出来一次"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活25-prime.png',selected:false,phrase:"办过Amazon Prime"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活3-东方店.png',selected:false,phrase:"在东方店买过超过两个纸箱份量的食物"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活4-过夜.png',selected:false,phrase:"在别人的宿舍/家里过夜"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活5-校园恋爱.png',selected:false,phrase:"谈过一场校园恋爱"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活6-不同国家的朋友.png',selected:false,phrase:"结实不同国籍的朋友"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活7-卫衣.png',selected:false,phrase:"穿UVA的卫衣出门"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活8-租房.png',selected:false,phrase:"和朋友一起租房"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活9-毕业照.png',selected:false,phrase:"在Rotunda拍毕业照"},
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活16-plus dollar.png',selected:false,phrase:"学期过半前花完Plus Dollars"},     
+    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活17-忘记ID.png',selected:false,phrase:"忘带ID把自己锁在宿舍外面"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活18-nickel.png',selected:false,phrase:"依旧保留着开学典礼上发的Nickel"},
     ],
  },
 /**
@@ -46,6 +66,14 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+
+    //background music
+    bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
+    // bgm.title = 'Supermarket Flowers'
+    bgm.onEnded(()=>{
+      bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
+    })
+
     //获取设备信息高度。计算出其他的高度等
     wx.getSystemInfo({
       success: function(res) {
@@ -58,15 +86,13 @@ Page({
     })
     console.log(that.data.windowHeight,that.data.windowWidth)
     //preload images and font
-    wx.cloud.downloadFile({
-      fileID: "cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/FZDaBiaoSong-B06S.ttf",
-      success: res =>{
         wx.loadFontFace({
           family: 'FZ',
-          source: 'url("' + res.tempFilePath + '")',
+          source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
+          complete(res){
+            console.log(res)
+          }
         })
-      }
-    })
     for(let i = 0; i < that.data.icons.length;i++){
       wx.cloud.downloadFile({
         fileID: that.data.icons[i].img,
@@ -74,9 +100,58 @@ Page({
           that.setData({
             ['icons[' + i + '].img']: res.tempFilePath,
           })
+          that.imgLoad()
         }
       })
     }
+    that.cacheImage(that.data.mainLogo,'mainLogo')
+    that.cacheImage(that.data.background,'background')
+    that.cacheImage(that.data.resultTop,'resultTop')
+    that.cacheImage(that.data.resultBot,'resultBot')
+  },
+
+  cacheImage: function(id, name){
+    var that = this
+    wx.cloud.downloadFile({
+      fileID: id,
+      success: res =>{
+        that.setData({
+          [name]: res.tempFilePath,
+        })
+      },
+    })
+  },
+
+  getInfo: function() {
+    var that = this
+    wx.getUserProfile({
+      desc: '用于生成最终图片', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res.userInfo)
+        that.setData({
+          userName: res.userInfo.nickName,
+        })
+        wx.downloadFile({
+          url: res.userInfo.avatarUrl, 
+          success(downloadRes) {
+            if (downloadRes.statusCode === 200) {
+              that.setData({
+                avatar: downloadRes.tempFilePath
+              })
+            }
+          }
+        })
+        //跳到下页
+        that.setData({
+          mainPageAnimation1: 'slideOutLeft',
+        })
+        setTimeout(()=>{
+          that.setData({
+            hidden1: true,
+          })
+        },600)
+      }
+    })
   },
 
   imgLoad: function (e) {
@@ -84,7 +159,7 @@ Page({
       load: this.data.load+1,
       complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
     })
-    console.log(this.data.complete)
+    console.log("complete precent: ", this.data.complete)
   },
 
   handleNameInput: function(e){
@@ -131,7 +206,6 @@ Page({
       scrollOffset: true, 
       size: true,
     }, (res) => {
-      console.log(res);
       this.setData({
         maxScrollTop: res.scrollHeight - res.height,
       })
@@ -161,7 +235,7 @@ Page({
           if(that.data.scrollTop < that.data.maxScrollTop)
             that.setData({        
               autoScrollOn:true,
-              scrollTop: that.data.scrollTop + 1,
+              scrollTop: that.data.scrollTop + 1.3,
             })
       }, 10)
     }
