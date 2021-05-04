@@ -9,7 +9,6 @@
 /**
  * Trial page
  */
-
 var app = getApp();
 
 Page({
@@ -29,17 +28,11 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    wx.loadFontFace({
-      family: 'FZ',
-      source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
-      complete(res){
-        console.log(res)
-        that.generate()
-      },
-    })
     var pages = getCurrentPages();
     var prevPage = pages[pages.length-2];
     var tmp = [];
+    const dpr = wx.getSystemInfoSync().pixelRatio
+    console.log(dpr)
     for(var i = 0; i < prevPage.data.icons.length; i++){
       if (prevPage.data.icons[i].selected)
         tmp.push(prevPage.data.icons[i])
@@ -56,364 +49,144 @@ Page({
     //获取设备信息高度。计算出其他的高度等
     wx.getSystemInfo({
       success: function(res) {
-        let cal_height = Math.max(res.windowHeight, res.windowWidth*(1.2 + Math.floor(that.data.count/4)*0.35) || 0)
+        let cal_height = Math.max(res.windowHeight, res.windowWidth*(1.2 + Math.floor((that.data.count-1)/4)*0.35) || 0)*dpr
         that.setData({
-          vw: res.windowWidth,
-          vh: res.windowHeight,
-          iconSide: res.windowWidth*.21,
-          qrSide: res.windowWidth*.3,
-          halfvw: res.windowWidth*.5,
-          leftMargin: res.windowWidth*.05,
+          windowWidth: res.windowWidth,
+          windowHeight: res.windowHeight,
+          vw: res.windowWidth*dpr,
+          vh: res.windowHeight*dpr,
+          iconSide: res.windowWidth*.21*dpr,
+          leftMargin: res.windowWidth*.03*dpr,
           imgHeight: cal_height,
         })
       }
     })
+    
+    this.loadFont().then(()=>{
+      that.generate(dpr)
+    })
   },
 
-  generate: function(){        
+  loadFont(){
+    return new Promise((resolve,reject)=>{
+      wx.loadFontFace({
+        scopes: ['native','webview'],
+        family: 'FZ',
+        source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
+        complete: function(res) {
+          console.log(res)
+          resolve(res)
+        }
+      })
+    })
+  },
+
+  loadAndDrawImg(canvas, ctx, image, a,b,c,d){
+    const tmp = canvas.createImage()
+    tmp.src = image
+    tmp.onload = function (res) {
+      ctx.drawImage(tmp,a,b,c,d)
+    }
+  },
+
+  loadImg(canvas, image){
+    return new Promise((resolve,reject)=>{
+      let tmp = canvas.createImage()
+      tmp.src = image
+      tmp.onload = function (res) {
+        resolve(tmp)
+      }
+    })
+  },
+
+  async generate(dpr){        
     var that=this
-    let ctx = wx.createCanvasContext('myCanvas') 
-
+    //获取canvas
+    const canvas = await new Promise((resolve,reject)=>{
+      wx.createSelectorQuery()
+      .select('#canvas')
+      .fields({
+        node: true,
+        size: true,
+      }).exec(async(res)=>{
+        resolve(res[0].node)
+      })
+    })
+    canvas.width = that.data.vw;
+    canvas.height = that.data.imgHeight;
+    const ctx = canvas.getContext('2d') 
     //background
-    // ctx.drawImage(that.data.background, 0, 0, 
-    //   (that.data.vh/3300)*2550, that.data.vh);
-    ctx.drawImage(that.data.resultTop,0,0,that.data.vw,that.data.vw/1079*715)
-    let tmp_height = that.data.vw/1080*242
-    ctx.drawImage(that.data.resultBot,0,that.data.imgHeight-tmp_height,that.data.vw,tmp_height)
-
-    //name + avatar
     ctx.save()
     ctx.beginPath()
-    ctx.arc(that.data.vw*0.16,that.data.vw*0.27,that.data.vw*0.11,0,2*Math.PI)
-    ctx.clip()
-    ctx.drawImage(that.data.avatar, that.data.vw*0.05, that.data.vw*0.16, 
-      that.data.vw*0.22, that.data.vw*0.22)
-    ctx.closePath(); 
+    that.loadImg(canvas,that.data.resultTop).then(res=>{
+      ctx.drawImage(res,0,0,that.data.vw,that.data.vw/1079*715)
+      //texts need to appear above
+      ctx.fillStyle = '#222222'
+      ctx.font = 'bold '+24*dpr+'px FZ'
+      ctx.textAlign = 'left'
+      ctx.fillText("你在UVA完成了"+that.data.count+"件事", 
+        that.data.vw*0.35, that.data.vw*0.6)
+      ctx.font = 20*dpr+'px FZ'
+      ctx.textAlign ='center'
+      ctx.fillText(that.data.userName,that.data.vw*0.16, that.data.vw*0.46)
+      //avatar too
+      that.loadImg(canvas,that.data.avatar).then(res=>{
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(that.data.vw*0.16,that.data.vw*0.28,that.data.vw*0.11,0,2*Math.PI)
+        ctx.clip()
+        ctx.drawImage(res, that.data.vw*0.05, that.data.vw*0.17, 
+          that.data.vw*0.22, that.data.vw*0.22)
+        ctx.closePath() 
+        ctx.restore()
+      })
+    })
+    // ctx.drawImage(that.data.resultTop,0,0,that.data.vw,that.data.vw/1079*715)
+    let tmp_height = that.data.vw/1080*242
+    that.loadImg(canvas,that.data.resultBot).then(res=>{
+      ctx.drawImage(res,0,that.data.imgHeight-tmp_height,that.data.vw,tmp_height)
+    })
+    // ctx.drawImage(that.data.resultBot,0,that.data.imgHeight-tmp_height,that.data.vw,tmp_height)
+    ctx.closePath() 
     ctx.restore()
-    // ctx.drawImage(that.data.mainLogo, that.data.vw*0.57, that.data.vw*0.05, 
-    //   that.data.vw*0.55, that.data.vw*0.5);
-      
-    //texts
-    ctx.setFillStyle('#222222')//文字颜色：默认黑色
-    ctx.font = 'bold 24px FZ'
-    ctx.setTextAlign('left')
-    ctx.fillText("你在UVA完成了"+that.data.count+"件事", 
-      that.data.vw*0.35, that.data.vw*0.6)
-    ctx.font = '20px FZ'
-    ctx.setTextAlign('center')
-    ctx.fillText(that.data.userName,that.data.vw*0.16, that.data.vw*0.45)
 
     //画logos
-    for(var i=0;i<that.data.show.length;i++){
-      var x_offset = (that.data.iconSide*1.1)*(i%4) + that.data.leftMargin,
+    for(let i=0;i<that.data.show.length;i++){
+      let x_offset = (that.data.iconSide*1.15)*(i%4) + that.data.leftMargin,
         y_offset = that.data.vw*0.35*Math.floor(i/4) + that.data.vw*0.7;
       ctx.save();
       ctx.beginPath();
-      ctx.drawImage(that.data.show[i].img, x_offset, y_offset, 
-        that.data.iconSide, that.data.iconSide);
+      that.loadImg(canvas,that.data.show[i].img).then(res=>{
+        ctx.drawImage(res,x_offset, y_offset, that.data.iconSide, that.data.iconSide)
+      })
+      // ctx.drawImage(that.data.show[i].img, x_offset, y_offset, 
+      //   that.data.iconSide, that.data.iconSide);
       that.drawText(ctx,that.data.show[i].phrase,x_offset+that.data.iconSide/2,
-        y_offset + that.data.vw*0.25, 0, that.data.iconSide);
+        y_offset + that.data.vw*0.25, 0, that.data.iconSide,dpr);
       ctx.closePath();
       ctx.restore();
     }
 
-
-    ctx.draw() //绘制到canvas
-    that.generateCanvasImg()
-  },
-
-  drawText(text){
-    ctx.fillText(text, x_offset+that.data.iconSide/2,
-      y_offset + that.data.vw*0.3,that.data.iconSide)
-    console.log(ctx.measureText(text))
-  },
-
-  // 图片适配（aspectFill）
-  getimageSize: function(imageSize, w, h) {
-    if (imageSize.width < w) {
-      if (imageSize.height < h) {
-        var scale1 = imageSize.height / imageSize.width
-        var scale2 = h / imageSize.height
-        if (scale1 > scale2) {
-          imageSize.height = (imageSize.height / imageSize.width) * w
-          imageSize.width = w
-        } else {
-          imageSize.width = (imageSize.width / imageSize.height) * h
-          imageSize.height = h
-        }
-      } else {
-        imageSize.height = (imageSize.height / imageSize.width) * w
-        imageSize.width = w
-      }
-    } else if (imageSize.height < h) {
-      if (imageSize.width < w) {
-        var scale1 = imageSize.height / imageSize.width
-        var scale2 = h / imageSize.height
-        if (scale1 > scale2) {
-          imageSize.height = (imageSize.height / imageSize.width) * w
-          imageSize.width = w
-        } else {
-          imageSize.width = (imageSize.width / imageSize.height) * h
-          imageSize.height = h
-        }
-      } else {
-        imageSize.width = (imageSize.width / imageSize.height) * h
-        imageSize.height = h
-      }
-    } else {
-      var scale1 = imageSize.height / imageSize.width
-      var scale2 = h / imageSize.height
-      if (scale1 > scale2) {
-        imageSize.height = (imageSize.height / imageSize.width) * w
-        imageSize.width = w
-      } else {
-        imageSize.width = (imageSize.width / imageSize.height) * h
-        imageSize.height = h
-      }
-    }
-    return imageSize
-  },
-
-  //画矩形，也是整块画布的大小，宽度是屏幕宽度，高度根据内容多少来动态设置。
-  drawSquare: function(ctx, height, color) {
-    let that = this
-    // 绘制大长方矩形
-    ctx.setFillStyle(color)
-    ctx.fillRect(
-      (that.data.vw - that.data.boxWidth) / 2,
-      that.data.boxPageY,
-      that.data.boxWidth,
-      height
-    )
-  },
-
-  // ctx:canvas中的createCanvasContext,
-  // x:矩形左上角的x坐标
-  // y:矩形左上角的y坐标
-  // w:矩形宽度
-  // h:矩形高度
-  // r:圆弧半径
-  roundRect: function(ctx, x, y, w, h, r) {
-    // 开始绘制
-    ctx.beginPath()
-    // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
-    // 这里是使用 fill 还是 stroke都可以，二选一即可
-    ctx.setFillStyle('transparent')
-    // ctx.setStrokeStyle('transparent')
-    // 左上角
-    ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
-
-    // border-top
-    ctx.moveTo(x + r, y)
-    ctx.lineTo(x + w - r, y)
-    ctx.lineTo(x + w, y + r)
-    // 右上角
-    ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
-
-    // border-right
-    ctx.lineTo(x + w, y + h - r)
-    ctx.lineTo(x + w - r, y + h)
-    // 右下角
-    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
-
-    // border-bottom
-    ctx.lineTo(x + r, y + h)
-    ctx.lineTo(x, y + h - r)
-    // 左下角
-    ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
-
-    // border-left
-    ctx.lineTo(x, y + r)
-    ctx.lineTo(x + r, y)
-
-    // 这里是使用 fill 还是 stroke都可以，二选一即可，但是需要与上面对应
-    ctx.fill()
-    // ctx.stroke()
-    ctx.closePath()
-    // 剪切
-    ctx.clip()
-    ctx.restore()
-  },
-
-  // 根据文字多少动态计算高度，然后依次画出矩形，文字，横线和小程序码。
-  createNewImg: function() {
-    let that = this
-    let ctx = wx.createCanvasContext('myCanvas')
-    // let contentHeight = that.data.boxheight  //修改图片高度
-    let contentHeight = that.data.shadowWidth + that.data.imgPageY + 100
-    // 绘制圆角矩形
-    that.roundRect(
-      ctx,
-      (that.data.vw - that.data.boxWidth) / 2,
-      that.data.boxPageY,
-      that.data.boxWidth,
-      contentHeight - 32,
-      14
-    )
-    that.drawSquare(ctx, contentHeight, '#333')
-    that.setData({
-      contentHeight: contentHeight
-    })
-    //商品图片
-    // 绘制图片圆角
-    let bg_r = 14
-    ctx.save()
-    ctx.beginPath()
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
-      that.data.imgPageY + bg_r,
-      bg_r,
-      Math.PI,
-      Math.PI * 1.5
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 +
-        that.data.imgWidth -
-        bg_r,
-      that.data.imgPageY + bg_r,
-      bg_r,
-      Math.PI * 1.5,
-      Math.PI * 2
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 +
-        that.data.imgWidth -
-        bg_r,
-      that.data.imgPageY + that.data.imgHeight - bg_r,
-      bg_r,
-      0,
-      Math.PI * 0.5
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
-      that.data.imgPageY + that.data.imgHeight - bg_r,
-      bg_r,
-      Math.PI * 0.5,
-      Math.PI
-    )
-    ctx.clip()
-    ctx.drawImage(
-      that.data.goodsInfoImg,
-      (that.data.vw - that.data.imgWidth) / 2,
-      that.data.imgPageY,
-      that.data.imgWidth,
-      that.data.imgHeight
-    )
-    ctx.restore()
-    // 绘制商品蒙层矩形
-    ctx.save()
-    ctx.beginPath()
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
-      that.data.imgPageY + that.data.imgHeight - 60 + bg_r,
-      30,
-      Math.PI,
-      Math.PI * 1.5
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 +
-        that.data.imgWidth -
-        bg_r,
-      that.data.imgPageY + that.data.imgHeight - 60 + bg_r,
-      30,
-      Math.PI * 1.5,
-      Math.PI * 2
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 +
-        that.data.imgWidth -
-        bg_r,
-      that.data.imgPageY + that.data.imgHeight - 60 + 60 - bg_r,
-      bg_r,
-      0,
-      Math.PI * 0.5
-    )
-    ctx.arc(
-      (that.data.vw - that.data.imgWidth) / 2 + bg_r,
-      that.data.imgPageY + that.data.imgHeight - 60 + 60 - bg_r,
-      bg_r,
-      Math.PI * 0.5,
-      Math.PI
-    )
-    ctx.clip()
-    ctx.setFillStyle('rgba(0,0,0,0.5)')
-    ctx.fillRect(
-      (that.data.vw - that.data.imgWidth) / 2,
-      that.data.imgPageY + that.data.imgHeight - 60,
-      that.data.imgWidth,
-      60
-    )
-    ctx.restore()
-    ctx.setFillStyle('#fff')
-    ctx.font = 'normal 13px Microsoft YaHei'
-    ctx.fillText(
-      '标题logo',
-      (that.data.vw - that.data.shadowWidth) / 2,
-      that.data.imgPageY - 10
-    )
-    ctx.setFillStyle('#fff')
-    // ctx.setTextAlign="center"
-    ctx.fillText(
-      '填商品名字',
-      (that.data.vw - ctx.measureText('填商品名字').width) * 0.5,
-      that.data.imgPageY + that.data.imgHeight - 40
-    )
-    ctx.font = 'normal 22px Microsoft YaHei'
-    ctx.setFillStyle('#ECC781')
-    ctx.fillText(
-      '填价格',
-      (that.data.vw - ctx.measureText('填价格').width) * 0.5,
-      that.data.imgPageY + that.data.imgHeight - 10
-    )
-    // 绘制您的好友
-    ctx.font = 'normal 16px Microsoft YaHei'
-    ctx.setFillStyle('#fff')
-    ctx.fillText(
-      '您的好友已为您',
-      (that.data.vw - that.data.shadowWidth) / 2,
-      that.data.shadowWidth + that.data.imgPageY + 30
-    )
-    ctx.font = 'normal 16px Microsoft YaHei'
-    ctx.setFillStyle('#fff')
-    ctx.fillText(
-      '这里填所需文字',
-      (that.data.vw - that.data.shadowWidth) / 2,
-      that.data.shadowWidth + that.data.imgPageY + 52
-    )
-    // 绘制长按识别小程序
-    ctx.font = 'normal 12px Microsoft YaHei'
-    ctx.setFillStyle('#AAAAAA')
-    ctx.fillText(
-      '长按识别小程序即可参与',
-      (that.data.vw - that.data.shadowWidth) / 2,
-      that.data.shadowWidth + that.data.imgPageY + 80
-    )
-    // 填充小程序码
-    ctx.drawImage(
-      that.data.qrCode,
-      (that.data.vw - that.data.shadowWidth) / 2 +
-        that.data.shadowWidth -
-        that.data.codeWidth,
-      that.data.shadowWidth + that.data.imgPageY + 80 - that.data.codeHeight,
-      that.data.codeWidth,
-      that.data.codeHeight
-    )
-    ctx.draw() //绘制到canvas
-    that.generateCanvasImg()
+    that.generateCanvasImg(canvas)
   },
 
   /**
    * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
    */
-  drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth) {
+  drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, dpr) {
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
-    let font_size = 15
+    let font_size = 15*dpr
     ctx.font = ''+font_size+'px FZ'
+    ctx.textAlign = 'center'
     for (let i = 0; i < str.length; i++) {
       lineWidth += ctx.measureText(str[i]).width;
       if (lineWidth > canvasWidth) {
-        ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
+        let tmp = str.substring(lastSubStrIndex, i)
+        if(/^[A-z]$/.test(str[i]) && /^[A-z]$/.test(str[i-1])){
+          tmp = tmp + '-'
+        }
+        ctx.fillText(tmp, leftWidth, initHeight); //绘制截取部分
         initHeight += font_size; 
         lineWidth = 0;
         lastSubStrIndex = i;
@@ -429,11 +202,11 @@ Page({
   },
 
 // 生成图片中,这个方法是生成临时图片代替canvas展示，因为小程序里面canvas的层级太高，会挡住弹窗的内容，所有需要把canvas放到视图之外，用img展示即可
-  generateCanvasImg() {
+  generateCanvasImg(canvasObj) {
     var that = this
     setTimeout(function() {
       wx.canvasToTempFilePath({
-        canvasId: 'myCanvas',
+        canvas: canvasObj,
         fileType: 'jpg',
         success: function(res) {
           wx.hideLoading()
