@@ -26,7 +26,7 @@ var subplus = function(val) {
   var randomTop = function(val,seed) {
     seed = seed * 200/7 + 105;
     var r = '0.'+Math.sin(seed).toString().substring(6);
-    var margin = val * (0.1 + 0.15 * r);
+    var margin = val * (0.05 + 0.05 * r);
     return margin;
   }
 

@@ -10,12 +10,13 @@
 
 <wxs src="../../../wxs/util.wxs" module="tools" />
 
-<view wx:if="{{load < imgNum}}" class="mask">
-  <text>You know what's up {{complete}}%</text>
+<view wx:if="{{complete < 100}}" class="mask">
+  <text>图片略多需要加载一会哟</text>
+  <text>{{complete}}% Complete</text>
 </view>
 
 <view hidden="{{hidden1}}" class="mainPage animated {{mainPageAnimation1}}" style="z-index:22;">
-  <image class="mainPageImg" mode="aspectFill" src="{{mainPage}}" bindtap="handleDoubleTap"></image>
+  <image class="mainPageImg" mode="aspectFill" src="{{mainPage}}"></image>
   <button type="primary" bindtap="getInfo" style="margin-top:83vh;z-index=0;">登录授权头像</button>
 </view>
 
@@ -40,7 +41,7 @@ scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
 <image style="position:fixed; z-index:-1; height:100%;width:{{(windowHeight/3300)*2550}}px;" src="{{background}}" bindload="imgLoad"></image>
       
   <view class="icon_flex">
-    <view style="height:80vh;display:block;"></view>
+    <view style="height:50vh;display:block;"></view>
     <view wx:for="{{icons}}" wx:for-item="item" wx:key="index">
       <view class="icon_wrap {{item.selected ? 'active':'' }}" 
       style='--marginleft--:{{tools.randomLeft(windowWidth,index)}}px;--marginright--:{{tools.randomRight(windowWidth,index)}}px; --iconWidth--:{{iconWidth}}px;'>

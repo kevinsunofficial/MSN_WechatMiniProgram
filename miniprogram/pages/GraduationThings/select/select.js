@@ -26,39 +26,113 @@ Page({
      count: 0,
      load: 0,    
      complete: 0,
-     imgNum: 8,
      userName: 'zhx',
      mainPage: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/Mainpage.jpg',
      background: 'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/background.jpg',
      mainLogo:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ThingsLogo.png',
      resultTop:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ResultTop.png',
      resultBot:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/ResultBot.png',
-     icons: [{img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐8-lime.png',selected:false,phrase:"骑过一次lime滑板车"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活1-二手交易.png',selected:false,phrase:"达成一次二手交易"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活10-道别.png',selected:false,phrase:"认真道别一次"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活11-桑拿.png',selected:false,phrase:"在AFC蒸一次桑拿"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活12-Kathy阿姨.png',selected:false,phrase:"在NC和Kathy阿姨拥抱"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活13-看病.png',selected:false,phrase:"在UVA Hospital看病"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活14-超市会员.png',selected:false,phrase:"办过UVA附近超市的会员卡"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活15-CHO.png',selected:false,phrase:"在CHO坐飞机"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活19-测covid.png',selected:false,phrase:"做过COVID Testing"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活2-看雪.png',selected:false,phrase:"亲眼见过夏村的一场雪"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活20-northground.png',selected:false,phrase:"光顾Northground"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活21-1515.png',selected:false,phrase:"在1515自习"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活22-过年.png',selected:false,phrase:"和朋友一起过年"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活23-bus.png',selected:false,phrase:"坐Bus去Barracks"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活24-火警.png',selected:false,phrase:"被火警轰出建筑"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活25-prime.png',selected:false,phrase:"办过Amazon Prime"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活3-东方店.png',selected:false,phrase:"在东方店买过两大箱的食物"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活4-过夜.png',selected:false,phrase:"在别人的宿舍/家里过夜"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活5-校园恋爱.png',selected:false,phrase:"谈过一场校园恋爱"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活6-不同国家的朋友.png',selected:false,phrase:"结实不同国籍的朋友"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活7-卫衣.png',selected:false,phrase:"穿UVA的卫衣出门"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活8-租房.png',selected:false,phrase:"和朋友一起租房"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活9-毕业照.png',selected:false,phrase:"在Rotunda拍毕业照"},
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活16-plus dollar.png',selected:false,phrase:"半学期花完Plus Dollars"},     
-    //  {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活17-忘记ID.png',selected:false,phrase:"忘带ID把自己锁在宿舍外面"},
-     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活18-nickel.png',selected:false,phrase:"保留着开学典礼上发的Nickel"},
+     icons: [
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐6 - 在Beta Bridge上画画.jpg',selected:true,phrase:"在Beta Bridge上画画"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐5 - 在ohill看星星.jpg',selected:true,phrase:"在O'Hill看星星"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐4 - 在cartes农场摘桃子.jpg',selected:true,phrase:"在Cartes农场摘桃子"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐2 - 参加过mentor program.jpg',selected:true,phrase:"参加过mentor program"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐1 - Trick or Treat on the Lawn.jpg',selected:true,phrase:"在万圣节给孩子们发糖"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐15 - 去Monticello膜拜Jefferson校长.jpg',selected:true,phrase:"去过Monticello"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐14 - 撸过the Castle的小猫Bonny.jpg',selected:true,phrase:"撸过Castle的小猫Bonny"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐13 - 去clemons图书馆玩VR.jpg',selected:true,phrase:"去Clemons玩VR"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐12 - 和朋友一起出去旅游.jpg',selected:true,phrase:"和朋友一起出去旅游"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐11 - 去farmer‘s market 赶集.jpg',selected:true,phrase:"去Farmer‘s Market 赶集"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐10 - 用粉笔宣传社团活动.jpg',selected:true,phrase:"用粉笔宣传社团活动"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐9 - 去过activity fair.jpg',selected:true,phrase:"去过Activity Fair"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐8-lime.png',selected:true,phrase:"骑过一次lime滑板车"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐7 - Lighting On the Lawn.jpg',selected:true,phrase:"看Rotunda亮灯"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/study abroad_画板 1.png',selected:true,phrase:"参与过UVA的交换项目"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/j-term_画板 1.png',selected:true,phrase:"上J-term或Summer session"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/clark睡觉_画板 1.png',selected:true,phrase:"在Clark负二层睡觉"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/break out room_画板 1.png',selected:true,phrase:"经历沉默的breakout room"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/argue 成绩_画板 1.png',selected:true,phrase:"和教授Argue Grade"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食堂学习_画板 1.png',selected:true,phrase:"在食堂自习"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/翘课_画板 1.png',selected:true,phrase:"翘过一节课"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/登不上sis_画板 1.png',selected:true,phrase:"选课前登不上SIS"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/早八_画板 1.png',selected:true,phrase:"上过早8"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/旁听_画板 1.png',selected:true,phrase:"蹭过一节课"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/忘带手机_画板 1_画板 1.png',selected:true,phrase:"没带手机Duo验证失败"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/忘带iclicker_画板 1.png',selected:true,phrase:"上课忘带iClicker"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/床上学习_画板 1.png',selected:true,phrase:"在床上上完一节网课"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/图书馆通宵_画板 1.png',selected:true,phrase:"在图书馆通宵"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/困在图书馆_画板 1.png',selected:true,phrase:"被大雨困在图书馆"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/哈利波特room_画板 1.png',selected:true,phrase:"在Harry Potter Room学习"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/借书_画板 1.png',selected:true,phrase:"从图书馆借一本书"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/选一节与专业无关的课.jpg',selected:true,phrase:"选一节与专业无关的课"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/看过一场足球赛.png',selected:true,phrase:"看过一场橄榄球赛"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/看过一场篮球赛.png',selected:true,phrase:"看过一场篮球赛"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/看过一场灵犀大戏.png',selected:true,phrase:"看过灵犀的年终大戏"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/申请过Overload.png',selected:true,phrase:"申请过Overload"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/申请过CPT.jpg',selected:true,phrase:"申请过CPT"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/拿过free tshirt.jpg',selected:true,phrase:"拿过free T-shirt"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在图书馆小房间投屏.jpg',selected:true,phrase:"在图书馆小房间投屏"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在UVA经历过一次Snow Day.png',selected:true,phrase:"在UVA经历过一次Snow Day"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在UVA拿过一学期GPA4.0.png',selected:true,phrase:"在UVA拿过一学期GPA4.0"},     
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在UVA周围跑过一次长跑.png',selected:true,phrase:"在UVA周围跑过=长跑"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在The Lawn上裸奔.png',selected:true,phrase:"在The Lawn上裸奔"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/在Ohill补办过ID.png',selected:true,phrase:"在Ohill补办过ID"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/喝过功夫茶.png',selected:true,phrase:"喝过功夫茶"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/和朋友一起去爬山.png',selected:true,phrase:"和朋友一起去爬山"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/参加过MSN的活动.jpg',selected:true,phrase:"参加过MSN的活动"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/参加线上社团活动.jpg',selected:true,phrase:"参加线上社团活动"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/去过5个图书馆.jpg',selected:true,phrase:"去过UVA5个不同  图书馆"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/去downtown看电影.jpg',selected:true,phrase:"去downtown看电影"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/去Slaughter攀岩.png',selected:true,phrase:"去Slaughter攀岩"},   
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/去SPCA助养过动物.jpg',selected:true,phrase:"去SPCA助养过动物"},   
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/买过亚米网.png',selected:true,phrase:"在亚米网买零食"},   
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/Rush过兄弟姐妹会.jpg',selected:true,phrase:"Rush过兄弟姐妹会"},   
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/Collab在考试的时候卡住.png',selected:true,phrase:"Collab在考试的时候卡住"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物21-图书馆外卖.png',selected:true,phrase:"在图书馆点外卖"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物20-vending machine.png',selected:true,phrase:"在Vending Machine购物"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物19-牛排.png',selected:true,phrase:"在Runk吃过牛排"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物18-Ohill寿司.png',selected:true,phrase:"在O'Hill抢到过寿司"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物17-3家餐馆.png',selected:true,phrase:"吃过夏村3家以上中餐"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物16-炸鸡薯条.png',selected:true,phrase:"深夜去食堂拿炸鸡薯条"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物15-节日大餐.png',selected:true,phrase:"吃过食堂的节日大餐"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物14-omelette.png',selected:true,phrase:"吃过食堂的Omelette"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物13-freshman 15.png',selected:true,phrase:"经历freshman15"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物12-冰激凌.png',selected:true,phrase:"在食堂吃蛋筒冰淇淋"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物11-点错餐厅.png',selected:true,phrase:"APP点星巴克点错餐厅位置"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物10-教授吃饭.png',selected:true,phrase:"和教授一起吃饭"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物8-argo tea.png',selected:true,phrase:"喝过Argo Tea"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物7-宿舍做饭.png',selected:true,phrase:"在宿舍做过一次饭"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物6-fine arts.png',selected:true,phrase:"去Fine Arts Cafe"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物5-奇怪的名字.png',selected:true,phrase:"被星巴克店员写错名字"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物4-bodos.png',selected:true,phrase:"吃过Bodos Bagel"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物3-火锅.png',selected:true,phrase:"在朋友家吃火锅"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/食物2-关门.png',selected:true,phrase:"在食堂一直吃到关门"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活1-二手交易.png',selected:true,phrase:"达成一次二手交易"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活11-桑拿.png',selected:true,phrase:"在AFC蒸一次桑拿"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活12-Kathy阿姨.png',selected:true,phrase:"在NC和Kathy阿姨拥抱"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活13-看病.png',selected:true,phrase:"在UVA Hospital看病"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活14-超市会员.png',selected:true,phrase:"办过UVA附近超市的会员卡"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活15-CHO.png',selected:true,phrase:"在CHO坐飞机"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活19-测covid.png',selected:true,phrase:"做过COVID Testing"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活2-看雪.png',selected:true,phrase:"亲眼见过夏村的一场雪"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活20-northground.png',selected:true,phrase:"光顾Northground"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活21-1515.png',selected:true,phrase:"在1515自习"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活22-过年.png',selected:true,phrase:"和朋友一起过年"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活23-bus.png',selected:true,phrase:"坐Bus去Barracks"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活24-火警.png',selected:true,phrase:"被火警轰出建筑"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活25-prime.png',selected:true,phrase:"办过Amazon Prime"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活3-东方店.png',selected:true,phrase:"在东方店买过两大箱的食物"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活4-过夜.png',selected:true,phrase:"在别人的宿舍/家里过夜"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活5-校园恋爱.png',selected:true,phrase:"谈过一场校园恋爱"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活6-不同国家的朋友.png',selected:true,phrase:"结实不同国籍的朋友"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活7-卫衣.png',selected:true,phrase:"穿UVA的卫衣出门"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活8-租房.png',selected:true,phrase:"和朋友一起租房"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活9-毕业照.png',selected:true,phrase:"在Rotunda拍毕业照"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活16-plus dollar.png',selected:true,phrase:"半学期花完Plus Dollars"},     
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活17-忘记ID.png',selected:true,phrase:"忘带ID把自己锁在宿舍外面"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活18-nickel.png',selected:true,phrase:"保留开学典礼上的Nickel"},
+      {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/娱乐 - 桌游.png',selected:true,phrase:"和朋友一起玩桌游"},
+     {img:'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/icons/生活10-道别.png',selected:true,phrase:"认真道别UVA"},
     ],
  },
 /**
@@ -66,13 +140,25 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    console.log(that.data.icons.length)
+    //把icons顺序打乱
+    for (let i = 1; i < that.data.icons.length-1; i++) {
+      const random = Math.floor(Math.random() * (i + 1));
+      that.setData({
+        ["icons["+i+"].img"]: that.data.icons[random].img,
+        ["icons["+i+"].phrase"]: that.data.icons[random].phrase,
+        ["icons["+random+"].img"]: that.data.icons[i].img,
+        ["icons["+random+"].phrase"]: that.data.icons[i].phrase,
+      });
+    }
 
     //background music
     bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
-    bgm.title = 'Supermarket Flowers'
+    // bgm.title = 'Supermarket Flowers'
     bgm.onEnded(()=>{
       bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
     })
+
 
     //获取设备信息高度。计算出其他的高度等
     wx.getSystemInfo({
@@ -86,10 +172,12 @@ Page({
     })
     console.log(that.data.windowHeight,that.data.windowWidth)
     //preload images and font
-        wx.loadFontFace({
-          family: 'FZ',
-          source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
-        })
+    wx.loadFontFace({
+      family: 'FZ',       
+      scopes: ['native','webview'],
+      global: true,
+      source: 'url("https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/FZDaBiaoSong-B06S.ttf?sign=d5bdff9d77ebc103cd43b30da561f2da&t=1619001145")',
+    })
     for(let i = 0; i < that.data.icons.length;i++){
       wx.cloud.downloadFile({
         fileID: that.data.icons[i].img,
@@ -132,6 +220,7 @@ Page({
           url: res.userInfo.avatarUrl, 
           success(downloadRes) {
             if (downloadRes.statusCode === 200) {
+              console.log("downloaded avatar")
               that.setData({
                 avatar: downloadRes.tempFilePath
               })
@@ -150,13 +239,12 @@ Page({
       }
     })
   },
-
+  //called when finish loading picture to record progress
   imgLoad: function (e) {
     this.setData({
       load: this.data.load+1,
-      complete: parseInt(((this.data.load+1)/this.data.imgNum).toFixed(2)*100)
+      complete: parseInt(((this.data.load+1)/(this.data.icons.length+1)).toFixed(2)*100)
     })
-    console.log("complete precent: ", this.data.complete)
   },
 
   handleNameInput: function(e){
@@ -179,15 +267,23 @@ Page({
 
   beginSelect: function() {
     if(this.data.userName){
-      this.setData({
-        mainPageAnimation2: 'slideOutLeft',
-      })
-      setTimeout(()=>{
+      if(this.data.userName.length > 5){
+        wx.showToast({
+          title: '姓名请不要超过五个字（bhys微信名长的大家）',
+          icon: 'none',
+          duration: 2000
+        }) 
+      }else{
         this.setData({
-          hidden2: true,
+          mainPageAnimation2: 'slideOutLeft',
         })
-        this._animate()
-      },600)
+        setTimeout(()=>{
+          this.setData({
+            hidden2: true,
+          })
+          this._animate()
+        },600)
+      }
     }else{
       wx.showToast({
         title: '请输入姓名啦（生成图片用~）',
@@ -232,7 +328,7 @@ Page({
           if(that.data.scrollTop < that.data.maxScrollTop)
             that.setData({        
               autoScrollOn:true,
-              scrollTop: that.data.scrollTop + 1.3,
+              scrollTop: that.data.scrollTop + 1,
             })
       }, 10)
     }
