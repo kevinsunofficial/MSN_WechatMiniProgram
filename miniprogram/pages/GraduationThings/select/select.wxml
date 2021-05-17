@@ -28,6 +28,8 @@
       <button class="beginButton" bindtap="beginSelect">开始</button>
     </view>
     <text style="font-family: FZ; font-size: 28rpx; padding: 10rpx 10rpx;">*不填会默认使用微信名</text>
+    <text style="font-family: FZ; font-size: 28rpx; padding: 10rpx 10rpx 0rpx 10rpx;">**如果生成失败了可以返回再生成一次</text>
+    <text style="font-family: FZ; font-size: 28rpx;">it works sometimes</text>
   </view>
 </view>
 

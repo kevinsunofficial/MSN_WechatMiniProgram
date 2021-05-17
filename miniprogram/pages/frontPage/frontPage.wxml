@@ -43,7 +43,7 @@
         <swiper-item>
           <view id="items" bindtap="toAct{{index+1}}">
             <image src="{{activityPhoto[index]}}"
-            mode="aspectFill" style="width: 750rpx; filter: brightness(60%)" bindload="imgLoad"></image>
+            mode="aspectFill" style="width: 750rpx;" bindload="imgLoad"></image>
             <view id="activityName"><text>{{item.name}}</text></view>
           </view>
         </swiper-item>
@@ -132,15 +132,8 @@
     </view>
     <view>
       <view id="rest">
-        <view id="file" bindtap="toBugReport">
-          <button id="smllink2" style="width: 340rpx">
-            <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/bugs.png" 
-            mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
-            <text>\n</text>
-            100件事</button>
-        </view>
         <view id="web" bindtap="toAdvice">
-          <button id="smllink2" style="width: 340rpx">
+          <button id="smllink2" style="width: 700rpx">
             <image src="cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/advice.png" 
             mode="widthFix" style="opacity: 0.8; width: 100rpx" bindload="imgLoad"></image>
             <text>\n</text>

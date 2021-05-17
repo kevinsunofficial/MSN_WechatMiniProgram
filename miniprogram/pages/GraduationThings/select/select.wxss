@@ -129,12 +129,9 @@ scroll-view {
 }
 
 .touch{
-  position: fixed;
-  top: 10px;
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: center;
-  z-index:40;
 }
 
 #generate {

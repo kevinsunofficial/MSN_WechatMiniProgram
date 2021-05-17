@@ -20,12 +20,10 @@ Page({
    */
   data: {
     recentActivities: [
-      {name: "MSN Casino Night"},
-      {name: "UVA Rush"},
-      {name: "Shanghai Send-off"}
+      {name: ""},
     ],
     activityPhoto: [
-      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/eventPhoto/casinoNight.JPG',
+      'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/GraduationThings/homepageLogo.png',
       'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/eventPhoto/uvaRush.JPG',
       'cloud://msnprototype-2pun5.6d73-msnprototype-2pun5-1300672980/eventPhoto/shSendoff.jpg'
     ],
@@ -33,7 +31,7 @@ Page({
     flag: "block",
     load: 0,
     complete: 0,
-    imgNum: 12,
+    imgNum: 9,
   },
   
   imgLoad: function (e) {
@@ -48,7 +46,7 @@ Page({
    */
   toAct1: function() {
     wx.navigateTo({
-      url: '/pages/recentActivities/one/one'
+      url: '/pages/GraduationThings/select/select'
     })
   },
 
