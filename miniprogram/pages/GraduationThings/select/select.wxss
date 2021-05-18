@@ -141,7 +141,7 @@ scroll-view {
   font-size: 35rpx;
   font-weight: 600;
   height: 100rpx;
-  width: 300rpx;
+  width: auto;
   border-radius: 50rpx;
   margin: 50rpx;
   display: flex;

@@ -51,14 +51,14 @@ Page({
     //获取设备信息高度。计算出其他的高度等
     wx.getSystemInfo({
       success: function(res) {
-        let cal_height = Math.max(res.windowHeight, res.windowWidth*(1.23 + Math.floor((that.data.count-1)/4)*0.33) || 0)*dpr
+        let cal_height = Math.max(res.windowHeight, res.windowWidth*(1.27 + Math.floor((that.data.count-1)/4)*0.33) || 0)*dpr
         that.setData({
           windowWidth: res.windowWidth,
           windowHeight: res.windowHeight,
           vw: res.windowWidth*dpr,
           vh: res.windowHeight*dpr,
           iconSide: res.windowWidth*.21*dpr,
-          leftMargin: res.windowWidth*.03*dpr,
+          leftMargin: res.windowWidth*.045*dpr,
           imgHeight: cal_height,
           dpr: dpr,
         })
@@ -139,14 +139,14 @@ Page({
     //画logos
     ctx.setFillStyle('#222222')
     for(let i=0;i<that.data.show.length;i++){
-      let x_offset = (that.data.iconSide*1.15)*(i%4) + that.data.leftMargin,
-        y_offset = that.data.vw*0.33*Math.floor(i/4) + that.data.vw*0.7;
+      let x_offset = (that.data.iconSide*1.11)*(i%4) + that.data.leftMargin,
+        y_offset = that.data.vw*0.33*Math.floor(i/4) + that.data.vw*0.72;
       ctx.save();
       ctx.beginPath();
       ctx.drawImage(that.data.show[i].img, x_offset, y_offset, 
         that.data.iconSide, that.data.iconSide);
       that.drawText(ctx,that.data.show[i].phrase,x_offset+that.data.iconSide/2,
-        y_offset + that.data.vw*0.25, 0, that.data.iconSide, dpr);
+        y_offset + that.data.vw*0.25, 0, that.data.iconSide-5, dpr);
       ctx.closePath();
       ctx.restore();
     }
@@ -173,16 +173,20 @@ Page({
   drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, dpr) {
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+    let lastEnglish = 0;
     let font_size = 13*dpr
     ctx.font = ''+font_size+'px FZ'
     ctx.textAlign = 'center'
     for (let i = 0; i < str.length; i++) {
       lineWidth += ctx.measureText(str[i]).width;
+      if (i > 0 && /^[A-z]$/.test(str[i]) && !/^[A-z]$/.test(str[i-1]))
+        lastEnglish = i;
       if (lineWidth > canvasWidth) {
-        let tmp = str.substring(lastSubStrIndex, i)
-        if(/^[A-z]$/.test(str[i]) && /^[A-z]$/.test(str[i-1])){  //英文换行加 '-'
-          tmp = tmp + '-'
+        //如果break在单词中间，找到单词第一个词，break from there
+        if(/^[A-z]$/.test(str[i]) && /^[A-z]$/.test(str[i-1])){  
+          i = lastEnglish;
         }
+        let tmp = str.substring(lastSubStrIndex, i)
         ctx.fillText(tmp, leftWidth, initHeight); //绘制截取部分
         initHeight += font_size; 
         lineWidth = 0;
