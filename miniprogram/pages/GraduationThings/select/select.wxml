@@ -38,7 +38,6 @@
 </view>
 
 <scroll-view id="scroller" scroll-y="{{scrollY}}" show-scrollbar="{{false}}" 
-bindtouchstart='onScrollStart' bindtouchend='onScrollEnd' 
 scroll-with-animation="{{false}}" scroll-top="{{scrollTop}}">
 <image style="position:fixed; z-index:-1; height:100%;width:{{(windowHeight/3300)*2550}}px;" src="{{background}}" bindload="imgLoad"></image>
       

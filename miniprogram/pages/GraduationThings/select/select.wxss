@@ -70,7 +70,7 @@
 
 scroll-view {
   height: 100vh;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 .status_bar{
   width: 100%;

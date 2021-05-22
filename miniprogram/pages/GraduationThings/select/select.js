@@ -157,11 +157,12 @@ Page({
         ["icons["+random+"].img"]: that.data.icons[i].img,
         ["icons["+random+"].phrase"]: that.data.icons[i].phrase,
       });
+
     }
 
     //background music
     bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
-    bgm.title = 'Supermarket Flowers'
+    // bgm.title = 'Supermarket Flowers'
     bgm.onEnded(()=>{
       bgm.src = 'https://6d73-msnprototype-2pun5-1300672980.tcb.qcloud.la/GraduationThings/Supermarket%20Flowers%20%5BPiano%20Karaoke%20Instrumental%5D%20Ed%20Sheeran.mp3?sign=9ce69e52d10802aa5db65df856f00967&t=1619960980'
     })
@@ -283,7 +284,7 @@ Page({
           this.setData({
             hidden2: true,
           })
-          this._animate()
+          // this._animate()
         },600)
       }
   },
@@ -318,6 +319,7 @@ Page({
 
   startAutoScroll: function(){
     var that = this
+    console.log("start scroll")
     if(!this.data.autoScrollOn){
       that.data.autoScroll = setInterval(function() {
           if(that.data.scrollTop < that.data.maxScrollTop)

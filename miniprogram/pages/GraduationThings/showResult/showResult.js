@@ -171,10 +171,11 @@ Page({
    * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
    */
   drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, dpr) {
+    var that = this
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
     let lastEnglish = 0;
-    let font_size = 13*dpr
+    let font_size = Math.floor(that.data.vw/28)
     ctx.font = ''+font_size+'px FZ'
     ctx.textAlign = 'center'
     for (let i = 0; i < str.length; i++) {

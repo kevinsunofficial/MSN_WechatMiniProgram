@@ -233,9 +233,9 @@ Page({
     },
 
   toUpload: function() {
-    wx.navigateTo({
-      url: '/pages/MarketPlace/upload/upload'
-    })
+    // wx.navigateTo({
+    //   url: '/pages/MarketPlace/upload/upload'
+    // })
   },
   getData:function(callback){
     if(!callback){
